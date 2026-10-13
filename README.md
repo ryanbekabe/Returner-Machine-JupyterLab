@@ -50,6 +50,30 @@ python byteentropy/histogram_v2.py <nama_file>
 | `rmh_konteks.py` | Satu histogram adaptif per konteks (PPM), menebak byte dari byte-byte sebelumnya (lihat bagian [Konteks PPM](#konteks-ppm-file-rmk)) |
 | `rmh_konteks_info.py` | Melihat isi file `.rmk`: rincian per segmen, ke mana bit dihabiskan, konteks yang dipelajari, dan jejak decode (lihat bagian [Melihat Isi File .rmk](#melihat-isi-file-rmk)) |
 
+### Istilah ekstensi file
+
+Awalan **rm** berasal dari **R**eturner **M**achine. Huruf terakhir menunjukkan tahap pengembangan: Hash → Blok → Adaptif → Konteks.
+
+| Ekstensi | Singkatan | Penanda (4 byte pertama) | Program | Cara menyimpan |
+|---|---|---|---|---|
+| `.rmh` | Return[er] Machine **H**ash | `RMH1` | `rmh.py` | Satu histogram + satu rank untuk seluruh file. Lihat [Format File .rmh](#format-file-rmh-simpan-ke-file) |
+| `.rmb` | Return[er] Machine **B**lok | `RMB1` | `rmh_blok.py` | File dipecah per blok, setiap blok punya histogram + rank sendiri. Lihat [Per Blok](#per-blok-file-rmb) |
+| `.rma` | Return[er] Machine **A**daptif | `RMA1` | `rmh_adaptif.py` | Histogram tidak disimpan, tetapi dipelajari dari byte yang sudah terbuka. Lihat [Histogram Adaptif](#histogram-adaptif-file-rma) |
+| `.rmk` | Return[er] Machine **K**onteks | `RMK1` | `rmh_konteks.py` | Satu histogram adaptif untuk setiap konteks (1..N byte sebelumnya). Lihat [Konteks PPM](#konteks-ppm-file-rmk) |
+
+Penanda di awal file membuat program bisa mengenali formatnya. Angka `1` adalah nomor versi format, sehingga format yang diubah di masa depan bisa memakai `RMK2` dan seterusnya tanpa merusak file lama.
+
+**Ukuran hasil mengikuti informasi baru, bukan ukuran file.** Contoh `.rmk` orde 3:
+
+| Jenis data | 1.000 byte | 10.000 byte | 100.000 byte |
+|---|---|---|---|
+| Semua nol (`0x00`) | 14 | 14 | 18 |
+| `bismillah ` berulang | 28 | 30 | 34 |
+| `GPU List.txt` (potongan awal) | 308 | 1.113 | 9.243 |
+| Data acak | 1.137 | 11.087 | 110.019 |
+
+Data yang berulang hampir tidak bertambah. Data berpola tumbuh lebih lambat dari file aslinya. Data acak tumbuh seiring ukuran file, bahkan sekitar 10% lebih besar karena biaya ESCAPE. Untuk data acak berukuran besar, `.rma` lebih cocok (101.001 byte untuk 100.000 byte acak).
+
 ### Konsep singkat
 
 - Satu byte = 8 bit, jadi ada 2⁸ = **256 kemungkinan nilai, yaitu 0 sampai 255**.
