@@ -306,6 +306,33 @@ Langkah lanjutan dari bagian 14: RMK2 disambungkan ke `.rmf`. Script `byteentrop
 - `RMF3` mengalahkan zip dan 7z pada 4 dari 8 file uji. Pada `NestedRubik256DNA.py` hasilnya seri dengan zip (12.354 byte).
 - Harganya: encode PDF butuh 65 detik (`RMF2` 35 detik), dan `logfactorial.txt` 117 detik. Decode 19 dan 39 detik.
 
+## 16. Percepatan dengan numba
+
+Sebelum percepatan, beberapa ide optimasi ukuran diukur lebih dulu. Hasilnya, peluang yang mudah sudah habis:
+
+| Ide | Hasil dibanding RMK2 |
+|---|---|
+| Model salin potongan (LZ) di depan PPM | 0% sampai +46% (lebih besar) |
+| Context mixing sederhana, 12 setelan | −6% sampai +2% |
+| Menyetel parameter RMK2 | paling bagus −0,24% |
+| Precomp PDF (membuka stream Flate) | batas atas −627 KB, tetapi Acrobat Distiller memakai encoder Deflate sendiri: 0 dari 260 stream bisa dibuat ulang bit-per-bit oleh zlib |
+
+Karena itu yang dikerjakan lebih dulu adalah **kecepatan**. numba sudah ada di `requirements.txt`, jadi tidak perlu instal apa pun.
+
+- `byteentropy/rmh_konteks3.py`: model RMK2 ditulis ulang untuk numba. Hasilnya **identik byte demi byte** dengan `rmh_konteks2.py` (112 kombinasi kasus × orde). `dict` diganti hash table, dan isi konteks disimpan sebagai blok array bersebelahan dengan urutan kemunculan yang sama. Versi linked list pertama 5× lebih lambat pada data biner karena cache miss.
+- `byteentropy/rmh_final4.py`: versi cepat `rmh_final3.py`, tetap format `RMF3`. Orde 1..6 dan pilihan campuran vs semua model diuji pada **data penuh** secara paralel, bukan ditebak dari sampel.
+
+| File | `rmh_final3.py` encode / decode | `rmh_final4.py` encode / decode | Ukuran |
+|---|---|---|---|
+| `logfactorial.txt` (5,6 MB) | 117 / 39 detik | **7,3 / 0,7 detik** | 2.125.742 (sama) |
+| `Dialog_Dengan_Jin_Muslim.pdf` (6,9 MB) | 65 / 19 detik | **17,5 / 14,3 detik** | 6.082.351 → **6.056.548** |
+| idem dengan `--tanpa-uji-semua` | | **2,1 / 0,7 detik** | 6.082.351 (sama) |
+| `GPU List.txt` (136 KB) | sekitar 4 / 2 detik | **0,4 / 0,03 detik** | 9.680 (sama) |
+
+- Mesin RMK2: `logfactorial.txt` 89 → 1,7 detik (sekitar 50×). Teks sekitar 3–7 MB/detik, data biner sekitar 0,5–1 MB/detik.
+- Uji pada data penuh menemukan bahwa untuk PDF, mengodekan **semua** blok (termasuk yang "acak") lebih kecil 25.803 byte daripada campuran. PDF kini 6.056.548 byte, lebih kecil dari file `.7z` di repo (6.059.748), tetapi masih 19 KB di atas `lzma -9e` murni (6.037.556).
+- Decode `logfactorial.txt` (0,7 detik) kini lebih cepat dari encode 7z (4,0 detik).
+
 ---
 
 ## Daftar file yang dibuat
@@ -325,7 +352,9 @@ Langkah lanjutan dari bagian 14: RMK2 disambungkan ke `.rmf`. Script `byteentrop
 | `byteentropy/rmh_final.py` | Encode/decode `.rmf` versi 1, mode otomatis + SHA-256 |
 | `byteentropy/rmh_final2.py` | Encode/decode `.rmf` versi 2, mode campuran per blok |
 | `byteentropy/rmh_konteks2.py` | Encode/decode `.rmk` versi 2: PPM + SEE + update exclusion |
-| `byteentropy/rmh_final3.py` | **Versi yang disarankan**: `.rmf` versi 3, mode campuran per blok + konteks versi 2 |
+| `byteentropy/rmh_final3.py` | Encode/decode `.rmf` versi 3, mode campuran per blok + konteks versi 2 |
+| `byteentropy/rmh_konteks3.py` | Versi cepat (numba) `rmh_konteks2.py`, format RMK2 yang sama |
+| `byteentropy/rmh_final4.py` | **Versi yang disarankan**: versi cepat (numba) `rmh_final3.py`, format RMF3 yang sama |
 
 ## Langkah berikutnya
 
@@ -333,4 +362,5 @@ Langkah lanjutan dari bagian 14: RMK2 disambungkan ke `.rmf`. Script `byteentrop
 2. ~~**Konteks orde-1/orde-2.**~~ Selesai, lihat bagian 9. Hasilnya melampaui perkiraan: `GPU List.txt` turun menjadi 11 KB dengan orde 5.
 3. **Context mixing.** Menggabungkan tebakan beberapa orde sekaligus (seperti PAQ/cmix), bukan memilih satu lewat escape. Langkah antara sudah selesai: biaya ESCAPE dipangkas dengan SEE dan update exclusion (bagian 14), dan sudah dipakai di `.rmf` versi 3 (bagian 15).
 4. **Model salin potongan (LZ).** Untuk data yang sangat berulang, di mana lzma masih unggul. Prioritas berikutnya: PDF uji sudah lebih kecil dari zip, dan selisih dengan 7z tinggal 22.603 byte. Selisih itu berasal dari struktur teks PDF yang penuh potongan berulang.
-5. **Percepatan.** Python murni sekitar 100 KB/detik. Perlu numba atau C/Rust untuk file berukuran MB.
+5. ~~**Percepatan.**~~ Selesai dengan numba, lihat bagian 16. Teks 3–7 MB/detik, data biner 0,5–1 MB/detik.
+6. **Precomp untuk PDF.** Batas atas penghematan 627 KB pada PDF uji. Syaratnya: stream Deflate dari Acrobat harus bisa dibuat ulang bit-per-bit (teknik seperti preflate).
