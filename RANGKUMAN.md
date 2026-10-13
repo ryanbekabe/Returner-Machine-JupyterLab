@@ -168,6 +168,23 @@ Script `byteentropy/rmh_adaptif.py` (perintah `encode`, `decode`, `bandingkan`).
 
 `GPU List.txt` di-encode dalam 0,53 detik dan di-decode dalam 0,68 detik dengan 1 core.
 
+## 9. Langkah 2 selesai: konteks PPM (`.rmk`)
+
+Script `byteentropy/rmh_konteks.py` (perintah `encode`, `decode`, `bandingkan`).
+
+- Satu histogram adaptif **per konteks** (1..N byte sebelumnya), tetap tidak disimpan di file.
+- PPM: coba konteks terpanjang. Jika byte belum pernah muncul di sana, kirim ESCAPE dan turun ke konteks lebih pendek, sampai orde −1 (256 byte berpeluang sama). Byte yang sudah gagal dikecualikan.
+- Pada `GPU List.txt` dengan orde 3, 95,6% byte berhasil ditebak dari 3 byte sebelumnya.
+
+| File | `.rma` | `.rmk` (orde terbaik) | zlib | lzma |
+|---|---|---|---|---|
+| `GPU List.txt` (136.412) | 87.387 | **11.006** (orde 5) | 11.285 | 9.024 |
+| `HoRM.txt` (4.690) | 2.119 | **1.085** (orde 3) | 1.236 | 1.024 |
+| `RMHash_HoRM2.txt` (8.585) | 3.878 | **975** (orde 3) | 1.146 | 584 |
+
+- `.rmk` mengalahkan zlib pada ketiga file di atas, dan mendekati lzma.
+- lzma masih unggul pada data yang sangat berulang, karena bisa menyalin potongan panjang sekaligus.
+
 ---
 
 ## Daftar file yang dibuat
@@ -182,8 +199,12 @@ Script `byteentropy/rmh_adaptif.py` (perintah `encode`, `decode`, `bandingkan`).
 | `byteentropy/rmh.py` | Encode/decode file `.rmh` |
 | `byteentropy/rmh_blok.py` | Encode/decode file `.rmb` per blok, paralel |
 | `byteentropy/rmh_adaptif.py` | Encode/decode file `.rma`, histogram adaptif |
+| `byteentropy/rmh_konteks.py` | Encode/decode file `.rmk`, konteks PPM |
 
 ## Langkah berikutnya
 
 1. ~~**Histogram adaptif.**~~ Selesai, lihat bagian 8.
-2. **Konteks orde-1/orde-2.** Setiap byte ditebak dari 1–2 byte sebelumnya. Ini langkah dengan dampak terbesar pada ukuran file (perkiraan 87 KB → 14–36 KB untuk `GPU List.txt`).
+2. ~~**Konteks orde-1/orde-2.**~~ Selesai, lihat bagian 9. Hasilnya melampaui perkiraan: `GPU List.txt` turun menjadi 11 KB dengan orde 5.
+3. **Context mixing.** Menggabungkan tebakan beberapa orde sekaligus (seperti PAQ/cmix), bukan memilih satu lewat escape.
+4. **Model salin potongan (LZ).** Untuk data yang sangat berulang, di mana lzma masih unggul.
+5. **Percepatan.** Python murni sekitar 100 KB/detik. Perlu numba atau C/Rust untuk file berukuran MB.

@@ -47,6 +47,7 @@ python byteentropy/histogram_v2.py <nama_file>
 | `rmh.py` | Encode file ke `.rmh` (histogram + rank) dan decode kembali (lihat bagian [Format File .rmh](#format-file-rmh-simpan-ke-file)) |
 | `rmh_blok.py` | Versi per blok dari `rmh.py`: cepat untuk file besar dan bisa paralel (lihat bagian [Per Blok](#per-blok-file-rmb)) |
 | `rmh_adaptif.py` | Histogram dipelajari dari data yang sudah terbuka, tidak disimpan (lihat bagian [Histogram Adaptif](#histogram-adaptif-file-rma)) |
+| `rmh_konteks.py` | Satu histogram adaptif per konteks (PPM), menebak byte dari byte-byte sebelumnya (lihat bagian [Konteks PPM](#konteks-ppm-file-rmk)) |
 
 ### Konsep singkat
 
@@ -582,7 +583,136 @@ Waktunya linear dan cukup dengan 1 core. Tidak perlu dipecah per blok, jadi mode
 ### Batasan
 
 - Masih **orde-0**: setiap byte ditebak hanya dari frekuensi keseluruhan, tanpa melihat byte di sebelahnya. Karena itu ukurannya tetap mendekati batas Shannon orde-0 dan masih jauh di atas lzma untuk teks.
-- Langkah 2 (**konteks orde-1/orde-2**) akan menebak setiap byte dari 1–2 byte sebelumnya. Perkiraan untuk `GPU List.txt`: dari sekitar 87 KB menjadi 14–36 KB.
+- Langkah 2 menebak setiap byte dari byte-byte sebelumnya, lihat [Konteks PPM](#konteks-ppm-file-rmk).
+
+## Konteks PPM (File .rmk)
+
+Script: `byteentropy/rmh_konteks.py`. Ini langkah 2 dari pemodelan adaptif: **satu histogram adaptif per konteks**. File-file sebelumnya tidak diubah.
+
+### Ide
+
+`.rma` hanya punya satu histogram untuk seluruh file. Padahal peluang sebuah byte sangat bergantung pada byte sebelumnya. Di teks, setelah `ban` kemungkinan besar muncul `k`, dan setelah `q` hampir pasti `u`.
+
+`.rmk` menyimpan histogram terpisah untuk setiap **konteks** (1..N byte sebelumnya), dan semuanya dipelajari sambil jalan seperti di `.rma`. Histogram tetap **tidak disimpan di file**.
+
+### Masalah konteks panjang dan solusinya (PPM)
+
+Konteks panjang lebih tajam tebakannya, tapi sering **belum pernah dilihat**. Kalau setiap konteks baru dimulai dari 256 frekuensi, biaya belajarnya menghabiskan keuntungannya. Solusinya adalah *Prediction by Partial Matching* (PPM):
+
+1. Coba konteks terpanjang (orde N, misalnya 3 byte sebelumnya).
+2. Jika byte belum pernah muncul di konteks itu, kodekan tanda **ESCAPE**, lalu turun ke konteks yang lebih pendek (orde N−1, ..., 0).
+3. Orde −1: semua 256 nilai byte berpeluang sama, jadi pasti berhasil.
+4. Byte yang sudah gagal di konteks panjang **dikecualikan** di konteks berikutnya (*exclusion*), supaya peluangnya tidak terbuang.
+
+Contoh dengan orde 3, saat menebak byte setelah `...ban`:
+
+```
+konteks "ban" → pernah melihat {k, y}     → byte "k" ada      → kodekan "k"    (murah)
+konteks "ban" → pernah melihat {k, y}     → byte "g" tidak ada → ESCAPE
+konteks "an"  → pernah melihat {k, y, d, g} tanpa k,y → "g" ada → kodekan "g"
+```
+
+Peluang di satu konteks memakai metode escape PPM-D:
+
+| Kejadian | Bobot |
+|---|---|
+| Byte `x` | `2 × frekuensi(x) − 1` |
+| ESCAPE | jumlah byte berbeda di konteks itu |
+
+### Cara pakai
+
+```bash
+python byteentropy/rmh_konteks.py encode     <file>     [-o <file.rmk>] [-k <orde>]
+python byteentropy/rmh_konteks.py decode     <file.rmk> [-o <file_hasil>]
+python byteentropy/rmh_konteks.py bandingkan <file>     [-k <orde1> <orde2> ...]
+```
+
+| Perintah / opsi | Keterangan |
+|---|---|
+| `encode` | File asli → `.rmk`, sekaligus menampilkan berapa byte yang berhasil ditebak di tiap orde |
+| `decode` | `.rmk` → file asli, diverifikasi dengan CRC32. Orde dibaca dari header |
+| `bandingkan` | Membandingkan `.rmb`, `.rma`, `.rmk` di beberapa orde, zlib, dan lzma, tanpa menulis file |
+| `-k`, `--orde` | Panjang konteks maksimum 0..6 (default 3) |
+
+Contoh:
+
+```bash
+python byteentropy/rmh_konteks.py encode "Testing/GPU List.txt" -o gpu.rmk
+python byteentropy/rmh_konteks.py decode gpu.rmk -o gpu_kembali.txt
+python byteentropy/rmh_konteks.py bandingkan "Testing/GPU List.txt" -k 1 2 3 4 5 6
+```
+
+Output `encode`:
+
+```
+Rincian file .rmk:
+  header                8 byte
+  crc32                 4 byte
+  histogram             0 byte
+  kode (rank)       12519 byte
+  TOTAL             12531 byte
+
+Ukuran  : 136412 -> 12531 byte (9.2% dari asli)
+
+Byte berhasil ditebak di konteks orde:
+  orde  3 :   130468 byte ( 95.6%)  dari 2740 konteks
+  orde  2 :     3201 byte (  2.3%)  dari 756 konteks
+  orde  1 :     1986 byte (  1.5%)  dari 75 konteks
+  orde  0 :      682 byte (  0.5%)  dari 1 konteks
+  orde -1 :       75 byte (  0.1%)  byte yang benar-benar baru
+```
+
+95,6% byte berhasil ditebak dari 3 byte sebelumnya. Hanya 75 byte yang benar-benar baru, yaitu kemunculan pertama setiap nilai byte yang dipakai file ini.
+
+### Struktur file
+
+| Bagian | Ukuran | Isi |
+|---|---|---|
+| Magic | 4 byte | `RMK1` |
+| n | varint | Ukuran file asli |
+| Orde | 1 byte | Panjang konteks maksimum |
+| CRC32 | 4 byte | Checksum file asli |
+| Kode | sisa file | Hasil arithmetic coding |
+
+### Hasil
+
+Ukuran dalam byte. **Tebal** = paling kecil di antara metode Return[er] Machine.
+
+| File | Asli | `.rma` | `.rmk` orde 1 | orde 2 | orde 3 | orde 4 | orde 5 | zlib -9 | lzma -9 |
+|---|---|---|---|---|---|---|---|---|---|
+| `GPU List.txt` | 136.412 | 87.387 | 36.578 | 16.019 | 12.531 | 11.143 | **11.006** | 11.285 | 9.024 |
+| `HoRM.txt` | 4.690 | 2.119 | 1.402 | 1.185 | **1.085** | 1.114 | 1.137 | 1.236 | 1.024 |
+| `RMHash_HoRM2.txt` | 8.585 | 3.878 | 1.684 | 1.174 | **975** | 1.021 | 1.079 | 1.146 | 584 |
+| `Return[er]Machine.py` | 7.235 | 4.482 | 3.120 | 2.346 | 2.204 | 2.175 | **2.174** | 2.103 | 2.168 |
+| `NestedRubik256DNA.py` | 15.112 | 14.484 | 14.277 | 13.825 | 13.741 | **13.739** | 13.749 | 12.354 | 12.208 |
+| `123.txt.png` | 10.073 | 10.086 | 9.029 | 8.697 | 8.679 | **8.672** | 8.673 | 8.369 | 8.264 |
+
+- **Lompatan besar dari `.rma`**: `GPU List.txt` turun dari 87.387 menjadi 11.006 byte (8× lebih kecil).
+- `.rmk` **mengalahkan zlib** pada `GPU List.txt`, `HoRM.txt`, dan `RMHash_HoRM2.txt`. Pada `Return[er]Machine.py` hasilnya hampir setara lzma (2.174 vs 2.168) dan sedikit di atas zlib (2.103).
+- **Orde terbaik berbeda per file.** File kecil cocok dengan orde 3, karena konteks panjang belum sempat dipelajari. File besar cocok dengan orde 4–5. Orde 6 mulai memburuk karena terlalu banyak konteks yang jarang terlihat. Gunakan `bandingkan` untuk mencari orde terbaik.
+- lzma masih unggul pada file yang **sangat berulang** (`RMHash_HoRM2.txt`: 584 vs 975), karena lzma bisa menyalin potongan panjang sekaligus, sedangkan PPM tetap menebak satu byte demi satu byte.
+- File yang sudah terkompresi (PNG) dan kode biner-acak (`NestedRubik256DNA.py`) hanya sedikit mengecil, karena isinya memang hampir tidak berpola.
+
+### Kecepatan
+
+| File | Orde | Encode | Decode |
+|---|---|---|---|
+| `GPU List.txt` (136 KB) | 3 | 0,8–1,5 detik | 1,4 detik |
+| `NestedRubik256DNA.py` (15 KB) | 3 | 0,6 detik | - |
+
+Waktunya tetap linear. File dengan banyak byte baru (biner) lebih lambat, karena escape ke orde −1 harus menelusuri daftar 256 nilai byte.
+
+### Pengujian
+
+- Encode → decode identik (dicek dengan `cmp`) untuk kedelapan file uji (`GPU List.txt`, `HoRM.txt`, `RMHash_HoRM2.txt`, `Return[er]Machine.py`, `NestedRubik256DNA.py`, `123.txt.png`, `bismillah.txt`, `nullbyte.txt`) pada orde 3 dan 5.
+- 412 uji acak lolos untuk semua orde 0..6, termasuk file kosong, 50.000 byte nol, data acak penuh, dan pola `abab...`.
+- File rusak ditolak: magic salah, header terpotong, orde tidak valid, dan kode yang diubah (`CRC32 tidak cocok`).
+- Catatan: memotong 1–3 byte terakhir kadang **tetap menghasilkan file yang benar** (CRC32 cocok). Byte terakhir arithmetic coder hanya bantalan presisi, dan decoder mengisi bit yang hilang dengan nol. Pemotongan yang lebih banyak terdeteksi oleh CRC32.
+
+### Batasan dan arah berikutnya
+
+- Python murni: sekitar 100 KB/detik. Untuk file besar (MB), implementasi perlu dipindah ke bahasa yang lebih cepat (C/Rust) atau dipercepat dengan numba.
+- lzma masih unggul untuk data yang sangat berulang. Arah pengembangan: **pencampuran konteks** (*context mixing*, seperti PAQ/cmix), yaitu menggabungkan tebakan dari beberapa orde sekaligus alih-alih memilih satu lewat escape, atau menambahkan model "salin potongan" seperti LZ.
 
 
 ```git
