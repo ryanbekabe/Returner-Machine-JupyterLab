@@ -48,6 +48,7 @@ python byteentropy/histogram_v2.py <nama_file>
 | `rmh_blok.py` | Versi per blok dari `rmh.py`: cepat untuk file besar dan bisa paralel (lihat bagian [Per Blok](#per-blok-file-rmb)) |
 | `rmh_adaptif.py` | Histogram dipelajari dari data yang sudah terbuka, tidak disimpan (lihat bagian [Histogram Adaptif](#histogram-adaptif-file-rma)) |
 | `rmh_konteks.py` | Satu histogram adaptif per konteks (PPM), menebak byte dari byte-byte sebelumnya (lihat bagian [Konteks PPM](#konteks-ppm-file-rmk)) |
+| `rmh_konteks_info.py` | Melihat isi file `.rmk`: rincian per segmen, ke mana bit dihabiskan, konteks yang dipelajari, dan jejak decode (lihat bagian [Melihat Isi File .rmk](#melihat-isi-file-rmk)) |
 
 ### Konsep singkat
 
@@ -713,6 +714,183 @@ Waktunya tetap linear. File dengan banyak byte baru (biner) lebih lambat, karena
 
 - Python murni: sekitar 100 KB/detik. Untuk file besar (MB), implementasi perlu dipindah ke bahasa yang lebih cepat (C/Rust) atau dipercepat dengan numba.
 - lzma masih unggul untuk data yang sangat berulang. Arah pengembangan: **pencampuran konteks** (*context mixing*, seperti PAQ/cmix), yaitu menggabungkan tebakan dari beberapa orde sekaligus alih-alih memilih satu lewat escape, atau menambahkan model "salin potongan" seperti LZ.
+
+## Melihat Isi File .rmk
+
+Script: `byteentropy/rmh_konteks_info.py`. Fungsinya seperti `rmh_blok.py info`, tapi untuk file `.rmk`. `rmh_konteks.py` tidak diubah.
+
+### Kenapa harus memutar ulang decode
+
+Di `.rmb`, setiap blok **menyimpan** histogram + rank, jadi `info` cukup membaca file. Di `.rmk`, file hanya berisi header, CRC32, dan bit arithmetic coding. **Histogram dan konteks tidak disimpan sama sekali.** Karena itu `rmh_konteks_info.py` mendekode ulang seluruh file sambil mencatat setiap langkah:
+
+- konteks orde berapa yang berhasil menebak setiap byte,
+- berapa kali ESCAPE terjadi,
+- berapa bit yang dihabiskan setiap kejadian: `bit = log2(total / lebar interval)`.
+
+Di akhir, hasil decode dicocokkan dengan CRC32, sehingga angka yang ditampilkan dijamin berasal dari decode yang benar.
+
+### Cara pakai
+
+```bash
+python byteentropy/rmh_konteks_info.py <file.rmk> [-s <ukuran_segmen>] [--semua] [-t <jumlah_konteks>] [--jejak N] [--dari POSISI]
+```
+
+| Opsi | Keterangan |
+|---|---|
+| `-s`, `--segmen` | Ukuran segmen untuk tabel rincian (default 4096, sama dengan blok `.rmb` supaya bisa dibandingkan) |
+| `--semua` | Tampilkan semua segmen. Tanpa opsi ini, hanya 10 segmen pertama dan 5 terakhir |
+| `-t`, `--konteks` | Jumlah konteks teratas yang ditampilkan (default 10, `0` = tidak ditampilkan) |
+| `--jejak N` | Tampilkan langkah decode untuk N byte |
+| `--dari POSISI` | Posisi awal jejak (default 0) |
+
+Contoh:
+
+```bash
+python byteentropy/rmh_konteks.py encode "Testing/GPU List.txt" -o gpu.rmk
+python byteentropy/rmh_konteks_info.py gpu.rmk
+python byteentropy/rmh_konteks_info.py gpu.rmk --jejak 12 --dari 100000
+```
+
+### Membaca output
+
+Output untuk `gpu.rmk` (orde 3) terdiri dari lima bagian.
+
+**1. Isi file (yang benar-benar tersimpan)**
+
+```
+  Offset  Ukuran  Bagian  Isi
+       0       4  magic   52 4D 4B 31              ("RMK1")
+       4       3  n       DC A9 08                 (136412)
+       7       1  orde    03                       (3)
+       8       4  crc32   2B 7D EF A4
+      12   12519  kode    68 B9 F5 7A DE 8C ...    (bit arithmetic coding)
+  Histogram / konteks : 0 byte (tidak disimpan, dibangun ulang saat decode)
+```
+
+Hanya 12 byte header. Sisanya adalah satu deretan bit (kode) untuk seluruh file.
+
+**2. Rincian per segmen**
+
+```
+  Segmen  Panjang   Offset  Kode (byte)  bit/byte   Orde 3   Escape   Baru
+       0     4096       12        614.8     1.201    86.1%      472     58
+       1     4096      626        358.1     0.699    94.3%      206      1
+       2     4096      984        313.7     0.613    95.0%      177      2
+       3     4096     1298        292.3     0.571    96.2%      136      1
+     ...
+      33     1244    12335        195.2     1.255    91.8%       94      0
+```
+
+| Kolom | Arti |
+|---|---|
+| Offset | Posisi (byte) di file `.rmk` tempat kode segmen ini dimulai. Arithmetic coding menulis bit berurutan, jadi segmen 0 ada di awal kode |
+| Kode (byte) | Berapa byte kode yang dihabiskan segmen ini |
+| bit/byte | Rata-rata bit per byte asli. 8 = tidak terkompresi |
+| Orde 3 | Persentase byte yang berhasil ditebak di konteks terpanjang |
+| Escape | Berapa kali turun ke konteks lebih pendek |
+| Baru | Berapa nilai byte yang muncul untuk pertama kali |
+
+Segmen 0 paling mahal (614,8 byte) karena model masih belajar: 58 nilai byte baru muncul di sana. Mulai segmen 1, biayanya turun menjadi sekitar 300–400 byte. Bandingkan dengan `.rmb` untuk file yang sama: **setiap** blok 4.096 byte butuh sekitar 2.500 byte rank ditambah histogramnya sendiri, karena setiap blok mulai dari nol.
+
+**3. Ke mana bit kode dihabiskan**
+
+```
+  Kejadian                  Jumlah  Kode (byte)  Rata-rata bit
+  byte di orde 3            130468       8046.3          0.493
+  byte di orde 2              3201       1099.4          2.748
+  byte di orde 1              1986        965.7          3.890
+  byte di orde 0               682        536.7          6.296
+  byte baru (orde -1)           75         72.8          7.768
+  ESCAPE                      5364       1797.2          2.680
+  TOTAL (per byte asli)     136412      12518.2          0.734
+  Kode sebenarnya: 12519 byte (selisih = presisi arithmetic coder + bantalan akhir)
+```
+
+- Byte yang tertebak di orde 3 hanya butuh rata-rata **0,49 bit**, jauh di bawah 8 bit.
+- Makin pendek konteksnya, makin mahal biayanya. Byte yang benar-benar baru butuh sekitar 7,8 bit.
+- ESCAPE memakan 1.797 byte (14% kode). Ini harga yang dibayar setiap kali konteks panjang gagal menebak.
+- Total hitungan (12.518,2 byte) cocok dengan ukuran kode sebenarnya (12.519 byte).
+
+**4. Konteks yang dipelajari**
+
+```
+  orde 3 :   2740 konteks
+  ...
+10 konteks orde 3 yang paling sering menebak dengan benar:
+  Konteks    Benar  Byte berikutnya (frekuensi saat ini)
+  "ion"       2880  ' ':962 '_':959 '\r':959 'i':4
+  "tio"       2877  'n':2878
+  "opt"       2876  'i':2877
+  "pti"       2876  'o':2877
+```
+
+Inilah "histogram per konteks" yang tidak pernah disimpan di file. Contohnya, setelah `tio` byte berikutnya **selalu** `n` (2.878 kali), jadi byte itu hampir tidak butuh bit. Kata `option` di HTML file ini sangat sering muncul. Frekuensi bisa jauh lebih kecil dari jumlah "Benar" karena frekuensi di satu konteks dibagi dua saat salah satunya melewati 4.096 atau totalnya melewati 8.192.
+
+**5. Jejak decode (opsional, `--jejak`)**
+
+Awal file `Testing/bismillah.txt` (`--jejak 9`), ketika model belum tahu apa-apa. Ini cuplikan, sebagian baris dihilangkan:
+
+```
+   Posisi Byte   Konteks     Bit  Langkah
+        0 'b'    ""         8.00  o0:-  o-1:BARU 8.00
+        1 'i'    "b"        8.99  o1:-  o0:ESC 1.00  o-1:BARU 7.99
+      ...
+        4 'i'    "ism"      3.00  o3:-  o2:-  o1:-  o0:OK 3.00
+        5 'l'    "smi"     10.39  o3:-  o2:-  o1:ESC 1.00  o0:ESC 1.42  o-1:BARU 7.98
+```
+
+Tengah file `GPU List.txt` (`--jejak 12 --dari 100000`), ketika model sudah banyak belajar. Ini juga cuplikan:
+
+```
+   Posisi Byte   Konteks     Bit  Langkah
+   100000 '6'    "=\"1"     6.42  o3:OK 6.42
+   100001 '4'    "\"16"     9.11  o3:ESC 2.00  o2:ESC 5.92  o1:OK 1.20
+   100002 '3'    "164"      5.05  o3:-  o2:OK 5.05
+   100003 '"'    "643"      1.00  o3:OK 1.00
+   100004 ' '    "43\""     0.05  o3:OK 0.05
+      ...
+   100006 'l'    "\" c"     0.00  o3:OK 0.00
+   100007 'a'    " cl"      0.00  o3:OK 0.00
+```
+
+| Simbol | Arti |
+|---|---|
+| `o3`, `o2`, ... | Konteks orde 3, 2, ... |
+| `-` | Konteks itu belum pernah terlihat, jadi dilewati tanpa biaya |
+| `OK 0.05` | Byte berhasil ditebak di konteks itu, biayanya 0,05 bit |
+| `ESC 2.00` | Byte belum pernah muncul di konteks itu. Kirim ESCAPE (2 bit), lalu turun |
+| `BARU 7.98` | Byte belum pernah muncul di file sama sekali (orde −1) |
+
+Angka ID seperti `164` sulit ditebak (5–9 bit per byte), sedangkan teks ` class="` yang sudah ribuan kali muncul hampir gratis. `0.00` berarti kurang dari 0,005 bit.
+
+### Contoh file besar: `Testing/logfactorial.txt`
+
+| | Ukuran |
+|---|---|
+| Asli | 5.644.322 byte |
+| zlib -9 | 2.413.002 byte |
+| lzma -9 | 2.270.136 byte |
+| **`.rmk` orde 3** | **2.130.339 byte** |
+
+Pada file ini `.rmk` **lebih kecil dari lzma -9**. Hasil `info` menjelaskan alasannya:
+
+```
+5 konteks orde 3 yang paling sering menebak dengan benar:
+  Konteks    Benar  Byte berikutnya (frekuensi saat ini)
+  "000"     520914  '0':2333 '\r':6 '7':3 '1':3 '4':3 '8':3 ... (+6)
+  "400"       5572  '0':1022 '9':539 '1':527 '3':513 '4':508 '2':506 ... (+5)
+```
+
+- File ini berisi angka besar dengan banyak deretan nol. Setelah `000`, byte berikutnya hampir pasti `0` lagi, jadi deretan nol hampir gratis.
+- Setelah digit lain (`400`, `600`, ...), digit berikutnya tersebar hampir merata. Digit seperti ini memang tidak bisa diperkecil di bawah sekitar log2(10) ≈ 3,32 bit.
+- Rata-rata keseluruhan **3,02 bit per byte**. lzma kurang efektif di sini karena angka-angka itu jarang berulang sebagai potongan panjang, sedangkan PPM unggul dalam memprediksi pola pendek seperti deretan nol.
+
+Memutar ulang decode file 5,6 MB ini butuh sekitar 43 detik (sekitar 130 KB/detik).
+
+### Pengujian
+
+- Diuji pada `.rmk` dari `GPU List.txt` (orde 3), `bismillah.txt`, `nullbyte.txt` (orde 0), `123.txt.png` (orde 6, segmen 2.048), file kosong, dan `logfactorial.txt` (5,6 MB). Pada semua file CRC32 cocok, dan total biaya yang dihitung ulang berselisih paling banyak 1 byte dari ukuran kode sebenarnya.
+- File rusak atau bukan `.rmk` ditolak (`CRC32 tidak cocok`, `Bukan file .rmk`). Opsi tidak valid (`-s 0`, nilai negatif) ditolak dengan pesan yang jelas.
 
 
 ```git

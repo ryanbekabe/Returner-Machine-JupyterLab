@@ -185,6 +185,29 @@ Script `byteentropy/rmh_konteks.py` (perintah `encode`, `decode`, `bandingkan`).
 - `.rmk` mengalahkan zlib pada ketiga file di atas, dan mendekati lzma.
 - lzma masih unggul pada data yang sangat berulang, karena bisa menyalin potongan panjang sekaligus.
 
+## 10. Melihat isi file `.rmk`
+
+Script `byteentropy/rmh_konteks_info.py`, padanan `rmh_blok.py info` untuk `.rmk`.
+
+- File `.rmk` hanya berisi header (12 byte untuk `GPU List.txt`), CRC32, dan satu deretan bit kode. **Histogram/konteks: 0 byte.**
+- Karena tidak ada yang disimpan, info didapat dengan **memutar ulang decode** sambil mencatat orde yang menebak, jumlah ESCAPE, dan biaya bit setiap kejadian `log2(total / lebar interval)`.
+- Output: isi file, rincian per segmen, ke mana bit dihabiskan, konteks yang dipelajari, dan jejak decode (`--jejak`).
+
+Temuan dari `GPU List.txt`:
+
+- Segmen 0 paling mahal (614,8 byte) karena model masih belajar. Segmen berikutnya hanya sekitar 300–400 byte. Di `.rmb`, setiap blok butuh sekitar 2.500 byte karena selalu mulai dari nol.
+- Byte yang tertebak di orde 3 rata-rata hanya 0,49 bit. ESCAPE memakan 14% kode.
+- Contoh konteks yang dipelajari: setelah `tio` selalu muncul `n` (2.878 kali), dari kata `option`.
+
+Temuan dari `Testing/logfactorial.txt` (5,6 MB):
+
+| zlib -9 | lzma -9 | `.rmk` orde 3 |
+|---|---|---|
+| 2.413.002 | 2.270.136 | **2.130.339** |
+
+- Pertama kalinya `.rmk` **mengalahkan lzma** pada file nyata. Setelah konteks `000`, byte berikutnya hampir pasti `0`, jadi deretan nol hampir gratis. Digit lainnya tersebar merata dan memang tidak bisa diperkecil di bawah sekitar 3,32 bit.
+- Rata-rata 3,02 bit per byte. Memutar ulang decode file ini butuh sekitar 43 detik.
+
 ---
 
 ## Daftar file yang dibuat
@@ -200,6 +223,7 @@ Script `byteentropy/rmh_konteks.py` (perintah `encode`, `decode`, `bandingkan`).
 | `byteentropy/rmh_blok.py` | Encode/decode file `.rmb` per blok, paralel |
 | `byteentropy/rmh_adaptif.py` | Encode/decode file `.rma`, histogram adaptif |
 | `byteentropy/rmh_konteks.py` | Encode/decode file `.rmk`, konteks PPM |
+| `byteentropy/rmh_konteks_info.py` | Melihat isi file `.rmk` dengan memutar ulang decode |
 
 ## Langkah berikutnya
 
