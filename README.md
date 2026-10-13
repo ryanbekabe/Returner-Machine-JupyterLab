@@ -46,6 +46,7 @@ python byteentropy/histogram_v2.py <nama_file>
 | `permutasi_rank.py` | Enumerative coding: menyimpan data sebagai histogram + rank, lalu menyusunnya kembali (lihat bagian [Enumerative Coding](#enumerative-coding-histogram--rank)) |
 | `rmh.py` | Encode file ke `.rmh` (histogram + rank) dan decode kembali (lihat bagian [Format File .rmh](#format-file-rmh-simpan-ke-file)) |
 | `rmh_blok.py` | Versi per blok dari `rmh.py`: cepat untuk file besar dan bisa paralel (lihat bagian [Per Blok](#per-blok-file-rmb)) |
+| `rmh_adaptif.py` | Histogram dipelajari dari data yang sudah terbuka, tidak disimpan (lihat bagian [Histogram Adaptif](#histogram-adaptif-file-rma)) |
 
 ### Konsep singkat
 
@@ -459,7 +460,129 @@ Untuk file ini, **4.096 – 16.384 byte** adalah titik tengah yang baik. Ukuran 
 ### Batasan
 
 - Per blok menyelesaikan masalah **kecepatan**, bukan **ukuran**. Hasilnya tetap mendekati batas Shannon orde-0, dan masih jauh di atas zlib/lzma untuk teks (`GPU List.txt`: `.rmb` 89.892 byte, lzma 9.024 byte).
-- Biaya histogram per blok besar, terutama untuk blok kecil. Ini yang akan diatasi oleh tahap **histogram ringkas**.
+- Biaya histogram per blok besar, terutama untuk blok kecil. Ini diatasi oleh [Histogram Adaptif](#histogram-adaptif-file-rma).
+
+## Histogram Adaptif (File .rma)
+
+Script: `byteentropy/rmh_adaptif.py`. Ini langkah 1 dari pemodelan adaptif: **histogram tidak disimpan di file sama sekali**. `rmh.py` dan `rmh_blok.py` tidak diubah.
+
+### Ide
+
+Di `.rmb`, setiap blok harus menyimpan histogramnya agar decoder tahu frekuensi tiap byte. Di `.rma`, histogram **dipelajari dari byte-byte yang sudah terbuka**:
+
+1. Awalnya semua 256 nilai byte punya frekuensi 1, jadi tidak ada byte yang mustahil.
+2. Byte berikutnya dikodekan sesuai peluangnya menurut histogram saat itu.
+3. Setelah byte terbuka, frekuensinya ditambah (default +32).
+4. Jika total frekuensi melewati batas (default 65.536), semua frekuensi dibagi dua. Data lama perlahan dilupakan, sehingga data terbaru lebih dipercaya.
+
+Encoder dan decoder menjalankan langkah yang **persis sama** dengan data yang sama, sehingga histogram tebakan mereka selalu identik. Inilah bentuk nyata dari ide "bagian yang sudah terbuka memberi informasi bagian berikutnya": informasinya tidak perlu disimpan, karena decoder bisa menyimpulkannya sendiri.
+
+### Rank tetap ada: arithmetic coding
+
+Rank di `.rmh` adalah nomor urut di antara semua susunan. Di `.rma`, rank dihitung **bertahap per byte** dengan *arithmetic coding*:
+
+- Mulai dari interval `[0, 1)`.
+- Setiap byte mempersempit interval sebesar peluangnya. Byte yang sering muncul hanya sedikit mempersempit, sehingga butuh sedikit bit.
+- Bilangan di dalam interval akhir itulah "rank" seluruh file.
+
+Program memakai coder integer 32-bit (Witten, Neal & Cleary, 1987), jadi waktunya **linear** tanpa bilangan raksasa. Histogram disimpan dalam Fenwick tree, sehingga frekuensi kumulatif dihitung dalam 8 langkah, bukan 256.
+
+### Hubungan dengan enumerative coding
+
+Jika model adaptif memakai penambahan +1 tanpa pembagian dua, jumlah bit yang dihasilkan **persis sama** dengan:
+
+```
+log2(jumlah histogram yang mungkin) + log2(jumlah susunan)
+= log2 C(n+255, 255)               + log2(n! / (c1!·...·ck!))
+= nomor histogram                   + rank
+```
+
+Diverifikasi pada `Testing/HoRM.txt`: keduanya menghasilkan **18.596,771 bit** (1.443,687 + 17.153,085). Jadi model adaptif adalah enumerative coding (histogram + rank) yang histogramnya ikut dikodekan secara implisit. Varian default (+32 dengan pembagian dua) sedikit lebih baik, karena mengikuti perubahan isi lokal file seperti blok kecil di `.rmb`, tapi tanpa biaya histogram.
+
+### Cara pakai
+
+```bash
+python byteentropy/rmh_adaptif.py encode     <file>     [-o <file.rma>] [--tambah N] [--batas N]
+python byteentropy/rmh_adaptif.py decode     <file.rma> [-o <file_hasil>]
+python byteentropy/rmh_adaptif.py bandingkan <file>     [-b <blok .rmb>] [--tambah N] [--batas N]
+```
+
+| Perintah / opsi | Keterangan |
+|---|---|
+| `encode` | File asli → `.rma` |
+| `decode` | `.rma` → file asli, diverifikasi dengan CRC32. Parameter model dibaca dari header |
+| `bandingkan` | Membandingkan `.rmb`, `.rma`, zlib, dan lzma tanpa menulis file |
+| `--tambah` | Penambahan frekuensi tiap byte muncul (1..65.536, default 32). Makin besar, makin cepat beradaptasi |
+| `--batas` | Total frekuensi maksimum sebelum dibagi dua (512..16.777.216, default 65.536). Makin kecil, makin cepat melupakan data lama |
+
+Contoh:
+
+```bash
+python byteentropy/rmh_adaptif.py encode "Testing/GPU List.txt" -o gpu.rma
+python byteentropy/rmh_adaptif.py decode gpu.rma -o gpu_kembali.txt
+python byteentropy/rmh_adaptif.py bandingkan "Testing/GPU List.txt"
+```
+
+Output `bandingkan`:
+
+```
+Metode                        Histogram    Rank/kode        Total    % asli
+.rmb (blok 4096)                   3966        85913        89892     65.9%
+.rma (adaptif)                        0        87372        87387     64.1%
+zlib -9                                                     11285      8.3%
+lzma -9                                                      9024      6.6%
+```
+
+### Struktur file
+
+| Bagian | Ukuran | Isi |
+|---|---|---|
+| Magic | 4 byte | `RMA1` |
+| n | varint | Ukuran file asli |
+| tambah | varint | Parameter model |
+| batas | varint | Parameter model |
+| CRC32 | 4 byte | Checksum file asli |
+| Kode | sisa file | Hasil arithmetic coding (rank) |
+
+**Tidak ada histogram.** Header hanya sekitar 14 byte, berapa pun ukuran file-nya.
+
+### Hasil
+
+| File | Asli | `.rmb` (blok 4096) | `.rma` | lzma |
+|---|---|---|---|---|
+| `Testing/bismillah.txt` | 9 | 29 | 22 | 68 |
+| `Testing/nullbyte.txt` | 256 | 16 | 22 | 72 |
+| `Testing/HoRM.txt` | 4.690 | 2.224 | 2.119 | 1.024 |
+| `Testing/RMHash_HoRM2.txt` | 8.585 | 3.872 | 3.878 | 584 |
+| `Testing/Return[er]Machine-NestedRubik256DNA.py` | 15.112 | 15.745 | 14.484 | 12.208 |
+| `Testing/123.txt.png` | 10.073 | 11.030 | 10.086 | 8.264 |
+| `Testing/GPU List.txt` | 136.412 | 89.892 | 87.387 | 9.024 |
+
+(ukuran dalam byte)
+
+- `.rma` lebih kecil dari `.rmb` pada hampir semua file, terutama file dengan banyak nilai byte berbeda (PNG, kode Python), di mana histogram per blok mahal.
+- `.rma` tidak pernah membesar jauh dari ukuran asli. PNG yang sudah terkompresi hanya bertambah 13 byte (header + CRC32).
+- `nullbyte.txt` sedikit lebih besar dari `.rmb` karena model butuh beberapa byte untuk "belajar" bahwa hanya byte 0 yang muncul.
+
+### Kecepatan
+
+| File | Encode | Decode |
+|---|---|---|
+| `HoRM.txt` (4,7 KB) | 0,02 detik | 0,02 detik |
+| `GPU List.txt` (136 KB) | 0,53 detik | 0,68 detik |
+
+Waktunya linear dan cukup dengan 1 core. Tidak perlu dipecah per blok, jadi model bisa terus belajar dari awal sampai akhir file.
+
+### Pengujian
+
+- Encode → decode identik (dicek dengan `cmp`) untuk ketujuh file di tabel hasil.
+- 412 uji acak lolos, termasuk file kosong, 100.000 byte nol, data acak penuh, dan kombinasi parameter ekstrem (`--tambah 1 --batas 512` sampai `--tambah 65536 --batas 16777216`).
+- File rusak ditolak: magic salah (`Bukan file .rma`), header terpotong (`File .rma terpotong`), serta kode yang terpotong atau diubah (`CRC32 tidak cocok`).
+
+### Batasan
+
+- Masih **orde-0**: setiap byte ditebak hanya dari frekuensi keseluruhan, tanpa melihat byte di sebelahnya. Karena itu ukurannya tetap mendekati batas Shannon orde-0 dan masih jauh di atas lzma untuk teks.
+- Langkah 2 (**konteks orde-1/orde-2**) akan menebak setiap byte dari 1–2 byte sebelumnya. Perkiraan untuk `GPU List.txt`: dari sekitar 87 KB menjadi 14–36 KB.
 
 
 ```git

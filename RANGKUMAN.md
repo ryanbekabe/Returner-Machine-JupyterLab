@@ -152,6 +152,22 @@ Ukuran informasi minimum `GPU List.txt` berdasarkan jumlah byte sebelumnya yang 
 | 3 byte sebelumnya (orde-3) | 8.546 byte |
 | *lzma* | *9.024 byte* |
 
+## 8. Langkah 1 selesai: histogram adaptif (`.rma`)
+
+Script `byteentropy/rmh_adaptif.py` (perintah `encode`, `decode`, `bandingkan`).
+
+- Histogram **tidak disimpan**. Histogram dipelajari dari byte yang sudah terbuka: mulai dari frekuensi 1 untuk semua byte, +32 setiap kali byte muncul, dan dibagi dua saat total melewati 65.536.
+- Rank dihitung bertahap per byte dengan arithmetic coding 32-bit, jadi waktunya linear.
+- Terbukti: model adaptif +1 menghasilkan bit yang **persis sama** dengan `nomor histogram + rank` (18.596,771 bit pada `HoRM.txt`). Model adaptif adalah enumerative coding dengan histogram yang dikodekan secara implisit.
+
+| File | `.rmb` | `.rma` | lzma |
+|---|---|---|---|
+| `GPU List.txt` (136.412) | 89.892 | 87.387 | 9.024 |
+| `NestedRubik256DNA.py` (15.112) | 15.745 | 14.484 | 12.208 |
+| `123.txt.png` (10.073) | 11.030 | 10.086 | 8.264 |
+
+`GPU List.txt` di-encode dalam 0,53 detik dan di-decode dalam 0,68 detik dengan 1 core.
+
 ---
 
 ## Daftar file yang dibuat
@@ -165,8 +181,9 @@ Ukuran informasi minimum `GPU List.txt` berdasarkan jumlah byte sebelumnya yang 
 | `byteentropy/permutasi_rank.py` | Demonstrasi enumerative coding di memori |
 | `byteentropy/rmh.py` | Encode/decode file `.rmh` |
 | `byteentropy/rmh_blok.py` | Encode/decode file `.rmb` per blok, paralel |
+| `byteentropy/rmh_adaptif.py` | Encode/decode file `.rma`, histogram adaptif |
 
 ## Langkah berikutnya
 
-1. **Histogram adaptif.** Histogram blok berikutnya ditebak dari blok yang sudah terbuka, sehingga biaya histogram (3.966 byte pada `GPU List.txt`) hampir hilang.
+1. ~~**Histogram adaptif.**~~ Selesai, lihat bagian 8.
 2. **Konteks orde-1/orde-2.** Setiap byte ditebak dari 1–2 byte sebelumnya. Ini langkah dengan dampak terbesar pada ukuran file (perkiraan 87 KB → 14–36 KB untuk `GPU List.txt`).
