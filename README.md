@@ -366,4 +366,41 @@ git branch -M main
 git remote add origin https://github.com/ryanbekabe/Returner-Machine-JupyterLab.git
 git push -u origin main
 
+D:\laragon\www\Returner-Machine-JupyterLab>python byteentropy/rmh.py encode Testing/bismillah.txt -o bismillah.rmh
+Encode  : Testing/bismillah.txt -> bismillah.rmh (0.000 detik)
+
+Rincian file .rmh:
+  header              6 byte
+  histogram          14 byte
+  crc32               4 byte
+  rank                3 byte
+  TOTAL              27 byte
+
+Perbandingan ukuran:
+  asli                  9 byte
+  .rmh                 27 byte  (300.0% dari asli)
+  zlib -9              17 byte  (188.9% dari asli)
+  lzma -9              68 byte  (755.6% dari asli)
+  n*H/8               3.1 byte  (batas Shannon orde-0, n*H/8)
+
+D:\laragon\www\Returner-Machine-JupyterLab>python byteentropy/rmh.py info bismillah.rmh
+File .rmh        : bismillah.rmh (27 byte)
+Ukuran file asli : 9 byte
+Nilai byte unik  : 7
+CRC32            : A9420C61
+Total permutasi  : 90720
+Rank             : 15094
+Histogram        :
+   97 (0x61) a : 1
+   98 (0x62) b : 1
+  104 (0x68) h : 1
+  105 (0x69) i : 2
+  108 (0x6C) l : 2
+  109 (0x6D) m : 1
+  115 (0x73) s : 1
+
+D:\laragon\www\Returner-Machine-JupyterLab>python byteentropy/rmh.py decode bismillah.rmh -o bismillah_kembali.txt
+Decode  : bismillah.rmh -> bismillah_kembali.txt (0.000 detik)
+Ukuran  : 9 byte, CRC32 cocok
+
 ```git
