@@ -208,6 +208,31 @@ Temuan dari `Testing/logfactorial.txt` (5,6 MB):
 - Pertama kalinya `.rmk` **mengalahkan lzma** pada file nyata. Setelah konteks `000`, byte berikutnya hampir pasti `0`, jadi deretan nol hampir gratis. Digit lainnya tersebar merata dan memang tidak bisa diperkecil di bawah sekitar 3,32 bit.
 - Rata-rata 3,02 bit per byte. Memutar ulang decode file ini butuh sekitar 43 detik.
 
+## 11. Ukuran hasil dan istilah ekstensi
+
+- Ukuran hasil mengikuti **informasi baru**, bukan ukuran file. 100.000 byte nol menjadi 18 byte, sedangkan 100.000 byte acak tetap sekitar 100.000 byte.
+- Ekstensi: **rm** = Returner Machine, lalu huruf tahapnya: `.rmh` Hash, `.rmb` Blok, `.rma` Adaptif, `.rmk` Konteks, `.rmf` Final.
+
+## 12. Versi final: `.rmf`
+
+Pertanyaan: metode mana yang paling kecil dan tetap bisa digenerate kembali, konsisten seperti hash?
+
+- **Konteks** paling kecil untuk data berpola. **Adaptif** atau **mentah** paling cocok untuk data acak atau yang sudah terkompresi. Keempat metode lossless dan deterministik.
+- Ukuran hasil yang selalu tetap untuk semua file **tidak mungkin** (prinsip sarang merpati). Solusinya, dua peran dipisah: **SHA-256** sebagai identitas berukuran tetap (32 byte), dan **kode** sebagai resep untuk membangun kembali file-nya.
+
+Script `byteentropy/rmh_final.py` (perintah `encode`, `decode`, `info`):
+
+- Menguji mentah, adaptif, dan konteks orde 1–5, lalu memilih yang terkecil. File di atas 256 KB diuji memakai sampel 3 × 64 KB.
+- Jika hasilnya tidak lebih kecil dari asli, file disimpan mentah, sehingga tidak pernah membengkak.
+- SHA-256 di header. Encode langsung diverifikasi dengan decode ulang.
+- Deterministik: encode dua kali menghasilkan file yang sama persis.
+
+| File | Asli | Mode terpilih | `.rmf` |
+|---|---|---|---|
+| `GPU List.txt` | 136.412 | konteks orde 5 | 11.035 |
+| `logfactorial.txt` | 5.644.322 | konteks orde 3 | 2.130.368 |
+| 100.000 byte acak | 100.000 | mentah | 100.040 |
+
 ---
 
 ## Daftar file yang dibuat
@@ -224,6 +249,7 @@ Temuan dari `Testing/logfactorial.txt` (5,6 MB):
 | `byteentropy/rmh_adaptif.py` | Encode/decode file `.rma`, histogram adaptif |
 | `byteentropy/rmh_konteks.py` | Encode/decode file `.rmk`, konteks PPM |
 | `byteentropy/rmh_konteks_info.py` | Melihat isi file `.rmk` dengan memutar ulang decode |
+| `byteentropy/rmh_final.py` | **Versi final**: encode/decode `.rmf`, mode otomatis + SHA-256 |
 
 ## Langkah berikutnya
 

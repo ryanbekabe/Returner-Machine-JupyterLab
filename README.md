@@ -49,10 +49,11 @@ python byteentropy/histogram_v2.py <nama_file>
 | `rmh_adaptif.py` | Histogram dipelajari dari data yang sudah terbuka, tidak disimpan (lihat bagian [Histogram Adaptif](#histogram-adaptif-file-rma)) |
 | `rmh_konteks.py` | Satu histogram adaptif per konteks (PPM), menebak byte dari byte-byte sebelumnya (lihat bagian [Konteks PPM](#konteks-ppm-file-rmk)) |
 | `rmh_konteks_info.py` | Melihat isi file `.rmk`: rincian per segmen, ke mana bit dihabiskan, konteks yang dipelajari, dan jejak decode (lihat bagian [Melihat Isi File .rmk](#melihat-isi-file-rmk)) |
+| `rmh_final.py` | **Versi yang disarankan.** Memilih mode terbaik secara otomatis (konteks orde 1..5, adaptif, atau mentah) dan menyimpan SHA-256 sebagai sidik jari (lihat bagian [Return[er] Machine Final](#returner-machine-final-file-rmf)) |
 
 ### Istilah ekstensi file
 
-Awalan **rm** berasal dari **R**eturner **M**achine. Huruf terakhir menunjukkan tahap pengembangan: Hash → Blok → Adaptif → Konteks.
+Awalan **rm** berasal dari **R**eturner **M**achine. Huruf terakhir menunjukkan tahap pengembangan: Hash → Blok → Adaptif → Konteks → Final.
 
 | Ekstensi | Singkatan | Penanda (4 byte pertama) | Program | Cara menyimpan |
 |---|---|---|---|---|
@@ -60,6 +61,7 @@ Awalan **rm** berasal dari **R**eturner **M**achine. Huruf terakhir menunjukkan 
 | `.rmb` | Return[er] Machine **B**lok | `RMB1` | `rmh_blok.py` | File dipecah per blok, setiap blok punya histogram + rank sendiri. Lihat [Per Blok](#per-blok-file-rmb) |
 | `.rma` | Return[er] Machine **A**daptif | `RMA1` | `rmh_adaptif.py` | Histogram tidak disimpan, tetapi dipelajari dari byte yang sudah terbuka. Lihat [Histogram Adaptif](#histogram-adaptif-file-rma) |
 | `.rmk` | Return[er] Machine **K**onteks | `RMK1` | `rmh_konteks.py` | Satu histogram adaptif untuk setiap konteks (1..N byte sebelumnya). Lihat [Konteks PPM](#konteks-ppm-file-rmk) |
+| `.rmf` | Return[er] Machine **F**inal | `RMF1` | `rmh_final.py` | Mode terbaik dipilih otomatis (konteks, adaptif, atau mentah) + SHA-256 file asli. Lihat [Return[er] Machine Final](#returner-machine-final-file-rmf) |
 
 Penanda di awal file membuat program bisa mengenali formatnya. Angka `1` adalah nomor versi format, sehingga format yang diubah di masa depan bisa memakai `RMK2` dan seterusnya tanpa merusak file lama.
 
@@ -915,6 +917,123 @@ Memutar ulang decode file 5,6 MB ini butuh sekitar 43 detik (sekitar 130 KB/deti
 
 - Diuji pada `.rmk` dari `GPU List.txt` (orde 3), `bismillah.txt`, `nullbyte.txt` (orde 0), `123.txt.png` (orde 6, segmen 2.048), file kosong, dan `logfactorial.txt` (5,6 MB). Pada semua file CRC32 cocok, dan total biaya yang dihitung ulang berselisih paling banyak 1 byte dari ukuran kode sebenarnya.
 - File rusak atau bukan `.rmk` ditolak (`CRC32 tidak cocok`, `Bukan file .rmk`). Opsi tidak valid (`-s 0`, nilai negatif) ditolak dengan pesan yang jelas.
+
+## Return[er] Machine Final (File .rmf)
+
+Script: `byteentropy/rmh_final.py`. **Ini versi yang disarankan untuk dipakai.** Script ini menggabungkan hasil terbaik dari semua tahap sebelumnya. File-file sebelumnya tidak diubah.
+
+### Tujuan
+
+Returner Machine adalah gabungan kompresi dan generator file. `.rmf` memenuhi empat sifat berikut:
+
+| Sifat | Cara mencapainya |
+|---|---|
+| Hasil sekecil mungkin | Mode terbaik dipilih otomatis: konteks orde 1..5, adaptif, atau mentah |
+| Bisa digenerate kembali ke file asli | Semua mode lossless, dan setiap decode diverifikasi |
+| Konsisten seperti hash | Deterministik: file yang sama selalu menghasilkan `.rmf` yang sama persis |
+| Sidik jari berukuran tetap | SHA-256 file asli (32 byte) disimpan di header |
+
+Yang **tidak mungkin** adalah ukuran hasil yang selalu tetap untuk semua file. Hash berukuran tetap tidak bisa dibalik menjadi file asli (prinsip sarang merpati). Karena itu `.rmf` memisahkan dua peran: SHA-256 sebagai **identitas** berukuran tetap, dan kode sebagai **resep** untuk membangun kembali file-nya, yang ukurannya mengikuti jumlah informasi di dalam file.
+
+### Cara memilih mode
+
+1. Semua kandidat diuji: **mentah**, **adaptif** (`.rma`), dan **konteks orde 1–5** (`.rmk`).
+2. Yang menghasilkan kode terkecil dipilih. Jika ada yang sama besar, kandidat yang lebih sederhana dipilih, sehingga pilihannya juga deterministik.
+3. Untuk file di atas 256 KB, pengujian memakai **sampel** 3 × 64 KB (awal, tengah, dan akhir file) supaya tidak perlu mengodekan file besar 7 kali. Sampel cenderung memilih orde terlalu rendah, karena konteks panjang belum sempat dipelajari. Karena itu, file penuh dikodekan dengan orde terpilih, lalu dicoba orde berikutnya (+1, +2, ...) selama hasilnya masih mengecil.
+4. Jika hasil akhirnya tidak lebih kecil dari file asli, file disimpan **mentah**. Data acak atau yang sudah terkompresi tidak pernah membengkak, hanya bertambah sebesar header.
+5. Secara default, hasil encode langsung **didekode ulang dan dicocokkan** sebelum file ditulis.
+
+### Cara pakai
+
+```bash
+python byteentropy/rmh_final.py encode <file>     [-o <file.rmf>] [-k <orde>] [--tanpa-verifikasi]
+python byteentropy/rmh_final.py decode <file.rmf> [-o <file_hasil>]
+python byteentropy/rmh_final.py info   <file.rmf>
+```
+
+| Perintah / opsi | Keterangan |
+|---|---|
+| `encode` | File asli → `.rmf`. Menampilkan hasil uji setiap kandidat dan mode yang terpilih |
+| `decode` | `.rmf` → file asli. Hasilnya diverifikasi dengan SHA-256 |
+| `info` | Menampilkan mode, ukuran asli, dan SHA-256 dari header tanpa decode (instan) |
+| `-k`, `--orde` | Paksa mode konteks dengan orde tertentu (0..6), tanpa pemilihan otomatis |
+| `--tanpa-verifikasi` | Lewati decode ulang setelah encode. Lebih cepat, tapi tanpa jaminan tambahan |
+
+Contoh:
+
+```bash
+python byteentropy/rmh_final.py encode "Testing/GPU List.txt" -o gpu.rmf
+python byteentropy/rmh_final.py info gpu.rmf
+python byteentropy/rmh_final.py decode gpu.rmf -o gpu_kembali.txt
+```
+
+Output `encode`:
+
+```
+Uji kandidat (file penuh):
+  Kandidat            Kode (byte)     % uji     Detik
+  mentah                   136412    100.0%     0.000
+  adaptif                   87372     64.1%     0.342
+  konteks orde 1            36566     26.8%     0.587
+  konteks orde 2            16007     11.7%     0.475
+  konteks orde 3            12519      9.2%     0.512
+  konteks orde 4            11131      8.2%     0.620
+  konteks orde 5            10994      8.1%     0.740  <- terpilih
+
+Mode       : konteks orde 5
+SHA-256    : 2d8543fd1ab9c08c45c8f4c73345d129a49585e105a1f77121e9e24869aeb4a4
+Ukuran     : 136412 -> 11035 byte (8.1% dari asli)
+Verifikasi : decode identik, SHA-256 cocok (0.772 detik)
+```
+
+SHA-256 di atas sama dengan hasil `sha256sum "Testing/GPU List.txt"`, jadi sidik jari file bisa dicek tanpa decode lewat perintah `info`.
+
+### Struktur file
+
+| Bagian | Ukuran | Isi |
+|---|---|---|
+| Magic | 4 byte | `RMF1` |
+| Mode | 1 byte | `0` = mentah, `1` = adaptif, `2` = konteks |
+| n | varint | Ukuran file asli |
+| SHA-256 | 32 byte | Sidik jari file asli |
+| Parameter | 0–4 byte | Mode adaptif: `tambah`, `batas` (varint). Mode konteks: orde (1 byte) |
+| Kode / data | sisa file | Data mentah atau bit arithmetic coding |
+
+Header berukuran 38–45 byte, terutama untuk SHA-256.
+
+### Hasil
+
+| File | Asli | Mode terpilih | `.rmf` | `.rmk` orde 3 | lzma -9 |
+|---|---|---|---|---|---|
+| `GPU List.txt` | 136.412 | konteks orde 5 | **11.035** | 12.531 | 9.024 |
+| `logfactorial.txt` | 5.644.322 | konteks orde 3 | **2.130.368** | 2.130.339 | 2.270.136 |
+| `HoRM.txt` | 4.690 | konteks orde 3 | 1.114 | 1.085 | 1.024 |
+| `RMHash_HoRM2.txt` | 8.585 | konteks orde 3 | 1.004 | 975 | 584 |
+| `Return[er]Machine.py` | 7.235 | konteks orde 5 | 2.203 | 2.204 | 2.168 |
+| `NestedRubik256DNA.py` | 15.112 | konteks orde 4 | 13.768 | 13.741 | 12.208 |
+| `123.txt.png` | 10.073 | konteks orde 4 | 8.701 | 8.679 | 8.264 |
+| `nullbyte.txt` | 256 | konteks orde 1 | 42 | 14 | 72 |
+| 100.000 byte acak | 100.000 | mentah | **100.040** | 110.019 | 100.064 |
+| `bismillah.txt` | 9 | mentah | 47 | 20 | 68 |
+
+(ukuran dalam byte)
+
+- Jika orde terbaik bukan 3, `.rmf` lebih kecil dari `.rmk` orde 3 karena ordenya dipilih otomatis (`GPU List.txt`: orde 5, 11.035 vs 12.531). Jika orde terbaik memang 3 (`logfactorial.txt`), ukurannya sama ditambah selisih header.
+- Untuk data acak, `.rmf` hanya bertambah 40 byte (header). `.rmk` membengkak sekitar 10%.
+- Untuk file kecil, `.rmf` sekitar 29 byte lebih besar dari `.rmk`, karena SHA-256 (32 byte) menggantikan CRC32 (4 byte). Itu harga untuk sidik jari yang jauh lebih kuat.
+
+### Pengujian
+
+- Encode → decode identik (dicek dengan `cmp`) untuk semua file di tabel hasil, termasuk file kosong.
+- Encode dua kali selalu menghasilkan file `.rmf` yang **sama persis** (deterministik).
+- 157 uji acak lolos, termasuk orde paksa 0..6 dan pengecekan determinisme.
+- File rusak ditolak: magic salah, mode tidak dikenal, header terpotong, data mentah terpotong, serta kode, data, atau SHA-256 yang diubah (`SHA-256 tidak cocok`).
+
+### Batasan
+
+- Pemilihan otomatis mengodekan file sampai 7 kali, jadi encode lebih lambat dari `rmh_konteks.py`. Decode tetap secepat mode yang terpilih.
+- Contoh file besar, `Testing/logfactorial.txt` (5,6 MB): sampel memilih orde 2, lalu penyesuaian pada file penuh menemukan orde 3 lebih kecil (2.130.326 vs 2.141.867 byte kode) dan berhenti di orde 4 yang lebih besar (2.185.819). Encode butuh sekitar 103 detik ditambah verifikasi 35 detik. Decode sekitar 33 detik. Gunakan `-k 3` untuk melewati pemilihan jika orde terbaik sudah diketahui.
+- Python murni sekitar 100–150 KB/detik untuk mode konteks.
 
 
 ```git
