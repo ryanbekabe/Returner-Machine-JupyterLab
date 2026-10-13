@@ -1,0 +1,172 @@
+# Rangkuman Diskusi Return[er] Machine
+
+Catatan perjalanan pengembangan, dari setup workspace sampai enumerative coding per blok. Detail cara pakai tiap script ada di [README.md](README.md).
+
+Prinsip kerja selama diskusi: **file yang sudah ada tidak diubah**. Setiap perbaikan atau tahap baru dibuat sebagai program baru.
+
+---
+
+## 1. Setup workspace
+
+- Semua `import` di file `.py` dan `.ipynb` dianalisis untuk menyusun daftar dependensi.
+- Dibuat `Testing/requirements.txt` (paket inti: jupyterlab, numpy, matplotlib, opencv-python, numba, pandas, pillow, pefile, geopy, scikit-learn) dan `Testing/requirements-optional.txt` (tensorflow, keras, cupy, efficientnet, livelossplot untuk notebook GPU).
+- Ditemukan beberapa masalah di kode lama:
+  - `from polynomial import polynomial` di `Permutasi.ipynb` bukan paket pip.
+  - Beberapa notebook memakai API lama yang sudah dihapus (`keras.layers.embeddings`, `sklearn.externals.joblib`).
+  - `suffix_arrays.ipynb` diawali komentar `//` sehingga bukan JSON valid.
+
+## 2. Konsep dasar
+
+### Rubik 4×4
+
+- **96 stiker** (6 sisi × 16).
+- **56 kepingan fisik**: 8 sudut + 24 tepi + 24 tengah. (4×4×4 = 64, dikurangi 8 kubus dalam yang tidak ada.)
+
+### Byte, histogram, entropy
+
+- Satu byte bernilai **0..255** (256 kemungkinan), bukan 0..256.
+- **Setiap file**, teks maupun biner, adalah deretan byte 0..255. Bedanya hanya pada cara byte itu ditafsirkan.
+- **Byte histogram** = frekuensi tiap nilai byte 0..255 (256 angka).
+- **Byte entropy (Shannon)** = satu angka yang dihitung dari histogram: `H = -Σ p·log2(p)`, rentang 0..8 bit/byte.
+- `n × H / 8` = batas bawah ukuran kompresi jika tiap byte diperlakukan independen (orde-0).
+
+### Perbaikan `histogram.py` → `byteentropy/histogram_v2.py`
+
+- Di versi lama, `Index ke - i` hanya nomor urut `Counter`, bukan nilai byte. Versi baru memakai nilai byte 0..255 sebagai index.
+- Tambahan: opsi `--semua`, `--plot`, dukungan nama file berspasi, dan pesan error yang jelas.
+
+## 3. Masalah utama: histogram kehilangan urutan
+
+Histogram hanya mencatat **berapa kali**, bukan **di mana**. Banyak data berbeda punya histogram yang sama:
+
+```
+jumlah susunan = n! / (c1! · c2! · ... · ck!)
+```
+
+| Data | Susunan dengan histogram sama |
+|---|---|
+| `bismill` (7 byte) | 1.260 |
+| `bismillah` (9 byte) | 90.720 |
+
+`bismill` dan `ismillb` tidak bisa dibedakan dengan permutasi saja.
+
+### Percobaan: tanda posisi awal dan akhir
+
+| Tanda | Kandidat tersisa |
+|---|---|
+| tanpa tanda | 1.260 |
+| awal `b` + akhir `l` | 60 |
+| awal `bi` + akhir `ll` | 6 |
+| awal `bis` + akhir `ill` | 1 |
+
+Kandidat baru tinggal 1 setelah 6 dari 7 byte ditandai. Itu sama saja dengan menyimpan data aslinya.
+
+## 4. Solusi: enumerative coding (histogram + rank)
+
+Semua susunan diurutkan berdasarkan nilai byte, lalu yang disimpan adalah **histogram + nomor urut (rank)** data asli.
+
+| Data | Rank | Bit untuk rank |
+|---|---|---|
+| `bismill` | 57 | 11 |
+| `ismillb` | 533 | 11 |
+| `bismillah` | 15.094 dari 90.720 | 17 |
+
+- Decode **tanpa brute force**: byte yang tepat dihitung langsung di setiap posisi.
+- Script demonstrasi: `byteentropy/permutasi_rank.py`.
+- **Inilah metode yang dicari** untuk Return[er] Machine.
+
+## 5. Tahap "Simpan ke file": format `.rmh`
+
+Script `byteentropy/rmh.py` (perintah `encode`, `decode`, `info`).
+
+Struktur file: magic `RMH1` + ukuran asli + histogram + CRC32 + rank. Panjang rank tidak disimpan karena bisa dihitung dari histogram.
+
+Contoh `bismillah.rmh` (27 byte):
+
+```
+52 4D 48 31                 magic "RMH1"
+09 07                       ukuran = 9, byte unik = 7
+61 01 62 01 68 01 69 02     a=1 b=1 h=1 i=2
+6C 02 6D 01 73 01           l=2 m=1 s=1
+A9 42 0C 61                 CRC32
+00 3A F6                    rank = 15094
+```
+
+Hasil penting:
+
+| File | Asli | .rmh | lzma |
+|---|---|---|---|
+| `HoRM.txt` | 4.690 | 2.243 | 1.024 |
+| `RMHash_HoRM2.txt` | 8.585 | 4.043 | 584 |
+| `123.txt.png` | 10.073 | 10.287 | 8.264 |
+
+- Ukuran `.rmh` selalu mendekati batas Shannon orde-0, jadi metodenya bekerja optimal untuk pendekatan berbasis frekuensi.
+- lzma lebih kecil pada teks karena memanfaatkan urutan dan pengulangan.
+- Kelemahan: **kecepatan kuadratik**. File 50 KB butuh sekitar 3 detik, 136 KB butuh 21,6 detik.
+
+## 6. Tahap "Per blok": format `.rmb`
+
+Script `byteentropy/rmh_blok.py` (perintah `encode`, `decode`, `info`, `analisis`).
+
+- File dipecah menjadi blok (default 4.096 byte). Setiap blok punya histogram + rank sendiri.
+- Waktu proses turun dari n² menjadi n × B (linear), dan blok bisa diproses paralel.
+
+`Testing/GPU List.txt` (136.412 byte ≈ 133 KB):
+
+| Metode | Encode | Ukuran |
+|---|---|---|
+| `rmh.py` tanpa blok | 21,6 detik | 88.067 byte |
+| per blok, 1 core | 0,81 detik | 89.892 byte |
+| per blok, 16 core | 0,23 detik | 89.892 byte |
+
+- File tersebut menjadi **34 blok**: 33 × 4.096 + 1 × 1.244 = 136.412 byte. Semua blok tetap berada di dalam **satu file** `.rmb`.
+- Tarik-ulur ukuran blok: blok kecil membuat rank lebih kecil tetapi histogram membengkak; blok besar membuat proses lambat. Untuk file ini, 4.096–16.384 byte adalah titik tengah yang baik.
+- Kolom Panjang, Byte unik, Rank (byte), dan Entropy di `info` **dihitung saat ditampilkan**, tidak disimpan di file. Yang tersimpan per blok hanya histogram + rank.
+
+## 7. Ide: blok yang terbuka memberi informasi blok berikutnya
+
+Pertanyaan: bisakah 1–5 blok cukup untuk file berapa pun besarnya, karena setiap blok yang terbuka memberi tahu isi blok berikutnya?
+
+### Tidak mungkin untuk semua file
+
+Decode bersifat pasti dan tidak bisa menciptakan informasi baru.
+
+```
+File berbeda berukuran 136.412 byte = 256^136.412
+Isi berbeda dari 5 blok × 4.096 byte = 256^20.480
+```
+
+Wadah kecil tidak bisa membedakan semua file besar (prinsip sarang merpati). Pengecualiannya adalah file yang **berpola**, misalnya `nullbyte.txt` atau fraktal seperti `sierpinski.jpg`, yang bisa dibangkitkan dari aturan kecil (kompleksitas Kolmogorov).
+
+### Mungkin: pemodelan adaptif
+
+Isi yang sudah terbuka dipakai untuk **menebak** isi berikutnya. Encoder dan decoder melihat data yang sama, jadi tebakannya tidak perlu disimpan. Yang disimpan hanya selisih dari tebakan.
+
+Ukuran informasi minimum `GPU List.txt` berdasarkan jumlah byte sebelumnya yang dipakai sebagai petunjuk (batas optimistis, belum termasuk biaya model):
+
+| Petunjuk | Ukuran |
+|---|---|
+| tanpa petunjuk (orde-0, `.rmb` sekarang) | 87.903 byte |
+| 1 byte sebelumnya (orde-1) | 35.794 byte |
+| 2 byte sebelumnya (orde-2) | 13.773 byte |
+| 3 byte sebelumnya (orde-3) | 8.546 byte |
+| *lzma* | *9.024 byte* |
+
+---
+
+## Daftar file yang dibuat
+
+| File | Fungsi |
+|---|---|
+| `Testing/requirements.txt` | Dependensi inti |
+| `Testing/requirements-optional.txt` | Dependensi GPU / deep learning |
+| `.gitignore` | Mengabaikan `.venv/` dan `__pycache__/` |
+| `byteentropy/histogram_v2.py` | Histogram + entropy versi perbaikan |
+| `byteentropy/permutasi_rank.py` | Demonstrasi enumerative coding di memori |
+| `byteentropy/rmh.py` | Encode/decode file `.rmh` |
+| `byteentropy/rmh_blok.py` | Encode/decode file `.rmb` per blok, paralel |
+
+## Langkah berikutnya
+
+1. **Histogram adaptif.** Histogram blok berikutnya ditebak dari blok yang sudah terbuka, sehingga biaya histogram (3.966 byte pada `GPU List.txt`) hampir hilang.
+2. **Konteks orde-1/orde-2.** Setiap byte ditebak dari 1–2 byte sebelumnya. Ini langkah dengan dampak terbesar pada ukuran file (perkiraan 87 KB → 14–36 KB untuk `GPU List.txt`).
