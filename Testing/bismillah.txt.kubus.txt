@@ -1,0 +1,6 @@
+# Return[er] Machine Rubik's DNA
+# Setiap baris "kubus" = 96 stiker dalam urutan sisi U L F R B D, 16 stiker per sisi.
+# Warna: W=putih, O=oranye, G=hijau, R=merah, B=biru, Y=kuning. Setiap kubus: 16 stiker per warna.
+# File asli: Testing/bismillah.txt (9 byte), .rmf 51 byte, 2 kubus x 29 byte
+kubus 0: WBOGRBOOYGBWYGGR BYRGWWRBBORRYOWO WBYBWRYWYOOBWOYR YWBYGGYROWBYWRGR GBGGWROGOGBROWGY OOGRRBWYROGBYWBY
+kubus 1: ORBYYRWRWBRBYBOG BRWGBORYOYYWORBW BWGOYOWYBWYRGGYW OBYWRGBBWOGROGBW GOWGYYOBWGRRYRYW RRRGGBBOYOGOWGGO

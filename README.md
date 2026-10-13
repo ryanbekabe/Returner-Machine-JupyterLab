@@ -48,6 +48,7 @@ python byteentropy/histogram_v2.py <nama_file>
 | `rmh_blok.py` | Versi per blok dari `rmh.py`: cepat untuk file besar dan bisa paralel (lihat bagian [Per Blok](#per-blok-file-rmb)) |
 | `rmh_adaptif.py` | Histogram dipelajari dari data yang sudah terbuka, tidak disimpan (lihat bagian [Histogram Adaptif](#histogram-adaptif-file-rma)) |
 | `rmh_konteks.py` | Satu histogram adaptif per konteks (PPM), menebak byte dari byte-byte sebelumnya (lihat bagian [Konteks PPM](#konteks-ppm-file-rmk)) |
+| `rmh_konteks2.py` | `.rmk` versi 2: PPM + SEE (peluang ESCAPE dipelajari) + update exclusion. 7–23% lebih kecil dari `rmh_konteks.py` (lihat bagian [Konteks PPM versi 2](#konteks-ppm-versi-2-rmk-versi-2)) |
 | `rmh_konteks_info.py` | Melihat isi file `.rmk`: rincian per segmen, ke mana bit dihabiskan, konteks yang dipelajari, dan jejak decode (lihat bagian [Melihat Isi File .rmk](#melihat-isi-file-rmk)) |
 | `rmh_final.py` | Memilih mode terbaik secara otomatis (konteks orde 1..5, adaptif, atau mentah) dan menyimpan SHA-256 sebagai sidik jari (lihat bagian [Return[er] Machine Final](#returner-machine-final-file-rmf)) |
 | `rmh_final2.py` | **Versi yang disarankan.** Seperti `rmh_final.py`, ditambah mode campuran per blok: bagian yang sudah terkompresi (gambar, ZIP) disimpan mentah, hanya bagian berpola yang dikodekan. Jauh lebih cepat untuk PDF dan file campuran (lihat bagian [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2)) |
@@ -61,7 +62,7 @@ Awalan **rm** berasal dari **R**eturner **M**achine. Huruf terakhir menunjukkan 
 | `.rmh` | Return[er] Machine **H**ash | `RMH1` | `rmh.py` | Satu histogram + satu rank untuk seluruh file. Lihat [Format File .rmh](#format-file-rmh-simpan-ke-file) |
 | `.rmb` | Return[er] Machine **B**lok | `RMB1` | `rmh_blok.py` | File dipecah per blok, setiap blok punya histogram + rank sendiri. Lihat [Per Blok](#per-blok-file-rmb) |
 | `.rma` | Return[er] Machine **A**daptif | `RMA1` | `rmh_adaptif.py` | Histogram tidak disimpan, tetapi dipelajari dari byte yang sudah terbuka. Lihat [Histogram Adaptif](#histogram-adaptif-file-rma) |
-| `.rmk` | Return[er] Machine **K**onteks | `RMK1` | `rmh_konteks.py` | Satu histogram adaptif untuk setiap konteks (1..N byte sebelumnya). Lihat [Konteks PPM](#konteks-ppm-file-rmk) |
+| `.rmk` | Return[er] Machine **K**onteks | `RMK1`, `RMK2` | `rmh_konteks.py` (versi 1), `rmh_konteks2.py` (versi 2) | Satu histogram adaptif untuk setiap konteks (1..N byte sebelumnya). Versi 2 mempelajari peluang ESCAPE (SEE). `rmh_konteks2.py` bisa membuka kedua versi. Lihat [Konteks PPM](#konteks-ppm-file-rmk) dan [Konteks PPM versi 2](#konteks-ppm-versi-2-rmk-versi-2) |
 | `.rmf` | Return[er] Machine **F**inal | `RMF1`, `RMF2` | `rmh_final.py` (versi 1), `rmh_final2.py` (versi 2) | Mode terbaik dipilih otomatis + SHA-256 file asli. Versi 2 menambah mode campuran per blok. `rmh_final2.py` bisa membuka kedua versi. Lihat [Return[er] Machine Final](#returner-machine-final-file-rmf) dan [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2) |
 
 Penanda di awal file membuat program bisa mengenali formatnya. Angka `1` adalah nomor versi format, sehingga format yang diubah di masa depan bisa memakai `RMK2` dan seterusnya tanpa merusak file lama.
@@ -1148,6 +1149,97 @@ Untuk file yang seluruhnya berpola, `RMF2` hanya sekitar 5–20 byte lebih besar
 ### Kenapa masih sedikit di atas zip dan 7z
 
 Sisa selisihnya ada di **struktur teks PDF**. Teks ini penuh potongan panjang yang berulang (sintaks objek PDF, tabel xref). Metode LZ (zip, 7z) menyalin potongan itu sekaligus, sedangkan model konteks menebak byte demi byte. Pada 1.124.083 byte bagian berpola, PPM orde 5 menghasilkan 367.085 byte, sedangkan lzma menghasilkan 291.869 byte. Dengan model salin potongan (LZ), total file diperkirakan sekitar **6.046.612 byte**, lebih kecil dari 7z.
+
+## Konteks PPM versi 2 (.rmk versi 2)
+
+Script: `byteentropy/rmh_konteks2.py`. Lanjutan `rmh_konteks.py` (tidak diubah). Tujuannya memangkas biaya ESCAPE, yang di `.rmk` versi 1 memakan sekitar 14% kode.
+
+### Jumlah ESCAPE tetap, harganya yang dipangkas
+
+ESCAPE terjadi setiap kali byte belum pernah muncul di sebuah konteks. Itu fakta tentang data, jadi **jumlahnya tidak bisa dikurangi**: `GPU List.txt` orde 5 tetap 7.586 ESCAPE di kedua versi. Yang bisa dikurangi adalah **berapa bit yang dibayar** untuk setiap ESCAPE dan setiap byte. Ada dua perubahan:
+
+**1. SEE (Secondary Escape Estimation)**, teknik dari PPMd/PPMZ.
+Versi 1 memakai rumus tetap PPM-D: `peluang ESCAPE = byte berbeda / total`. Rumus ini sering keliru. Contohnya konteks `tio`: konteks ini selalu diikuti `n`, tapi rumusnya tetap menyisihkan peluang ESCAPE yang lumayan besar. Di versi 2, peluang ESCAPE **dipelajari**. Ada tabel kecil yang mencatat seberapa sering ESCAPE benar-benar terjadi pada situasi serupa. Kuncinya:
+
+- orde konteks (0, 1, 2, ≥3) dan apakah konteks itu orde tertinggi,
+- jumlah byte berbeda di konteks (1..6+),
+- total frekuensi (dikelompokkan per pangkat 2),
+- apakah sudah ada byte yang dikecualikan,
+- apakah byte sebelumnya juga gagal ditebak di orde tertinggi.
+
+Saat tabel masih kosong, tebakannya sama dengan PPM-D. Tabel ini dipelajari encoder dan decoder bersama-sama, sama seperti histogram adaptif, jadi **tidak disimpan di file** (0 byte).
+
+**2. Update exclusion.**
+Di versi 1, frekuensi byte ditambah di **semua** orde. Di versi 2, frekuensi hanya ditambah di orde yang berhasil menebak dan orde di atasnya. Orde rendah hanya belajar dari byte yang benar-benar sampai ke sana setelah ESCAPE, sehingga lebih tajam tepat pada saat dibutuhkan.
+
+Semua hitungan memakai bilangan bulat, sehingga hasil encode sama persis di semua komputer.
+
+### Cara pakai
+
+```
+python byteentropy/rmh_konteks2.py encode     <file>     [-o <file.rmk>] [-k <orde>] [--verifikasi]
+python byteentropy/rmh_konteks2.py decode     <file.rmk> [-o <file_hasil>]
+python byteentropy/rmh_konteks2.py bandingkan <file>     [-k <orde1> <orde2> ...]
+```
+
+| Perintah | Fungsi |
+|---|---|
+| `encode` | File asli → `.rmk` versi 2. Orde default 5. `--verifikasi` langsung decode ulang dan membandingkannya dengan file asli |
+| `decode` | `.rmk` versi 1 **atau** versi 2 → file asli. Versi dikenali dari magic |
+| `bandingkan` | Ukuran dan waktu RMK1, RMK2, zlib, dan lzma per orde, tanpa menulis file |
+
+Contoh:
+
+```
+python byteentropy/rmh_konteks2.py encode "Testing/GPU List.txt" -o gpu2.rmk --verifikasi
+python byteentropy/rmh_konteks2.py decode gpu2.rmk -o gpu_kembali.txt
+python byteentropy/rmh_konteks2.py bandingkan "Testing/GPU List.txt" -k 3 4 5
+```
+
+### Struktur file
+
+Sama dengan versi 1, kecuali magic `RMK2`:
+
+| Bagian | Ukuran | Isi |
+|---|---|---|
+| Magic | 4 byte | `RMK2` |
+| n | varint | Ukuran file asli |
+| Orde | 1 byte | Panjang konteks maksimum |
+| CRC32 | 4 byte | Checksum file asli |
+| Kode | sisa file | Hasil arithmetic coding |
+
+### Hasil
+
+Ukuran dalam byte, memakai orde terbaik masing-masing. **Tebal** = paling kecil di baris itu.
+
+| File | Asli | RMK1 | **RMK2** | Selisih | zlib -9 | lzma -9 |
+|---|---|---|---|---|---|---|
+| `GPU List.txt` | 136.412 | 11.006 (orde 5) | 9.630 (orde 5) | −12,5% | 11.285 | **9.024** |
+| `HoRM.txt` | 4.690 | 1.085 (orde 3) | **922** (orde 3) | −15,0% | 1.236 | 1.024 |
+| `RMHash_HoRM2.txt` | 8.585 | 975 (orde 3) | 753 (orde 4) | −22,8% | 1.146 | **584** |
+| `Return[er]Machine.py` | 7.235 | 2.174 (orde 5) | **1.911** (orde 5) | −12,1% | 2.103 | 2.168 |
+| `NestedRubik256DNA.py` | 15.112 | 13.739 (orde 4) | 12.319 (orde 4) | −10,3% | 12.354 | **12.208** |
+| `123.txt.png` | 10.073 | 8.672 (orde 4) | **8.054** (orde 4) | −7,1% | 8.369 | 8.264 |
+| `logfactorial.txt` | 5.644.322 | 2.130.339 (orde 3) | **2.125.017** (orde 3) | −0,2% | 2.413.002 | 2.270.136 |
+
+- Pada `logfactorial.txt` hasilnya hampir sama, karena 99,8% byte sudah tertebak di orde 3 dan ESCAPE hanya terjadi 12.391 kali dari 5,6 juta byte. Sisa ukurannya adalah digit acak yang memang tidak bisa diperkecil.
+
+- RMK2 lebih kecil dari RMK1 pada **semua** file uji, sebesar 7–23%.
+- RMK2 **mengalahkan zlib dan lzma** pada `HoRM.txt`, `Return[er]Machine.py`, dan `123.txt.png`. Di versi 1, ketiga file ini kalah dari lzma, dan dua di antaranya juga kalah dari zlib.
+- lzma masih unggul pada file yang sangat berulang (`RMHash_HoRM2.txt`, `GPU List.txt`), karena lzma bisa menyalin potongan panjang sekaligus. Celahnya kini lebih kecil: pada `GPU List.txt` tinggal 606 byte (sebelumnya 1.982).
+- Pada data acak, RMK2 membengkak sekitar 1% (50.000 → 50.604 byte), sama seperti RMK1. `rmh_final2.py` menangani kasus ini dengan menyimpan blok acak secara mentah.
+
+### Kecepatan
+
+Hampir sama dengan versi 1: sekitar 70–100 KB/detik untuk teks (`GPU List.txt` 136 KB: encode sekitar 1,4 detik, decode sekitar 1,5 detik). File biner dengan banyak ESCAPE bisa sekitar 2× lebih lambat dari versi 1, karena setiap langkah menskalakan lebar byte ke total 65.536.
+
+### Pengujian
+
+- Encode → decode identik untuk `GPU List.txt`, `HoRM.txt`, `RMHash_HoRM2.txt`, `NestedRubik256DNA.py`, `123.txt.png`, `1byte.txt`, `nullbyte.txt`, dan `bismillah.txt`, serta file kosong, 50.000 byte acak, 100.000 byte nol, dan `00..FF` × 40, masing-masing pada orde 0, 1, 3, 5, dan 6.
+- `logfactorial.txt` (5,6 MB) orde 3: encode + verifikasi decode identik.
+- Deterministik: encode dua kali menghasilkan file yang sama persis.
+- `rmh_konteks2.py decode` membuka file `RMK1` lama (misalnya `gpu.rmk`) dengan hasil identik.
+- File yang kodenya diubah ditolak (`CRC32 tidak cocok`).
 
 
 ```git

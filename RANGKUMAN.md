@@ -252,6 +252,38 @@ Script `byteentropy/rmh_final2.py`, format `RMF2`:
 
 Sisa selisih dengan zip/7z ada di struktur teks PDF yang penuh potongan berulang. Dengan model salin potongan (LZ), total diperkirakan 6.046.612 byte, lebih kecil dari 7z.
 
+## 14. Memangkas biaya ESCAPE: `.rmk` versi 2
+
+Pertanyaan: bisakah biaya ESCAPE, yang memakan 14% kode, dipangkas?
+
+- **Jumlah** ESCAPE tidak bisa dikurangi, karena ESCAPE terjadi setiap kali byte belum pernah muncul di konteks itu. `GPU List.txt` orde 5 tetap 7.586 ESCAPE. Yang bisa dipangkas adalah **harga** setiap ESCAPE dan setiap byte.
+- Sebelum menulis program, beberapa ide diukur dulu dengan simulasi ukuran ideal (jumlah −log₂ p). Simulasi ini cocok dengan `.rmk` asli: 10.994 lawan 11.006 byte, dan selisih 12 byte itu header.
+
+| Ide | Hasil simulasi |
+|---|---|
+| **SEE** (Secondary Escape Estimation): peluang ESCAPE dipelajari dari pengalaman, bukan dihitung dengan rumus tetap PPM-D | 3–8% lebih kecil |
+| **Update exclusion**: frekuensi hanya ditambah di orde yang menebak dan orde di atasnya | 3–12% lebih kecil |
+| Keduanya | 7–23% lebih kecil |
+| Warisan statistik dari konteks induk (versi sederhana) | justru 1–3% lebih **besar**, tidak dipakai |
+
+- Persentase ESCAPE bukan target yang tepat. Pada `GPU List.txt` orde 5, porsinya justru naik dari 14,5% ke 17,6% setelah SEE ditambahkan, karena byte biasa menjadi jauh lebih murah. Yang penting adalah ukuran total.
+
+Script `byteentropy/rmh_konteks2.py` (perintah `encode`, `decode`, `bandingkan`), format `RMK2`. Tabel SEE dipelajari bersama oleh encoder dan decoder, jadi tidak disimpan di file. Semua hitungan memakai bilangan bulat.
+
+| File | RMK1 | **RMK2** | zlib | lzma |
+|---|---|---|---|---|
+| `GPU List.txt` (136.412) | 11.006 | **9.630** | 11.285 | 9.024 |
+| `HoRM.txt` (4.690) | 1.085 | **922** | 1.236 | 1.024 |
+| `RMHash_HoRM2.txt` (8.585) | 975 | **753** | 1.146 | 584 |
+| `Return[er]Machine.py` (7.235) | 2.174 | **1.911** | 2.103 | 2.168 |
+| `NestedRubik256DNA.py` (15.112) | 13.739 | **12.319** | 12.354 | 12.208 |
+| `123.txt.png` (10.073) | 8.672 | **8.054** | 8.369 | 8.264 |
+| `logfactorial.txt` (5.644.322) | 2.130.339 | **2.125.017** | 2.413.002 | 2.270.136 |
+
+- RMK2 lebih kecil dari RMK1 pada semua file uji. RMK2 mengalahkan zlib **dan** lzma pada `HoRM.txt`, `Return[er]Machine.py`, dan `123.txt.png`.
+- lzma masih unggul pada data yang sangat berulang. Celahnya pada `GPU List.txt` mengecil dari 1.982 menjadi 606 byte.
+- `rmh_konteks2.py decode` juga bisa membuka file `RMK1`.
+
 ---
 
 ## Daftar file yang dibuat
@@ -270,11 +302,12 @@ Sisa selisih dengan zip/7z ada di struktur teks PDF yang penuh potongan berulang
 | `byteentropy/rmh_konteks_info.py` | Melihat isi file `.rmk` dengan memutar ulang decode |
 | `byteentropy/rmh_final.py` | Encode/decode `.rmf` versi 1, mode otomatis + SHA-256 |
 | `byteentropy/rmh_final2.py` | **Versi yang disarankan**: `.rmf` versi 2, mode campuran per blok |
+| `byteentropy/rmh_konteks2.py` | Encode/decode `.rmk` versi 2: PPM + SEE + update exclusion |
 
 ## Langkah berikutnya
 
 1. ~~**Histogram adaptif.**~~ Selesai, lihat bagian 8.
 2. ~~**Konteks orde-1/orde-2.**~~ Selesai, lihat bagian 9. Hasilnya melampaui perkiraan: `GPU List.txt` turun menjadi 11 KB dengan orde 5.
-3. **Context mixing.** Menggabungkan tebakan beberapa orde sekaligus (seperti PAQ/cmix), bukan memilih satu lewat escape.
+3. **Context mixing.** Menggabungkan tebakan beberapa orde sekaligus (seperti PAQ/cmix), bukan memilih satu lewat escape. Langkah antara sudah selesai: biaya ESCAPE dipangkas dengan SEE dan update exclusion (bagian 14). `rmh_final2.py` belum memakai RMK2.
 4. **Model salin potongan (LZ).** Untuk data yang sangat berulang, di mana lzma masih unggul. Prioritas berikutnya: diperkirakan membuat PDF uji lebih kecil dari 7z.
 5. **Percepatan.** Python murni sekitar 100 KB/detik. Perlu numba atau C/Rust untuk file berukuran MB.
