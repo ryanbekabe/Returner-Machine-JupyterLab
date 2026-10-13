@@ -1,0 +1,1921 @@
+https://www.notebookcheck.net/NVIDIA-GeForce-GT-755M.102020.0.html
+<select id="bl_gameselect" multiple="multiple" name="comp_el[]"
+<option value="3272" class="bl_benchmark_option_3272" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD FirePro M2000</option
+<option value="2556" class="bl_benchmark_option_2556" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD FirePro M3900</option
+<option value="3273" class="bl_benchmark_option_3273" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD FirePro M4000</option
+<option value="5059" class="bl_benchmark_option_5059" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD FirePro M4100</option
+<option value="5058" class="bl_benchmark_option_5058" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD FirePro M5100</option
+<option value="2558" class="bl_benchmark_option_2558" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD FirePro M5950</option
+<option value="3274" class="bl_benchmark_option_3274" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD FirePro M6000</option
+<option value="5057" class="bl_benchmark_option_5057" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD FirePro M6100</option
+<option value="2559" class="bl_benchmark_option_2559" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD FirePro M8900</option
+<option value="7027" class="bl_benchmark_option_7027" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD FirePro W2100</option
+<option value="7024" class="bl_benchmark_option_7024" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD FirePro W4100</option
+<option value="5485" class="bl_benchmark_option_5485" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD FirePro W4170M</option
+<option value="7246" class="bl_benchmark_option_7246" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD FirePro W4190M</option
+<option value="6519" class="bl_benchmark_option_6519" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD FirePro W5130M</option
+<option value="6518" class="bl_benchmark_option_6518" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD FirePro W5170M</option
+<option value="6517" class="bl_benchmark_option_6517" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD FirePro W7170M</option
+<option value="7942" class="bl_benchmark_option_7942" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon 520</option
+<option value="7940" class="bl_benchmark_option_7940" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon 530</option
+<option value="9933" class="bl_benchmark_option_9933" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon 610</option
+<option value="9927" class="bl_benchmark_option_9927" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon 620</option
+<option value="9929" class="bl_benchmark_option_9929" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon 625</option
+<option value="9931" class="bl_benchmark_option_9931" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon 630</option
+<option value="2042" class="bl_benchmark_option_2042" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6250</option
+<option value="2570" class="bl_benchmark_option_2570" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6290</option
+<option value="2040" class="bl_benchmark_option_2040" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6310</option
+<option value="2618" class="bl_benchmark_option_2618" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6320</option
+<option value="2102" class="bl_benchmark_option_2102" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6330M</option
+<option value="2047" class="bl_benchmark_option_2047" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6350M</option
+<option value="2044" class="bl_benchmark_option_2044" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6370M</option
+<option value="2622" class="bl_benchmark_option_2622" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6380G</option
+<option value="2098" class="bl_benchmark_option_2098" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6430M</option
+<option value="2608" class="bl_benchmark_option_2608" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6450 GDDR5</option
+<option value="2099" class="bl_benchmark_option_2099" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6450M</option
+<option value="2066" class="bl_benchmark_option_2066" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6470M</option
+<option value="2624" class="bl_benchmark_option_2624" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6480G</option
+<option value="2885" class="bl_benchmark_option_2885" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 6480G + HD 7450M Dual Graphics</option
+<option value="2100" class="bl_benchmark_option_2100" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6490M</option
+<option value="2665" class="bl_benchmark_option_2665" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6510G2</option
+<option value="2663" class="bl_benchmark_option_2663" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6515G2</option
+<option value="2620" class="bl_benchmark_option_2620" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6520G</option
+<option value="2873" class="bl_benchmark_option_2873" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 6520G + HD 7450M Dual Graphics</option
+<option value="2096" class="bl_benchmark_option_2096" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6530M</option
+<option value="2660" class="bl_benchmark_option_2660" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6540G2</option
+<option value="2647" class="bl_benchmark_option_2647" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6545G2</option
+<option value="2681" class="bl_benchmark_option_2681" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6550D</option
+<option value="2046" class="bl_benchmark_option_2046" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6550M</option
+<option value="2050" class="bl_benchmark_option_2050" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6570M</option
+<option value="2612" class="bl_benchmark_option_2612" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6620G</option
+<option value="3019" class="bl_benchmark_option_3019" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 6620G + HD 7450M Dual Graphics</option
+<option value="4101" class="bl_benchmark_option_4101" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 6620G + HD 7670M Dual Graphics</option
+<option value="2094" class="bl_benchmark_option_2094" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6630M</option
+<option value="2658" class="bl_benchmark_option_2658" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6640G2</option
+<option value="2645" class="bl_benchmark_option_2645" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6645G2</option
+<option value="2092" class="bl_benchmark_option_2092" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6650M</option
+<option value="2643" class="bl_benchmark_option_2643" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6680G2</option
+<option value="2641" class="bl_benchmark_option_2641" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6690G2</option
+<option value="2630" class="bl_benchmark_option_2630" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6720G2</option
+<option value="2090" class="bl_benchmark_option_2090" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6730M</option
+<option value="2632" class="bl_benchmark_option_2632" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6740G2</option
+<option value="2088" class="bl_benchmark_option_2088" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6750M</option
+<option value="2637" class="bl_benchmark_option_2637" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6755G2</option
+<option value="2634" class="bl_benchmark_option_2634" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6760G2</option
+<option value="2086" class="bl_benchmark_option_2086" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6770M</option
+<option value="2639" class="bl_benchmark_option_2639" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6775G2</option
+<option value="2561" class="bl_benchmark_option_2561" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6790</option
+<option value="2082" class="bl_benchmark_option_2082" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6830M</option
+<option value="2069" class="bl_benchmark_option_2069" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6850M</option
+<option value="2600" class="bl_benchmark_option_2600" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6870</option
+<option value="2075" class="bl_benchmark_option_2075" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6870M</option
+<option value="2073" class="bl_benchmark_option_2073" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6950M</option
+<option value="2427" class="bl_benchmark_option_2427" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | AMD Radeon HD 6970</option
+<option value="2058" class="bl_benchmark_option_2058" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6970M</option
+<option value="2113" class="bl_benchmark_option_2113" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6970M Crossfire</option
+<option value="2685" class="bl_benchmark_option_2685" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6990M</option
+<option value="2730" class="bl_benchmark_option_2730" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 6990M Crossfire</option
+<option value="3868" class="bl_benchmark_option_3868" "="" data-bl_lists="1" data-bl_year="2011"
+2011 | AMD Radeon HD 7290</option
+<option value="2902" class="bl_benchmark_option_2902" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD Radeon HD 7310</option
+<option value="2904" class="bl_benchmark_option_2904" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD Radeon HD 7340</option
+<option value="3711" class="bl_benchmark_option_3711" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7350M</option
+<option value="3709" class="bl_benchmark_option_3709" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7370M</option
+<option value="3512" class="bl_benchmark_option_3512" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7400G</option
+<option value="3267" class="bl_benchmark_option_3267" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7420G</option
+<option value="2818" class="bl_benchmark_option_2818" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7430M</option
+<option value="2682" class="bl_benchmark_option_2682" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7450M</option
+<option value="2814" class="bl_benchmark_option_2814" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 7470M</option
+<option value="4066" class="bl_benchmark_option_4066" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD Radeon HD 7480D</option
+<option value="2915" class="bl_benchmark_option_2915" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 7490M</option
+<option value="3203" class="bl_benchmark_option_3203" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7500G</option
+<option value="3385" class="bl_benchmark_option_3385" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7500G + HD 7550M Dual Graphics</option
+<option value="2911" class="bl_benchmark_option_2911" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7510M</option
+<option value="2982" class="bl_benchmark_option_2982" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7520G</option
+<option value="3390" class="bl_benchmark_option_3390" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7520G + HD 7670M Dual Graphics</option
+<option value="2914" class="bl_benchmark_option_2914" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7530M</option
+<option value="2913" class="bl_benchmark_option_2913" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7550M</option
+<option value="4085" class="bl_benchmark_option_4085" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD Radeon HD 7560D</option
+<option value="2912" class="bl_benchmark_option_2912" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7570M</option
+<option value="2828" class="bl_benchmark_option_2828" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7590M</option
+<option value="3513" class="bl_benchmark_option_3513" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7600G</option
+<option value="2910" class="bl_benchmark_option_2910" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7610M</option
+<option value="3202" class="bl_benchmark_option_3202" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7620G</option
+<option value="2901" class="bl_benchmark_option_2901" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7630M</option
+<option value="2892" class="bl_benchmark_option_2892" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7640G</option
+<option value="4004" class="bl_benchmark_option_4004" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7640G + HD 7610M Dual Graphics</option
+<option value="3209" class="bl_benchmark_option_3209" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7640G + HD 7670M Dual Graphics</option
+<option value="2893" class="bl_benchmark_option_2893" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7650M</option
+<option value="4054" class="bl_benchmark_option_4054" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD Radeon HD 7660D</option
+<option value="2891" class="bl_benchmark_option_2891" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | AMD Radeon HD 7660G</option
+<option value="3088" class="bl_benchmark_option_3088" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7660G + HD 7670M Dual Graphics</option
+<option value="2824" class="bl_benchmark_option_2824" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 7670M</option
+<option value="2812" class="bl_benchmark_option_2812" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 7690M</option
+<option value="3004" class="bl_benchmark_option_3004" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 7690M XT</option
+<option value="2962" class="bl_benchmark_option_2962" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7730M</option
+<option value="2963" class="bl_benchmark_option_2963" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7750M</option
+<option value="3265" class="bl_benchmark_option_3265" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7770</option
+<option value="3071" class="bl_benchmark_option_3071" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7770M</option
+<option value="3140" class="bl_benchmark_option_3140" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7850M</option
+<option value="3271" class="bl_benchmark_option_3271" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7870</option
+<option value="3072" class="bl_benchmark_option_3072" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7870M</option
+<option value="2964" class="bl_benchmark_option_2964" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7950M</option
+<option value="3266" class="bl_benchmark_option_3266" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | AMD Radeon HD 7970</option
+<option value="2965" class="bl_benchmark_option_2965" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7970M</option
+<option value="3138" class="bl_benchmark_option_3138" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 7970M Crossfire</option
+<option value="4602" class="bl_benchmark_option_4602" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8180</option
+<option value="4601" class="bl_benchmark_option_4601" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8210</option
+<option value="4604" class="bl_benchmark_option_4604" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8240</option
+<option value="4587" class="bl_benchmark_option_4587" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8250</option
+<option value="4605" class="bl_benchmark_option_4605" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8280</option
+<option value="4608" class="bl_benchmark_option_4608" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8310G</option
+<option value="4591" class="bl_benchmark_option_4591" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8330</option
+<option value="4044" class="bl_benchmark_option_4044" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8350G</option
+<option value="4603" class="bl_benchmark_option_4603" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8400</option
+<option value="4607" class="bl_benchmark_option_4607" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8410G</option
+<option value="4043" class="bl_benchmark_option_4043" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8450G</option
+<option value="4845" class="bl_benchmark_option_4845" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8450G + Radeon HD 8570M Dual Graphics</option
+<option value="4732" class="bl_benchmark_option_4732" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8470D</option
+<option value="3871" class="bl_benchmark_option_3871" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8510G</option
+<option value="4042" class="bl_benchmark_option_4042" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8550G</option
+<option value="4919" class="bl_benchmark_option_4919" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8550G + HD 8670M Dual Graphics</option
+<option value="5196" class="bl_benchmark_option_5196" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8550G + HD 8750M Dual Graphics</option
+<option value="3532" class="bl_benchmark_option_3532" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8550M</option
+<option value="4733" class="bl_benchmark_option_4733" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8570D</option
+<option value="3703" class="bl_benchmark_option_3703" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8570M</option
+<option value="3716" class="bl_benchmark_option_3716" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8590M</option
+<option value="4606" class="bl_benchmark_option_4606" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8610G</option
+<option value="3870" class="bl_benchmark_option_3870" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon HD 8650G</option
+<option value="5034" class="bl_benchmark_option_5034" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8650G + HD 8570M Dual Graphics</option
+<option value="5041" class="bl_benchmark_option_5041" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8650G + HD 8670M Dual Graphics</option
+<option value="5198" class="bl_benchmark_option_5198" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8650M</option
+<option value="4730" class="bl_benchmark_option_4730" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8670D</option
+<option value="3733" class="bl_benchmark_option_3733" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8670M</option
+<option value="3574" class="bl_benchmark_option_3574" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8690M</option
+<option value="3729" class="bl_benchmark_option_3729" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8730M</option
+<option value="3727" class="bl_benchmark_option_3727" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8750M</option
+<option value="3573" class="bl_benchmark_option_3573" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8770M</option
+<option value="3579" class="bl_benchmark_option_3579" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8790M</option
+<option value="3714" class="bl_benchmark_option_3714" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8830M</option
+<option value="3713" class="bl_benchmark_option_3713" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8850M</option
+<option value="3570" class="bl_benchmark_option_3570" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8870M</option
+<option value="4440" class="bl_benchmark_option_4440" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | AMD Radeon HD 8970M</option
+<option value="4590" class="bl_benchmark_option_4590" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | AMD Radeon HD 8970M Crossfire</option
+<option value="7590" class="bl_benchmark_option_7590" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon Pro 450</option
+<option value="7592" class="bl_benchmark_option_7592" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon Pro 455</option
+<option value="7593" class="bl_benchmark_option_7593" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon Pro 460</option
+<option value="9968" class="bl_benchmark_option_9968" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon Pro 5300M</option
+<option value="9966" class="bl_benchmark_option_9966" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon Pro 5500M</option
+<option value="8064" class="bl_benchmark_option_8064" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro 555</option
+<option value="8892" class="bl_benchmark_option_8892" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro 555X</option
+<option value="8066" class="bl_benchmark_option_8066" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro 560</option
+<option value="8838" class="bl_benchmark_option_8838" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro 560X</option
+<option value="9376" class="bl_benchmark_option_9376" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon Pro Vega 16</option
+<option value="9391" class="bl_benchmark_option_9391" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon Pro Vega 20</option
+<option value="8758" class="bl_benchmark_option_8758" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro Vega 56</option
+<option value="9925" class="bl_benchmark_option_9925" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon Pro WX 2100</option
+<option value="8760" class="bl_benchmark_option_8760" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro WX 3100</option
+<option value="9941" class="bl_benchmark_option_9941" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon Pro WX 3200</option
+<option value="7960" class="bl_benchmark_option_7960" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro WX 4130</option
+<option value="7962" class="bl_benchmark_option_7962" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro WX 4150</option
+<option value="7964" class="bl_benchmark_option_7964" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon Pro WX 7100</option
+<option value="9018" class="bl_benchmark_option_9018" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon Pro WX Vega M GL</option
+<option value="5498" class="bl_benchmark_option_5498" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R2 (Mullins/Beema/Carrizo-L)</option
+<option value="7446" class="bl_benchmark_option_7446" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R2 (Stoney Ridge)</option
+<option value="5497" class="bl_benchmark_option_5497" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R3 (Mullins/Beema)</option
+<option value="5496" class="bl_benchmark_option_5496" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R4 (Beema)</option
+<option value="5541" class="bl_benchmark_option_5541" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R4 (Kaveri)</option
+<option value="7445" class="bl_benchmark_option_7445" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R4 (Stoney Ridge)</option
+<option value="5750" class="bl_benchmark_option_5750" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R5 (Beema/Carrizo-L)</option
+<option value="7340" class="bl_benchmark_option_7340" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R5 (Bristol Ridge)</option
+<option value="6487" class="bl_benchmark_option_6487" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R5 (Carrizo)</option
+<option value="5540" class="bl_benchmark_option_5540" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R5 (Kaveri)</option
+<option value="7447" class="bl_benchmark_option_7447" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R5 (Stoney Ridge)</option
+<option value="5210" class="bl_benchmark_option_5210" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R5 M230</option
+<option value="5971" class="bl_benchmark_option_5971" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R5 M240</option
+<option value="5857" class="bl_benchmark_option_5857" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R5 M255</option
+<option value="6392" class="bl_benchmark_option_6392" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R5 M315</option
+<option value="6387" class="bl_benchmark_option_6387" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R5 M320</option
+<option value="6284" class="bl_benchmark_option_6284" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R5 M330</option
+<option value="6385" class="bl_benchmark_option_6385" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R5 M335</option
+<option value="8882" class="bl_benchmark_option_8882" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R5 M420</option
+<option value="7230" class="bl_benchmark_option_7230" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R5 M430</option
+<option value="6356" class="bl_benchmark_option_6356" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R6 (Carrizo)</option
+<option value="5539" class="bl_benchmark_option_5539" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R6 (Kaveri)</option
+<option value="5499" class="bl_benchmark_option_5499" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R6 (Mullins)</option
+<option value="5969" class="bl_benchmark_option_5969" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R6 M255DX</option
+<option value="7224" class="bl_benchmark_option_7224" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R6 M340DX</option
+<option value="7442" class="bl_benchmark_option_7442" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R7 (Bristol Ridge)</option
+<option value="6354" class="bl_benchmark_option_6354" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R7 (Carrizo)</option
+<option value="5538" class="bl_benchmark_option_5538" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R7 (Kaveri)</option
+<option value="5072" class="bl_benchmark_option_5072" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon R7 250</option
+<option value="6493" class="bl_benchmark_option_6493" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R7 370</option
+<option value="5471" class="bl_benchmark_option_5471" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R7 384 Cores (Kaveri Desktop)</option
+<option value="5444" class="bl_benchmark_option_5444" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R7 512 Cores (Kaveri Desktop)</option
+<option value="5746" class="bl_benchmark_option_5746" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R7 M260</option
+<option value="5748" class="bl_benchmark_option_5748" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R7 M260X</option
+<option value="5217" class="bl_benchmark_option_5217" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R7 M265</option
+<option value="6251" class="bl_benchmark_option_6251" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R7 M270</option
+<option value="6007" class="bl_benchmark_option_6007" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R7 M275DX</option
+<option value="6384" class="bl_benchmark_option_6384" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R7 M340</option
+<option value="6281" class="bl_benchmark_option_6281" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R7 M360</option
+<option value="6390" class="bl_benchmark_option_6390" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R7 M370</option
+<option value="6389" class="bl_benchmark_option_6389" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R7 M380</option
+<option value="7339" class="bl_benchmark_option_7339" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R7 M440</option
+<option value="7674" class="bl_benchmark_option_7674" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R7 M445</option
+<option value="7232" class="bl_benchmark_option_7232" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R7 M460</option
+<option value="8076" class="bl_benchmark_option_8076" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon R7 M465</option
+<option value="6442" class="bl_benchmark_option_6442" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R8 M365DX</option
+<option value="7341" class="bl_benchmark_option_7341" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R8 M445DX</option
+<option value="5061" class="bl_benchmark_option_5061" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon R9 270X</option
+<option value="5060" class="bl_benchmark_option_5060" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon R9 280X</option
+<option value="5062" class="bl_benchmark_option_5062" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | AMD Radeon R9 290X</option
+<option value="7049" class="bl_benchmark_option_7049" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 380</option
+<option value="7048" class="bl_benchmark_option_7048" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 390X</option
+<option value="6941" class="bl_benchmark_option_6941" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 Fury</option
+<option value="5489" class="bl_benchmark_option_5489" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R9 M265X</option
+<option value="5515" class="bl_benchmark_option_5515" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R9 M270</option
+<option value="5934" class="bl_benchmark_option_5934" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R9 M275</option
+<option value="6264" class="bl_benchmark_option_6264" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R9 M280X</option
+<option value="5208" class="bl_benchmark_option_5208" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R9 M290X</option
+<option value="5445" class="bl_benchmark_option_5445" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R9 M290X Crossfire</option
+<option value="5992" class="bl_benchmark_option_5992" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | AMD Radeon R9 M295X</option
+<option value="7166" class="bl_benchmark_option_7166" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R9 M365X</option
+<option value="6289" class="bl_benchmark_option_6289" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 M370X</option
+<option value="6286" class="bl_benchmark_option_6286" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 M375</option
+<option value="6388" class="bl_benchmark_option_6388" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R9 M380</option
+<option value="6419" class="bl_benchmark_option_6419" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R9 M385</option
+<option value="6935" class="bl_benchmark_option_6935" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 M385X</option
+<option value="6930" class="bl_benchmark_option_6930" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 M390</option
+<option value="6372" class="bl_benchmark_option_6372" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | AMD Radeon R9 M390X</option
+<option value="6937" class="bl_benchmark_option_6937" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 M395</option
+<option value="6939" class="bl_benchmark_option_6939" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | AMD Radeon R9 M395X</option
+<option value="7329" class="bl_benchmark_option_7329" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R9 M470</option
+<option value="7328" class="bl_benchmark_option_7328" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R9 M470X</option
+<option value="7322" class="bl_benchmark_option_7322" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon R9 M485X</option
+<option value="7372" class="bl_benchmark_option_7372" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | AMD Radeon R9 Nano</option
+<option value="7375" class="bl_benchmark_option_7375" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon RX 460 (Desktop)</option
+<option value="7377" class="bl_benchmark_option_7377" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon RX 460 (Laptop)</option
+<option value="7374" class="bl_benchmark_option_7374" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon RX 470 (Desktop)</option
+<option value="7586" class="bl_benchmark_option_7586" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon RX 470 (Laptop)</option
+<option value="7338" class="bl_benchmark_option_7338" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | AMD Radeon RX 480 (Desktop)</option
+<option value="7306" class="bl_benchmark_option_7306" "="" data-bl_lists="1" data-bl_year="2016" style=""
+2016 | AMD Radeon RX 480 (Laptop)</option
+<option value="7304" class="bl_benchmark_option_7304" "="" data-bl_lists="1" data-bl_year="2016" style=""
+2016 | AMD Radeon RX 490M</option
+<option value="9945" class="bl_benchmark_option_9945" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon RX 5300M</option
+<option value="7952" class="bl_benchmark_option_7952" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX 540</option
+<option value="9848" class="bl_benchmark_option_9848" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon RX 540X</option
+<option value="7956" class="bl_benchmark_option_7956" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX 550 (Laptop)</option
+<option value="9943" class="bl_benchmark_option_9943" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon RX 5500M</option
+<option value="9796" class="bl_benchmark_option_9796" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon RX 550X (Laptop)</option
+<option value="7682" class="bl_benchmark_option_7682" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX 560 (Laptop)</option
+<option value="8810" class="bl_benchmark_option_8810" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX 560X (Laptop)</option
+<option value="9873" class="bl_benchmark_option_9873" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX 570 (Desktop)</option
+<option value="7678" class="bl_benchmark_option_7678" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX 570 (Laptop)</option
+<option value="9875" class="bl_benchmark_option_9875" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon RX 5700 (Desktop)</option
+<option value="9874" class="bl_benchmark_option_9874" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon RX 5700 XT (Desktop)</option
+<option value="9958" class="bl_benchmark_option_9958" "="" data-bl_lists="1" data-bl_year="2020"
+2020 | AMD Radeon RX 5700M</option
+<option value="9776" class="bl_benchmark_option_9776" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon RX 570X (Laptop)</option
+<option value="8108" class="bl_benchmark_option_8108" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX 580 (Desktop)</option
+<option value="7958" class="bl_benchmark_option_7958" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX 580 (Laptop)</option
+<option value="9786" class="bl_benchmark_option_9786" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon RX 580X (Laptop)</option
+<option value="9511" class="bl_benchmark_option_9511" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon RX 590 (Desktop)</option
+<option value="9935" class="bl_benchmark_option_9935" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon RX 640</option
+<option value="8142" class="bl_benchmark_option_8142" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX Vega 10</option
+<option value="8470" class="bl_benchmark_option_8470" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX Vega 11</option
+<option value="8468" class="bl_benchmark_option_8468" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon RX Vega 3</option
+<option value="9830" class="bl_benchmark_option_9830" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX Vega 56</option
+<option value="8466" class="bl_benchmark_option_8466" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon RX Vega 6</option
+<option value="8792" class="bl_benchmark_option_8792" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX Vega 64</option
+<option value="8144" class="bl_benchmark_option_8144" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX Vega 8</option
+<option value="9952" class="bl_benchmark_option_9952" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | AMD Radeon RX Vega 9</option
+<option value="8474" class="bl_benchmark_option_8474" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon RX Vega M GH</option
+<option value="8472" class="bl_benchmark_option_8472" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon RX Vega M GL / 870</option
+<option value="8640" class="bl_benchmark_option_8640" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | AMD Radeon RX Vega Mobile</option
+<option value="9824" class="bl_benchmark_option_9824" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | AMD Radeon VII</option
+<option value="7455" class="bl_benchmark_option_7455" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Apple A10 Fusion GPU / PowerVR</option
+<option value="8072" class="bl_benchmark_option_8072" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Apple A10X Fusion GPU / PowerVR</option
+<option value="8116" class="bl_benchmark_option_8116" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Apple A11 Bionic GPU</option
+<option value="8896" class="bl_benchmark_option_8896" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Apple A12 Bionic GPU</option
+<option value="9351" class="bl_benchmark_option_9351" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Apple A12X Bionic GPU</option
+<option value="9939" class="bl_benchmark_option_9939" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | Apple A13 Bionic GPU</option
+<option value="6497" class="bl_benchmark_option_6497" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Apple A9 / PowerVR GT7600</option
+<option value="6951" class="bl_benchmark_option_6951" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Apple A9X / PowerVR Series 7XT</option
+<option value="3212" class="bl_benchmark_option_3212" "="" data-bl_lists="1" data-bl_year="2007"
+2007 | ARM Mali-200</option
+<option value="2821" class="bl_benchmark_option_2821" "="" data-bl_lists="1" data-bl_year="2008"
+2008 | ARM Mali-400 MP</option
+<option value="3531" class="bl_benchmark_option_3531" "="" data-bl_lists="1" data-bl_year="2008"
+2008 | ARM Mali-400 MP2</option
+<option value="3337" class="bl_benchmark_option_3337" "="" data-bl_lists="1" data-bl_year="2008"
+2008 | ARM Mali-400 MP4</option
+<option value="5487" class="bl_benchmark_option_5487" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | ARM Mali-450 MP4</option
+<option value="8902" class="bl_benchmark_option_8902" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | ARM Mali-G51 MP4</option
+<option value="8348" class="bl_benchmark_option_8348" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | ARM Mali-G71 MP2</option
+<option value="7732" class="bl_benchmark_option_7732" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | ARM Mali-G71 MP20</option
+<option value="7648" class="bl_benchmark_option_7648" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | ARM Mali-G71 MP8</option
+<option value="8138" class="bl_benchmark_option_8138" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | ARM Mali-G72 MP12</option
+<option value="8770" class="bl_benchmark_option_8770" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | ARM Mali-G72 MP18</option
+<option value="8804" class="bl_benchmark_option_8804" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | ARM Mali-G72 MP3</option
+<option value="9038" class="bl_benchmark_option_9038" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | ARM Mali-G76 MP10</option
+<option value="9822" class="bl_benchmark_option_9822" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | ARM Mali-G76 MP12</option
+<option value="9950" class="bl_benchmark_option_9950" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | ARM Mali-G76 MP16</option
+<option value="9947" class="bl_benchmark_option_9947" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | ARM Mali-G76 MP4</option
+<option value="3560" class="bl_benchmark_option_3560" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | ARM Mali-T604 MP4</option
+<option value="5484" class="bl_benchmark_option_5484" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | ARM Mali-T624</option
+<option value="6183" class="bl_benchmark_option_6183" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | ARM Mali-T628 MP4</option
+<option value="5069" class="bl_benchmark_option_5069" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | ARM Mali-T628 MP6</option
+<option value="7332" class="bl_benchmark_option_7332" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | ARM Mali-T720</option
+<option value="6399" class="bl_benchmark_option_6399" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | ARM Mali-T720 MP2</option
+<option value="6460" class="bl_benchmark_option_6460" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | ARM Mali-T720 MP4</option
+<option value="5997" class="bl_benchmark_option_5997" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | ARM Mali-T760 MP2</option
+<option value="6455" class="bl_benchmark_option_6455" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | ARM Mali-T760 MP4</option
+<option value="5984" class="bl_benchmark_option_5984" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | ARM Mali-T760 MP6</option
+<option value="6188" class="bl_benchmark_option_6188" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | ARM Mali-T760 MP8</option
+<option value="7718" class="bl_benchmark_option_7718" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | ARM Mali-T830 MP1</option
+<option value="7310" class="bl_benchmark_option_7310" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | ARM Mali-T830 MP2</option
+<option value="7686" class="bl_benchmark_option_7686" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | ARM Mali-T830 MP3</option
+<option value="7293" class="bl_benchmark_option_7293" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | ARM Mali-T860 MP2</option
+<option value="7237" class="bl_benchmark_option_7237" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | ARM Mali-T880 MP12</option
+<option value="7720" class="bl_benchmark_option_7720" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | ARM Mali-T880 MP2</option
+<option value="7170" class="bl_benchmark_option_7170" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | ARM Mali-T880 MP4</option
+<option value="1631" class="bl_benchmark_option_1631" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI FirePro M5800</option
+<option value="1307" class="bl_benchmark_option_1307" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI FirePro M7740</option
+<option value="1899" class="bl_benchmark_option_1899" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI FirePro M7820</option
+<option value="1132" class="bl_benchmark_option_1132" "="" data-bl_lists="1" data-bl_year="2000" style=""
+2000 | ATI Mobility 128 M3</option
+<option value="177" class="bl_benchmark_option_177" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | ATI Mobility FireGL 7800</option
+<option value="1131" class="bl_benchmark_option_1131" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | ATI Mobility FireGL 9000</option
+<option value="75" class="bl_benchmark_option_75" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | ATI Mobility FireGL T2</option
+<option value="74" class="bl_benchmark_option_74" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | ATI Mobility FireGL T2e</option
+<option value="33" class="bl_benchmark_option_33" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | ATI Mobility FireGL V3100</option
+<option value="34" class="bl_benchmark_option_34" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | ATI Mobility FireGL V3200</option
+<option value="28" class="bl_benchmark_option_28" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | ATI Mobility FireGL V5000</option
+<option value="26" class="bl_benchmark_option_26" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility FireGL V5200</option
+<option value="72" class="bl_benchmark_option_72" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility FireGL V5250</option
+<option value="888" class="bl_benchmark_option_888" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Mobility FireGL V5700</option
+<option value="1090" class="bl_benchmark_option_1090" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility FireGL V5725</option
+<option value="171" class="bl_benchmark_option_171" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | ATI Mobility Radeon 7000 IGP</option
+<option value="176" class="bl_benchmark_option_176" "="" data-bl_lists="1" data-bl_year="2001" style=""
+2001 | ATI Mobility Radeon 7500</option
+<option value="62" class="bl_benchmark_option_62" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | ATI Mobility Radeon 9000</option
+<option value="174" class="bl_benchmark_option_174" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | ATI Mobility Radeon 9000 IGP</option
+<option value="173" class="bl_benchmark_option_173" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | ATI Mobility Radeon 9100 IGP</option
+<option value="63" class="bl_benchmark_option_63" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | ATI Mobility Radeon 9200</option
+<option value="64" class="bl_benchmark_option_64" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | ATI Mobility Radeon 9550</option
+<option value="44" class="bl_benchmark_option_44" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | ATI Mobility Radeon 9600</option
+<option value="31" class="bl_benchmark_option_31" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | ATI Mobility Radeon 9700</option
+<option value="14" class="bl_benchmark_option_14" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | ATI Mobility Radeon 9800</option
+<option value="91" class="bl_benchmark_option_91" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 2300</option
+<option value="87" class="bl_benchmark_option_87" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 2400</option
+<option value="88" class="bl_benchmark_option_88" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 2400 XT</option
+<option value="86" class="bl_benchmark_option_86" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 2600</option
+<option value="84" class="bl_benchmark_option_84" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 2600 XT</option
+<option value="634" class="bl_benchmark_option_634" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 2700</option
+<option value="2038" class="bl_benchmark_option_2038" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 3400</option
+<option value="892" class="bl_benchmark_option_892" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Mobility Radeon HD 3410</option
+<option value="801" class="bl_benchmark_option_801" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Mobility Radeon HD 3430</option
+<option value="651" class="bl_benchmark_option_651" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 3450</option
+<option value="700" class="bl_benchmark_option_700" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 3470</option
+<option value="1102" class="bl_benchmark_option_1102" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 3470 Hybrid X2</option
+<option value="650" class="bl_benchmark_option_650" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Mobility Radeon HD 3650</option
+<option value="701" class="bl_benchmark_option_701" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Mobility Radeon HD 3670</option
+<option value="595" class="bl_benchmark_option_595" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon HD 3850</option
+<option value="757" class="bl_benchmark_option_757" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Mobility Radeon HD 3850 X2</option
+<option value="694" class="bl_benchmark_option_694" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Mobility Radeon HD 3870</option
+<option value="893" class="bl_benchmark_option_893" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Mobility Radeon HD 3870 X2</option
+<option value="1079" class="bl_benchmark_option_1079" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4330</option
+<option value="1812" class="bl_benchmark_option_1812" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4350</option
+<option value="1078" class="bl_benchmark_option_1078" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4530</option
+<option value="1635" class="bl_benchmark_option_1635" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 4550</option
+<option value="1077" class="bl_benchmark_option_1077" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4570</option
+<option value="1076" class="bl_benchmark_option_1076" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4650</option
+<option value="1073" class="bl_benchmark_option_1073" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4670</option
+<option value="1120" class="bl_benchmark_option_1120" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4830</option
+<option value="874" class="bl_benchmark_option_874" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4850</option
+<option value="1117" class="bl_benchmark_option_1117" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4860</option
+<option value="1080" class="bl_benchmark_option_1080" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4870</option
+<option value="1099" class="bl_benchmark_option_1099" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Mobility Radeon HD 4870 X2</option
+<option value="1612" class="bl_benchmark_option_1612" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5145</option
+<option value="1613" class="bl_benchmark_option_1613" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5165</option
+<option value="1799" class="bl_benchmark_option_1799" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 530v</option
+<option value="1953" class="bl_benchmark_option_1953" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 540v</option
+<option value="1570" class="bl_benchmark_option_1570" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5430</option
+<option value="1569" class="bl_benchmark_option_1569" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5450</option
+<option value="1800" class="bl_benchmark_option_1800" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 545v</option
+<option value="1568" class="bl_benchmark_option_1568" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5470</option
+<option value="1854" class="bl_benchmark_option_1854" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 550v</option
+<option value="1801" class="bl_benchmark_option_1801" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 560v</option
+<option value="1571" class="bl_benchmark_option_1571" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5650</option
+<option value="1904" class="bl_benchmark_option_1904" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 565v</option
+<option value="1592" class="bl_benchmark_option_1592" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5730</option
+<option value="1554" class="bl_benchmark_option_1554" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5750</option
+<option value="1618" class="bl_benchmark_option_1618" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5770</option
+<option value="1616" class="bl_benchmark_option_1616" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5830</option
+<option value="1547" class="bl_benchmark_option_1547" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5850</option
+<option value="1551" class="bl_benchmark_option_1551" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5870</option
+<option value="1776" class="bl_benchmark_option_1776" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Mobility Radeon HD 5870 Crossfire</option
+<option value="66" class="bl_benchmark_option_66" "="" data-bl_lists="1" data-bl_year="2001" style=""
+2001 | ATI Mobility Radeon M6</option
+<option value="1130" class="bl_benchmark_option_1130" "="" data-bl_lists="1" data-bl_year="2001" style=""
+2001 | ATI Mobility Radeon M7</option
+<option value="40" class="bl_benchmark_option_40" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility Radeon X1300</option
+<option value="43" class="bl_benchmark_option_43" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility Radeon X1350</option
+<option value="30" class="bl_benchmark_option_30" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility Radeon X1400</option
+<option value="29" class="bl_benchmark_option_29" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility Radeon X1450</option
+<option value="24" class="bl_benchmark_option_24" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility Radeon X1600</option
+<option value="23" class="bl_benchmark_option_23" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility Radeon X1700</option
+<option value="9" class="bl_benchmark_option_9" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility Radeon X1800</option
+<option value="15" class="bl_benchmark_option_15" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Mobility Radeon X1800XT</option
+<option value="17" class="bl_benchmark_option_17" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon X1900</option
+<option value="59" class="bl_benchmark_option_59" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon X2300</option
+<option value="96" class="bl_benchmark_option_96" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Mobility Radeon X2500</option
+<option value="41" class="bl_benchmark_option_41" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | ATI Mobility Radeon X300</option
+<option value="32" class="bl_benchmark_option_32" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | ATI Mobility Radeon X600</option
+<option value="27" class="bl_benchmark_option_27" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | ATI Mobility Radeon X700</option
+<option value="13" class="bl_benchmark_option_13" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | ATI Mobility Radeon X800</option
+<option value="19" class="bl_benchmark_option_19" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | ATI Mobility Radeon X800XT</option
+<option value="876" class="bl_benchmark_option_876" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Radeon HD 3100</option
+<option value="756" class="bl_benchmark_option_756" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Radeon HD 3200</option
+<option value="1555" class="bl_benchmark_option_1555" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Radeon HD 4100</option
+<option value="1314" class="bl_benchmark_option_1314" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Radeon HD 4200</option
+<option value="1821" class="bl_benchmark_option_1821" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Radeon HD 4225</option
+<option value="1789" class="bl_benchmark_option_1789" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Radeon HD 4250</option
+<option value="1823" class="bl_benchmark_option_1823" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Radeon HD 4270</option
+<option value="2560" class="bl_benchmark_option_2560" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Radeon HD 4350</option
+<option value="2555" class="bl_benchmark_option_2555" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | ATI Radeon HD 4850</option
+<option value="2564" class="bl_benchmark_option_2564" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Radeon HD 5570</option
+<option value="2562" class="bl_benchmark_option_2562" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | ATI Radeon HD 5670</option
+<option value="2563" class="bl_benchmark_option_2563" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Radeon HD 5770</option
+<option value="2428" class="bl_benchmark_option_2428" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | ATI Radeon HD 5850</option
+<option value="1911" class="bl_benchmark_option_1911" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | ATI Radeon IGP 320M</option
+<option value="172" class="bl_benchmark_option_172" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | ATI Radeon IGP 340M</option
+<option value="51" class="bl_benchmark_option_51" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Radeon Xpress 1100</option
+<option value="52" class="bl_benchmark_option_52" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Radeon Xpress 1150</option
+<option value="77" class="bl_benchmark_option_77" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | ATI Radeon Xpress 1250</option
+<option value="50" class="bl_benchmark_option_50" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | ATI Radeon Xpress 200M</option
+<option value="110" class="bl_benchmark_option_110" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Radeon Xpress X1200</option
+<option value="78" class="bl_benchmark_option_78" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Radeon Xpress X1250</option
+<option value="111" class="bl_benchmark_option_111" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | ATI Radeon Xpress X1270</option
+<option value="4017" class="bl_benchmark_option_4017" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | Broadcom VideoCore-IV</option
+<option value="54" class="bl_benchmark_option_54" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | Intel Extreme Graphics 2</option
+<option value="1564" class="bl_benchmark_option_1564" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | Intel Graphics Media Accelerator (GMA) 3150</option
+<option value="2738" class="bl_benchmark_option_2738" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | Intel Graphics Media Accelerator (GMA) 3600</option
+<option value="2736" class="bl_benchmark_option_2736" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | Intel Graphics Media Accelerator (GMA) 3650</option
+<option value="1096" class="bl_benchmark_option_1096" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | Intel Graphics Media Accelerator (GMA) 4500M</option
+<option value="702" class="bl_benchmark_option_702" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | Intel Graphics Media Accelerator (GMA) 4500MHD</option
+<option value="812" class="bl_benchmark_option_812" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | Intel Graphics Media Accelerator (GMA) 4700MHD</option
+<option value="1058" class="bl_benchmark_option_1058" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | Intel Graphics Media Accelerator (GMA) 500</option
+<option value="1802" class="bl_benchmark_option_1802" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | Intel Graphics Media Accelerator (GMA) 600</option
+<option value="58" class="bl_benchmark_option_58" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | Intel Graphics Media Accelerator (GMA) 900</option
+<option value="49" class="bl_benchmark_option_49" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | Intel Graphics Media Accelerator (GMA) 950</option
+<option value="1549" class="bl_benchmark_option_1549" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | Intel Graphics Media Accelerator (GMA) HD Graphics</option
+<option value="53" class="bl_benchmark_option_53" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | Intel Graphics Media Accelerator (GMA) X3100</option
+<option value="4922" class="bl_benchmark_option_4922" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Intel HD Graphics (Bay Trail)</option
+<option value="6273" class="bl_benchmark_option_6273" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics (Braswell)</option
+<option value="5979" class="bl_benchmark_option_5979" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics (Broadwell)</option
+<option value="6197" class="bl_benchmark_option_6197" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics (Cherry Trail)</option
+<option value="4622" class="bl_benchmark_option_4622" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | Intel HD Graphics (Haswell)</option
+<option value="3563" class="bl_benchmark_option_3563" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | Intel HD Graphics (Ivy Bridge)</option
+<option value="2679" class="bl_benchmark_option_2679" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | Intel HD Graphics (Sandy Bridge)</option
+<option value="6474" class="bl_benchmark_option_6474" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | Intel HD Graphics (Skylake)</option
+<option value="1958" class="bl_benchmark_option_1958" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | Intel HD Graphics 2000</option
+<option value="2887" class="bl_benchmark_option_2887" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | Intel HD Graphics 2500</option
+<option value="1956" class="bl_benchmark_option_1956" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | Intel HD Graphics 3000</option
+<option value="7349" class="bl_benchmark_option_7349" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Intel HD Graphics 400 (Braswell)</option
+<option value="2822" class="bl_benchmark_option_2822" "="" data-bl_lists="1" data-bl_year="2011"
+2011 | Intel HD Graphics 4000</option
+<option value="7348" class="bl_benchmark_option_7348" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Intel HD Graphics 405 (Braswell)</option
+<option value="4576" class="bl_benchmark_option_4576" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Intel HD Graphics 4200</option
+<option value="4575" class="bl_benchmark_option_4575" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Intel HD Graphics 4400</option
+<option value="3567" class="bl_benchmark_option_3567" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Intel HD Graphics 4600</option
+<option value="7543" class="bl_benchmark_option_7543" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Intel HD Graphics 500</option
+<option value="4574" class="bl_benchmark_option_4574" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Intel HD Graphics 5000</option
+<option value="7542" class="bl_benchmark_option_7542" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Intel HD Graphics 505</option
+<option value="6475" class="bl_benchmark_option_6475" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics 510</option
+<option value="6450" class="bl_benchmark_option_6450" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics 515</option
+<option value="6451" class="bl_benchmark_option_6451" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics 520</option
+<option value="6443" class="bl_benchmark_option_6443" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics 530</option
+<option value="5939" class="bl_benchmark_option_5939" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | Intel HD Graphics 5300</option
+<option value="5941" class="bl_benchmark_option_5941" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics 5500</option
+<option value="5949" class="bl_benchmark_option_5949" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics 5600</option
+<option value="5943" class="bl_benchmark_option_5943" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics 6000</option
+<option value="8122" class="bl_benchmark_option_8122" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel HD Graphics 610</option
+<option value="7441" class="bl_benchmark_option_7441" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Intel HD Graphics 615</option
+<option value="7435" class="bl_benchmark_option_7435" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Intel HD Graphics 620</option
+<option value="7652" class="bl_benchmark_option_7652" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics 630</option
+<option value="6452" class="bl_benchmark_option_6452" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics P530</option
+<option value="7657" class="bl_benchmark_option_7657" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel HD Graphics P630</option
+<option value="4573" class="bl_benchmark_option_4573" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Intel Iris Graphics 5100</option
+<option value="6472" class="bl_benchmark_option_6472" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel Iris Graphics 540</option
+<option value="6473" class="bl_benchmark_option_6473" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel Iris Graphics 550</option
+<option value="5945" class="bl_benchmark_option_5945" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel Iris Graphics 6100</option
+<option value="7656" class="bl_benchmark_option_7656" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel Iris Plus Graphics 640</option
+<option value="9902" class="bl_benchmark_option_9902" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | Intel Iris Plus Graphics 645</option
+<option value="7655" class="bl_benchmark_option_7655" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel Iris Plus Graphics 650</option
+<option value="8828" class="bl_benchmark_option_8828" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel Iris Plus Graphics 655</option
+<option value="9869" class="bl_benchmark_option_9869" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | Intel Iris Plus Graphics G4 (Ice Lake 48 EU)</option
+<option value="9866" class="bl_benchmark_option_9866" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | Intel Iris Plus Graphics G7 (Ice Lake 64 EU)</option
+<option value="4457" class="bl_benchmark_option_4457" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Intel Iris Pro Graphics 5200</option
+<option value="7236" class="bl_benchmark_option_7236" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Intel Iris Pro Graphics 580</option
+<option value="5947" class="bl_benchmark_option_5947" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Intel Iris Pro Graphics 6200</option
+<option value="7172" class="bl_benchmark_option_7172" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Intel Iris Pro Graphics P580</option
+<option value="8272" class="bl_benchmark_option_8272" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel UHD Graphics 600</option
+<option value="8270" class="bl_benchmark_option_8270" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel UHD Graphics 605</option
+<option value="8832" class="bl_benchmark_option_8832" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Intel UHD Graphics 615</option
+<option value="9356" class="bl_benchmark_option_9356" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Intel UHD Graphics 617</option
+<option value="8098" class="bl_benchmark_option_8098" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel UHD Graphics 620</option
+<option value="8126" class="bl_benchmark_option_8126" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel UHD Graphics 630</option
+<option value="9871" class="bl_benchmark_option_9871" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | Intel UHD Graphics G1 (Ice Lake 32 EU)</option
+<option value="9906" class="bl_benchmark_option_9906" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Intel UHD Graphics P630</option
+<option value="9956" class="bl_benchmark_option_9956" "="" data-bl_lists="1" data-bl_year="2020"
+2020 | Intel Xe DG1 (iDG1LP) Mobile</option
+<option value="175" class="bl_benchmark_option_175" "="" data-bl_lists="1" data-bl_year="2001" style=""
+2001 | NVIDIA GeForce 2 Go (200 / 100)</option
+<option value="902" class="bl_benchmark_option_902" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | NVIDIA GeForce 3 Go</option
+<option value="1602" class="bl_benchmark_option_1602" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce 305M</option
+<option value="1531" class="bl_benchmark_option_1531" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce 310M</option
+<option value="2052" class="bl_benchmark_option_2052" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce 315M</option
+<option value="1652" class="bl_benchmark_option_1652" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce 320M</option
+<option value="178" class="bl_benchmark_option_178" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | NVIDIA GeForce 4 420 Go</option
+<option value="179" class="bl_benchmark_option_179" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | NVIDIA GeForce 4 440 Go</option
+<option value="180" class="bl_benchmark_option_180" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | NVIDIA GeForce 4 460 Go</option
+<option value="181" class="bl_benchmark_option_181" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | NVIDIA GeForce 4 488 Go</option
+<option value="3181" class="bl_benchmark_option_3181" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce 405M</option
+<option value="2065" class="bl_benchmark_option_2065" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce 410M</option
+<option value="2802" class="bl_benchmark_option_2802" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce 610M</option
+<option value="184" class="bl_benchmark_option_184" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce 7000M</option
+<option value="4596" class="bl_benchmark_option_4596" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce 705M</option
+<option value="3550" class="bl_benchmark_option_3550" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA GeForce 710M</option
+<option value="185" class="bl_benchmark_option_185" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce 7150M</option
+<option value="1923" class="bl_benchmark_option_1923" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce 7190M</option
+<option value="755" class="bl_benchmark_option_755" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 8200M G</option
+<option value="5202" class="bl_benchmark_option_5202" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce 820M</option
+<option value="5252" class="bl_benchmark_option_5252" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce 825M</option
+<option value="5183" class="bl_benchmark_option_5183" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce 830M</option
+<option value="83" class="bl_benchmark_option_83" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8400M G</option
+<option value="82" class="bl_benchmark_option_82" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8400M GS</option
+<option value="80" class="bl_benchmark_option_80" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8400M GT</option
+<option value="5073" class="bl_benchmark_option_5073" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce 840M</option
+<option value="5472" class="bl_benchmark_option_5472" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce 845M</option
+<option value="79" class="bl_benchmark_option_79" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8600M GS</option
+<option value="81" class="bl_benchmark_option_81" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8600M GT</option
+<option value="510" class="bl_benchmark_option_510" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8600M GT SLI</option
+<option value="116" class="bl_benchmark_option_116" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8700M GT</option
+<option value="499" class="bl_benchmark_option_499" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8700M GT SLI</option
+<option value="515" class="bl_benchmark_option_515" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8800M GTS</option
+<option value="498" class="bl_benchmark_option_498" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8800M GTX</option
+<option value="514" class="bl_benchmark_option_514" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA GeForce 8800M GTX SLI</option
+<option value="754" class="bl_benchmark_option_754" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9100M G</option
+<option value="7366" class="bl_benchmark_option_7366" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce 910M</option
+<option value="753" class="bl_benchmark_option_753" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9200M GS</option
+<option value="6220" class="bl_benchmark_option_6220" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce 920M</option
+<option value="7026" class="bl_benchmark_option_7026" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce 920MX</option
+<option value="685" class="bl_benchmark_option_685" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9300M G</option
+<option value="684" class="bl_benchmark_option_684" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9300M GS</option
+<option value="6222" class="bl_benchmark_option_6222" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce 930M</option
+<option value="7025" class="bl_benchmark_option_7025" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce 930MX</option
+<option value="1048" class="bl_benchmark_option_1048" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9400M (G) / ION (LE)</option
+<option value="920" class="bl_benchmark_option_920" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9400M GeForceBoost</option
+<option value="6159" class="bl_benchmark_option_6159" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce 940M</option
+<option value="7023" class="bl_benchmark_option_7023" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce 940MX</option
+<option value="6532" class="bl_benchmark_option_6532" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce 945M</option
+<option value="752" class="bl_benchmark_option_752" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9500M G</option
+<option value="1082" class="bl_benchmark_option_1082" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9500M GE</option
+<option value="683" class="bl_benchmark_option_683" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9500M GS</option
+<option value="751" class="bl_benchmark_option_751" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9600M GS</option
+<option value="750" class="bl_benchmark_option_750" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9600M GT</option
+<option value="696" class="bl_benchmark_option_696" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9650M GS</option
+<option value="877" class="bl_benchmark_option_877" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9650M GT</option
+<option value="763" class="bl_benchmark_option_763" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9700M GT</option
+<option value="776" class="bl_benchmark_option_776" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9700M GTS</option
+<option value="775" class="bl_benchmark_option_775" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9800M GS</option
+<option value="773" class="bl_benchmark_option_773" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9800M GT</option
+<option value="886" class="bl_benchmark_option_886" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9800M GT SLI</option
+<option value="774" class="bl_benchmark_option_774" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9800M GTS</option
+<option value="1060" class="bl_benchmark_option_1060" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9800M GTS SLI</option
+<option value="772" class="bl_benchmark_option_772" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9800M GTX</option
+<option value="1055" class="bl_benchmark_option_1055" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA GeForce 9800M GTX SLI</option
+<option value="65" class="bl_benchmark_option_65" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | NVIDIA GeForce FX Go 5200</option
+<option value="47" class="bl_benchmark_option_47" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | NVIDIA GeForce FX Go 5600 / 5650</option
+<option value="46" class="bl_benchmark_option_46" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | NVIDIA GeForce FX Go 5700</option
+<option value="1108" class="bl_benchmark_option_1108" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce G 102M</option
+<option value="1747" class="bl_benchmark_option_1747" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce G 103M</option
+<option value="1068" class="bl_benchmark_option_1068" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce G 105M</option
+<option value="1128" class="bl_benchmark_option_1128" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce G 107M</option
+<option value="1069" class="bl_benchmark_option_1069" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce G 110M</option
+<option value="1787" class="bl_benchmark_option_1787" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce G 205M</option
+<option value="1294" class="bl_benchmark_option_1294" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce G210M</option
+<option value="209" class="bl_benchmark_option_209" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 6100</option
+<option value="48" class="bl_benchmark_option_48" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 6150</option
+<option value="42" class="bl_benchmark_option_42" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 6200</option
+<option value="68" class="bl_benchmark_option_68" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 6250</option
+<option value="45" class="bl_benchmark_option_45" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 6400</option
+<option value="25" class="bl_benchmark_option_25" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | NVIDIA GeForce Go 6600</option
+<option value="12" class="bl_benchmark_option_12" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | NVIDIA GeForce Go 6800</option
+<option value="10" class="bl_benchmark_option_10" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | NVIDIA GeForce Go 6800 Ultra</option
+<option value="37" class="bl_benchmark_option_37" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7200</option
+<option value="36" class="bl_benchmark_option_36" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7300</option
+<option value="35" class="bl_benchmark_option_35" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7400</option
+<option value="22" class="bl_benchmark_option_22" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7600</option
+<option value="20" class="bl_benchmark_option_20" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7600 GT</option
+<option value="21" class="bl_benchmark_option_21" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7700</option
+<option value="11" class="bl_benchmark_option_11" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7800</option
+<option value="6" class="bl_benchmark_option_6" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | NVIDIA GeForce Go 7800 GTX</option
+<option value="3" class="bl_benchmark_option_3" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | NVIDIA GeForce Go 7800 GTX SLI</option
+<option value="8" class="bl_benchmark_option_8" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7900 GS</option
+<option value="2" class="bl_benchmark_option_2" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7900 GS SLI</option
+<option value="4" class="bl_benchmark_option_4" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7900 GTX</option
+<option value="18" class="bl_benchmark_option_18" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7900 GTX SLI</option
+<option value="1" class="bl_benchmark_option_1" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7950 GTX</option
+<option value="71" class="bl_benchmark_option_71" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA GeForce Go 7950 GTX SLI</option
+<option value="7996" class="bl_benchmark_option_7996" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce GT 1030 (Desktop)</option
+<option value="1100" class="bl_benchmark_option_1100" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GT 120M</option
+<option value="1067" class="bl_benchmark_option_1067" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GT 130M</option
+<option value="2408" class="bl_benchmark_option_2408" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GT 220</option
+<option value="1309" class="bl_benchmark_option_1309" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GT 220M</option
+<option value="1295" class="bl_benchmark_option_1295" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GT 230M</option
+<option value="2405" class="bl_benchmark_option_2405" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GT 240 GDDR5</option
+<option value="1296" class="bl_benchmark_option_1296" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GT 240M</option
+<option value="1629" class="bl_benchmark_option_1629" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 320M</option
+<option value="1600" class="bl_benchmark_option_1600" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 325M</option
+<option value="1532" class="bl_benchmark_option_1532" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 330M</option
+<option value="1599" class="bl_benchmark_option_1599" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 335M</option
+<option value="1944" class="bl_benchmark_option_1944" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 415M</option
+<option value="1943" class="bl_benchmark_option_1943" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 420M</option
+<option value="1941" class="bl_benchmark_option_1941" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 425M</option
+<option value="2406" class="bl_benchmark_option_2406" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 430</option
+<option value="1946" class="bl_benchmark_option_1946" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 435M</option
+<option value="1945" class="bl_benchmark_option_1945" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GT 445M</option
+<option value="2072" class="bl_benchmark_option_2072" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GT 520M</option
+<option value="2614" class="bl_benchmark_option_2614" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GT 520MX</option
+<option value="2063" class="bl_benchmark_option_2063" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GT 525M</option
+<option value="2054" class="bl_benchmark_option_2054" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GT 540M</option
+<option value="2060" class="bl_benchmark_option_2060" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GT 550M</option
+<option value="2055" class="bl_benchmark_option_2055" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GT 555M</option
+<option value="2989" class="bl_benchmark_option_2989" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GT 620M</option
+<option value="3462" class="bl_benchmark_option_3462" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GT 625M</option
+<option value="2804" class="bl_benchmark_option_2804" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GT 630M</option
+<option value="2808" class="bl_benchmark_option_2808" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GT 635M</option
+<option value="2961" class="bl_benchmark_option_2961" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | NVIDIA GeForce GT 640M</option
+<option value="2988" class="bl_benchmark_option_2988" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GT 640M LE</option
+<option value="3464" class="bl_benchmark_option_3464" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GT 645M</option
+<option value="2986" class="bl_benchmark_option_2986" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GT 650M</option
+<option value="3555" class="bl_benchmark_option_3555" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GT 650M SLI</option
+<option value="4184" class="bl_benchmark_option_4184" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA GeForce GT 720M</option
+<option value="3549" class="bl_benchmark_option_3549" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA GeForce GT 730M</option
+<option value="4175" class="bl_benchmark_option_4175" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA GeForce GT 735M</option
+<option value="4059" class="bl_benchmark_option_4059" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA GeForce GT 740M</option
+<option value="4134" class="bl_benchmark_option_4134" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA GeForce GT 745M</option
+<option value="4158" class="bl_benchmark_option_4158" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA GeForce GT 750M</option
+<option value="4531" class="bl_benchmark_option_4531" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GT 750M SLI</option
+<option value="4923" class="bl_benchmark_option_4923" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA GeForce GT 755M</option
+<option value="5124" class="bl_benchmark_option_5124" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GT 755M SLI</option
+<option value="1114" class="bl_benchmark_option_1114" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTS 150M</option
+<option value="1113" class="bl_benchmark_option_1113" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTS 160M</option
+<option value="1297" class="bl_benchmark_option_1297" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTS 250M</option
+<option value="1298" class="bl_benchmark_option_1298" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTS 260M</option
+<option value="1597" class="bl_benchmark_option_1597" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTS 350M</option
+<option value="1598" class="bl_benchmark_option_1598" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTS 360M</option
+<option value="2404" class="bl_benchmark_option_2404" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTS 450</option
+<option value="7583" class="bl_benchmark_option_7583" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1050 (Desktop)</option
+<option value="7503" class="bl_benchmark_option_7503" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce GTX 1050 (Laptop)</option
+<option value="8482" class="bl_benchmark_option_8482" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA GeForce GTX 1050 Max-Q</option
+<option value="7582" class="bl_benchmark_option_7582" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1050 Ti (Desktop)</option
+<option value="7346" class="bl_benchmark_option_7346" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce GTX 1050 Ti (Laptop)</option
+<option value="8480" class="bl_benchmark_option_8480" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA GeForce GTX 1050 Ti Max-Q</option
+<option value="7336" class="bl_benchmark_option_7336" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1060 (Desktop)</option
+<option value="7362" class="bl_benchmark_option_7362" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1060 (Laptop)</option
+<option value="8010" class="bl_benchmark_option_8010" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce GTX 1060 Max-Q</option
+<option value="7323" class="bl_benchmark_option_7323" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1070 (Desktop)</option
+<option value="7364" class="bl_benchmark_option_7364" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1070 (Laptop)</option
+<option value="8008" class="bl_benchmark_option_8008" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce GTX 1070 Max-Q</option
+<option value="8092" class="bl_benchmark_option_8092" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1070 SLI (Desktop)</option
+<option value="7438" class="bl_benchmark_option_7438" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1070 SLI (Laptop)</option
+<option value="8258" class="bl_benchmark_option_8258" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce GTX 1070 Ti (Desktop)</option
+<option value="7311" class="bl_benchmark_option_7311" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1080 (Desktop)</option
+<option value="7376" class="bl_benchmark_option_7376" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1080 (Laptop)</option
+<option value="8006" class="bl_benchmark_option_8006" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce GTX 1080 Max-Q</option
+<option value="7384" class="bl_benchmark_option_7384" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA GeForce GTX 1080 SLI (Laptop)</option
+<option value="7700" class="bl_benchmark_option_7700" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce GTX 1080 Ti (Desktop)</option
+<option value="9850" class="bl_benchmark_option_9850" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1650 (Desktop)</option
+<option value="9828" class="bl_benchmark_option_9828" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1650 (Laptop)</option
+<option value="9834" class="bl_benchmark_option_9834" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1650 Max-Q</option
+<option value="9878" class="bl_benchmark_option_9878" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1650 Ti (Desktop)</option
+<option value="9965" class="bl_benchmark_option_9965" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1660 (Desktop)</option
+<option value="9970" class="bl_benchmark_option_9970" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1660 Super (Desktop)</option
+<option value="9836" class="bl_benchmark_option_9836" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1660 Ti (Desktop)</option
+<option value="9641" class="bl_benchmark_option_9641" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1660 Ti (Laptop)</option
+<option value="9832" class="bl_benchmark_option_9832" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce GTX 1660 Ti Max-Q</option
+<option value="1111" class="bl_benchmark_option_1111" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTX 260M</option
+<option value="1229" class="bl_benchmark_option_1229" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTX 260M SLI</option
+<option value="1110" class="bl_benchmark_option_1110" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTX 280M</option
+<option value="1122" class="bl_benchmark_option_1122" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTX 280M SLI</option
+<option value="1582" class="bl_benchmark_option_1582" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTX 285M</option
+<option value="1643" class="bl_benchmark_option_1643" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA GeForce GTX 285M SLI</option
+<option value="2403" class="bl_benchmark_option_2403" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 460 768MB</option
+<option value="1902" class="bl_benchmark_option_1902" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 460M</option
+<option value="2019" class="bl_benchmark_option_2019" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 460M SLI</option
+<option value="2385" class="bl_benchmark_option_2385" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 470</option
+<option value="1951" class="bl_benchmark_option_1951" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 470M</option
+<option value="2104" class="bl_benchmark_option_2104" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 470M SLI</option
+<option value="2382" class="bl_benchmark_option_2382" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 480</option
+<option value="1797" class="bl_benchmark_option_1797" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 480M</option
+<option value="1857" class="bl_benchmark_option_1857" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 480M SLI</option
+<option value="2059" class="bl_benchmark_option_2059" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 485M</option
+<option value="2528" class="bl_benchmark_option_2528" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 485M SLI</option
+<option value="2593" class="bl_benchmark_option_2593" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 550 Ti</option
+<option value="2586" class="bl_benchmark_option_2586" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 560 Ti</option
+<option value="2481" class="bl_benchmark_option_2481" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 560M</option
+<option value="2732" class="bl_benchmark_option_2732" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 560M SLI</option
+<option value="2378" class="bl_benchmark_option_2378" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 570</option
+<option value="2673" class="bl_benchmark_option_2673" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 570M</option
+<option value="2377" class="bl_benchmark_option_2377" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA GeForce GTX 580</option
+<option value="2671" class="bl_benchmark_option_2671" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 580M</option
+<option value="2672" class="bl_benchmark_option_2672" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 580M SLI</option
+<option value="2601" class="bl_benchmark_option_2601" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 590</option
+<option value="3526" class="bl_benchmark_option_3526" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 660 Ti</option
+<option value="2984" class="bl_benchmark_option_2984" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 660M</option
+<option value="2966" class="bl_benchmark_option_2966" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 670M</option
+<option value="3515" class="bl_benchmark_option_3515" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 670MX</option
+<option value="3546" class="bl_benchmark_option_3546" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 670MX SLI</option
+<option value="2959" class="bl_benchmark_option_2959" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 675M</option
+<option value="3147" class="bl_benchmark_option_3147" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA GeForce GTX 675M SLI</option
+<option value="3514" class="bl_benchmark_option_3514" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 675MX</option
+<option value="3270" class="bl_benchmark_option_3270" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 680</option
+<option value="3006" class="bl_benchmark_option_3006" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 680M</option
+<option value="3221" class="bl_benchmark_option_3221" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 680M SLI</option
+<option value="3525" class="bl_benchmark_option_3525" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA GeForce GTX 680MX</option
+<option value="5600" class="bl_benchmark_option_5600" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | NVIDIA GeForce GTX 750 Ti</option
+<option value="5599" class="bl_benchmark_option_5599" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 760</option
+<option value="4584" class="bl_benchmark_option_4584" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 760M</option
+<option value="4570" class="bl_benchmark_option_4570" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 765M</option
+<option value="4801" class="bl_benchmark_option_4801" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 765M SLI</option
+<option value="4022" class="bl_benchmark_option_4022" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 770M</option
+<option value="5032" class="bl_benchmark_option_5032" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 770M SLI</option
+<option value="4930" class="bl_benchmark_option_4930" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 775M</option
+<option value="5598" class="bl_benchmark_option_5598" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 780 Ti</option
+<option value="4020" class="bl_benchmark_option_4020" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 780M</option
+<option value="4617" class="bl_benchmark_option_4617" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA GeForce GTX 780M SLI</option
+<option value="5180" class="bl_benchmark_option_5180" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 850M</option
+<option value="5181" class="bl_benchmark_option_5181" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 860M</option
+<option value="5683" class="bl_benchmark_option_5683" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | NVIDIA GeForce GTX 860M SLI</option
+<option value="5184" class="bl_benchmark_option_5184" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 870M</option
+<option value="5185" class="bl_benchmark_option_5185" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 880M</option
+<option value="5214" class="bl_benchmark_option_5214" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | NVIDIA GeForce GTX 880M SLI</option
+<option value="6461" class="bl_benchmark_option_6461" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce GTX 950</option
+<option value="6158" class="bl_benchmark_option_6158" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce GTX 950M</option
+<option value="6311" class="bl_benchmark_option_6311" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce GTX 960</option
+<option value="6157" class="bl_benchmark_option_6157" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce GTX 960M</option
+<option value="6150" class="bl_benchmark_option_6150" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce GTX 965M</option
+<option value="6375" class="bl_benchmark_option_6375" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | NVIDIA GeForce GTX 965M SLI</option
+<option value="6279" class="bl_benchmark_option_6279" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 970</option
+<option value="5965" class="bl_benchmark_option_5965" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 970M</option
+<option value="5998" class="bl_benchmark_option_5998" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | NVIDIA GeForce GTX 970M SLI</option
+<option value="5986" class="bl_benchmark_option_5986" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 980</option
+<option value="6489" class="bl_benchmark_option_6489" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 980 (Laptop)</option
+<option value="7167" class="bl_benchmark_option_7167" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | NVIDIA GeForce GTX 980 SLI (Laptop)</option
+<option value="7325" class="bl_benchmark_option_7325" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA GeForce GTX 980 Ti</option
+<option value="5964" class="bl_benchmark_option_5964" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA GeForce GTX 980M</option
+<option value="5999" class="bl_benchmark_option_5999" "="" data-bl_lists="1" data-bl_year="2014" style=""
+2014 | NVIDIA GeForce GTX 980M SLI</option
+<option value="8130" class="bl_benchmark_option_8130" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA GeForce MX110</option
+<option value="8132" class="bl_benchmark_option_8132" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA GeForce MX130</option
+<option value="8000" class="bl_benchmark_option_8000" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA GeForce MX150</option
+<option value="9571" class="bl_benchmark_option_9571" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce MX230</option
+<option value="9561" class="bl_benchmark_option_9561" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce MX250</option
+<option value="9556" class="bl_benchmark_option_9556" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2060 (Desktop)</option
+<option value="9581" class="bl_benchmark_option_9581" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2060 (Laptop)</option
+<option value="9631" class="bl_benchmark_option_9631" "="" data-bl_lists="1" data-bl_year="2019" style=""
+2019 | NVIDIA GeForce RTX 2060 Max-Q</option
+<option value="9893" class="bl_benchmark_option_9893" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2060 Super</option
+<option value="9281" class="bl_benchmark_option_9281" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA GeForce RTX 2070 (Desktop)</option
+<option value="9551" class="bl_benchmark_option_9551" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2070 (Laptop)</option
+<option value="9611" class="bl_benchmark_option_9611" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2070 Max-Q</option
+<option value="9892" class="bl_benchmark_option_9892" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2070 Super</option
+<option value="9286" class="bl_benchmark_option_9286" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA GeForce RTX 2080 (Desktop)</option
+<option value="9541" class="bl_benchmark_option_9541" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2080 (Laptop)</option
+<option value="9621" class="bl_benchmark_option_9621" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2080 Max-Q</option
+<option value="9897" class="bl_benchmark_option_9897" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA GeForce RTX 2080 Super</option
+<option value="9526" class="bl_benchmark_option_9526" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA GeForce RTX 2080 Ti (Desktop)</option
+<option value="3731" class="bl_benchmark_option_3731" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | NVIDIA GeForce Tegra 4</option
+<option value="2954" class="bl_benchmark_option_2954" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | NVIDIA GeForce ULP (Tegra 2)</option
+<option value="2955" class="bl_benchmark_option_2955" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | NVIDIA GeForce ULP (Tegra 3)</option
+<option value="73" class="bl_benchmark_option_73" "="" data-bl_lists="1" data-bl_year="2002" style=""
+2002 | NVIDIA GeForce4 4200 Go</option
+<option value="1609" class="bl_benchmark_option_1609" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA ION 2</option
+<option value="6927" class="bl_benchmark_option_6927" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Maxwell GPU Surface Book (940M, GDDR5)</option
+<option value="1633" class="bl_benchmark_option_1633" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA NVS 2100M</option
+<option value="1622" class="bl_benchmark_option_1622" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA NVS 3100M</option
+<option value="2439" class="bl_benchmark_option_2439" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA NVS 4200M</option
+<option value="3223" class="bl_benchmark_option_3223" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA NVS 5200M</option
+<option value="3224" class="bl_benchmark_option_3224" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA NVS 5400M</option
+<option value="2437" class="bl_benchmark_option_2437" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA Quadro 1000M</option
+<option value="2435" class="bl_benchmark_option_2435" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA Quadro 2000M</option
+<option value="2433" class="bl_benchmark_option_2433" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA Quadro 3000M</option
+<option value="2431" class="bl_benchmark_option_2431" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA Quadro 4000M</option
+<option value="1939" class="bl_benchmark_option_1939" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA Quadro 5000M</option
+<option value="2429" class="bl_benchmark_option_2429" "="" data-bl_lists="1" data-bl_year="2011" style=""
+2011 | NVIDIA Quadro 5010M</option
+<option value="7" class="bl_benchmark_option_7" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA Quadro FX 1500M</option
+<option value="183" class="bl_benchmark_option_183" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA Quadro FX 1600M</option
+<option value="1087" class="bl_benchmark_option_1087" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA Quadro FX 1700M</option
+<option value="1649" class="bl_benchmark_option_1649" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA Quadro FX 1800M</option
+<option value="5" class="bl_benchmark_option_5" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | NVIDIA Quadro FX 2500M</option
+<option value="883" class="bl_benchmark_option_883" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA Quadro FX 2700M</option
+<option value="1544" class="bl_benchmark_option_1544" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA Quadro FX 2800M</option
+<option value="61" class="bl_benchmark_option_61" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA Quadro FX 3500M</option
+<option value="70" class="bl_benchmark_option_70" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA Quadro FX 350M</option
+<option value="695" class="bl_benchmark_option_695" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA Quadro FX 3600M</option
+<option value="513" class="bl_benchmark_option_513" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA Quadro FX 360M</option
+<option value="885" class="bl_benchmark_option_885" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA Quadro FX 3700M</option
+<option value="1054" class="bl_benchmark_option_1054" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA Quadro FX 370M</option
+<option value="1541" class="bl_benchmark_option_1541" "="" data-bl_lists="1" data-bl_year="2009" style=""
+2009 | NVIDIA Quadro FX 3800M</option
+<option value="1620" class="bl_benchmark_option_1620" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA Quadro FX 380M</option
+<option value="182" class="bl_benchmark_option_182" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA Quadro FX 570M</option
+<option value="884" class="bl_benchmark_option_884" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA Quadro FX 770M</option
+<option value="1621" class="bl_benchmark_option_1621" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA Quadro FX 880M</option
+<option value="76" class="bl_benchmark_option_76" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | NVIDIA Quadro FX Go 1000</option
+<option value="16" class="bl_benchmark_option_16" "="" data-bl_lists="1" data-bl_year="2005" style=""
+2005 | NVIDIA Quadro FX Go 1400</option
+<option value="3238" class="bl_benchmark_option_3238" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | NVIDIA Quadro K1000M</option
+<option value="4833" class="bl_benchmark_option_4833" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA Quadro K1100M</option
+<option value="3237" class="bl_benchmark_option_3237" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | NVIDIA Quadro K2000M</option
+<option value="4832" class="bl_benchmark_option_4832" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA Quadro K2100M</option
+<option value="3242" class="bl_benchmark_option_3242" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | NVIDIA Quadro K3000M</option
+<option value="4831" class="bl_benchmark_option_4831" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA Quadro K3100M</option
+<option value="3241" class="bl_benchmark_option_3241" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | NVIDIA Quadro K4000M</option
+<option value="4830" class="bl_benchmark_option_4830" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA Quadro K4100M</option
+<option value="3240" class="bl_benchmark_option_3240" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | NVIDIA Quadro K5000M</option
+<option value="3239" class="bl_benchmark_option_3239" "="" data-bl_lists="1" data-bl_year="2012" style=""
+2012 | NVIDIA Quadro K500M</option
+<option value="4829" class="bl_benchmark_option_4829" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA Quadro K5100M</option
+<option value="4835" class="bl_benchmark_option_4835" "="" data-bl_lists="1" data-bl_year="2013" style=""
+2013 | NVIDIA Quadro K510M</option
+<option value="4834" class="bl_benchmark_option_4834" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | NVIDIA Quadro K610M</option
+<option value="6185" class="bl_benchmark_option_6185" "="" data-bl_lists="1" data-bl_year="2015" style=""
+2015 | NVIDIA Quadro K620M</option
+<option value="6509" class="bl_benchmark_option_6509" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Quadro M1000M</option
+<option value="7704" class="bl_benchmark_option_7704" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro M1200</option
+<option value="6508" class="bl_benchmark_option_6508" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Quadro M2000M</option
+<option value="7706" class="bl_benchmark_option_7706" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro M2200</option
+<option value="6507" class="bl_benchmark_option_6507" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Quadro M3000M</option
+<option value="6506" class="bl_benchmark_option_6506" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Quadro M4000M</option
+<option value="6505" class="bl_benchmark_option_6505" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Quadro M5000M</option
+<option value="7063" class="bl_benchmark_option_7063" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Quadro M500M</option
+<option value="7710" class="bl_benchmark_option_7710" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro M520</option
+<option value="7282" class="bl_benchmark_option_7282" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA Quadro M5500</option
+<option value="6510" class="bl_benchmark_option_6510" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Quadro M600M</option
+<option value="7708" class="bl_benchmark_option_7708" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro M620</option
+<option value="39" class="bl_benchmark_option_39" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA Quadro NVS 110M</option
+<option value="38" class="bl_benchmark_option_38" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA Quadro NVS 120M</option
+<option value="212" class="bl_benchmark_option_212" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA Quadro NVS 130M</option
+<option value="211" class="bl_benchmark_option_211" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA Quadro NVS 135M</option
+<option value="85" class="bl_benchmark_option_85" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA Quadro NVS 140M</option
+<option value="880" class="bl_benchmark_option_880" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA Quadro NVS 150M</option
+<option value="879" class="bl_benchmark_option_879" "="" data-bl_lists="1" data-bl_year="2008" style=""
+2008 | NVIDIA Quadro NVS 160M</option
+<option value="57" class="bl_benchmark_option_57" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | NVIDIA Quadro NVS 300M</option
+<option value="208" class="bl_benchmark_option_208" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | NVIDIA Quadro NVS 320M</option
+<option value="1627" class="bl_benchmark_option_1627" "="" data-bl_lists="1" data-bl_year="2010" style=""
+2010 | NVIDIA Quadro NVS 5100M</option
+<option value="8846" class="bl_benchmark_option_8846" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P1000</option
+<option value="8886" class="bl_benchmark_option_8886" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P2000</option
+<option value="9044" class="bl_benchmark_option_9044" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P2000 Max-Q</option
+<option value="7665" class="bl_benchmark_option_7665" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P3000</option
+<option value="8080" class="bl_benchmark_option_8080" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P3000 Max-Q</option
+<option value="8764" class="bl_benchmark_option_8764" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P3200</option
+<option value="7666" class="bl_benchmark_option_7666" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P4000</option
+<option value="8082" class="bl_benchmark_option_8082" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P4000 Max-Q</option
+<option value="8814" class="bl_benchmark_option_8814" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA Quadro P4200</option
+<option value="8266" class="bl_benchmark_option_8266" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P500</option
+<option value="7664" class="bl_benchmark_option_7664" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P5000</option
+<option value="8084" class="bl_benchmark_option_8084" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P5000 Max-Q</option
+<option value="9862" class="bl_benchmark_option_9862" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro P520</option
+<option value="8094" class="bl_benchmark_option_8094" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P5200</option
+<option value="8816" class="bl_benchmark_option_8816" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | NVIDIA Quadro P600</option
+<option value="9864" class="bl_benchmark_option_9864" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro P620</option
+<option value="9854" class="bl_benchmark_option_9854" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro RTX 3000 (Laptop)</option
+<option value="9884" class="bl_benchmark_option_9884" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro RTX 3000 Max-Q</option
+<option value="9856" class="bl_benchmark_option_9856" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro RTX 4000 (Laptop)</option
+<option value="9882" class="bl_benchmark_option_9882" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro RTX 4000 Max-Q</option
+<option value="9852" class="bl_benchmark_option_9852" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro RTX 5000 (Laptop)</option
+<option value="9880" class="bl_benchmark_option_9880" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro RTX 5000 Max-Q</option
+<option value="9923" class="bl_benchmark_option_9923" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro RTX 6000 (Laptop)</option
+<option value="9860" class="bl_benchmark_option_9860" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro T1000 (Laptop)</option
+<option value="9888" class="bl_benchmark_option_9888" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro T1000 Max-Q</option
+<option value="9858" class="bl_benchmark_option_9858" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro T2000 (Laptop)</option
+<option value="9886" class="bl_benchmark_option_9886" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | NVIDIA Quadro T2000 Max-Q</option
+<option value="5204" class="bl_benchmark_option_5204" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | NVIDIA Tegra K1 Kepler GPU</option
+<option value="6152" class="bl_benchmark_option_6152" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | NVIDIA Tegra X1 Maxwell GPU</option
+<option value="9651" class="bl_benchmark_option_9651" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | NVIDIA Titan RTX</option
+<option value="7461" class="bl_benchmark_option_7461" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | NVIDIA Titan X Pascal</option
+<option value="9963" class="bl_benchmark_option_9963" "="" data-bl_lists="1" data-bl_year="1970"
+1970 | NXP PXP</option
+<option value="5995" class="bl_benchmark_option_5995" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | PowerVR G6200</option
+<option value="5743" class="bl_benchmark_option_5743" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | PowerVR G6400</option
+<option value="5035" class="bl_benchmark_option_5035" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | PowerVR G6430</option
+<option value="8788" class="bl_benchmark_option_8788" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | PowerVR GE8100</option
+<option value="9838" class="bl_benchmark_option_9838" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | PowerVR GE8300</option
+<option value="9411" class="bl_benchmark_option_9411" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | PowerVR GE8320</option
+<option value="9898" class="bl_benchmark_option_9898" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | PowerVR GE8322 / IMG8322</option
+<option value="6190" class="bl_benchmark_option_6190" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | PowerVR GX6250</option
+<option value="5960" class="bl_benchmark_option_5960" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | PowerVR GX6450</option
+<option value="5987" class="bl_benchmark_option_5987" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | PowerVR GXA6850</option
+<option value="2958" class="bl_benchmark_option_2958" "="" data-bl_lists="1" data-bl_year="2005"
+2005 | PowerVR SGX530</option
+<option value="3745" class="bl_benchmark_option_3745" "="" data-bl_lists="1" data-bl_year="2006"
+2006 | PowerVR SGX531</option
+<option value="2376" class="bl_benchmark_option_2376" "="" data-bl_lists="1" data-bl_year="2007"
+2007 | PowerVR SGX535</option
+<option value="2609" class="bl_benchmark_option_2609" "="" data-bl_lists="1" data-bl_year="2008"
+2008 | PowerVR SGX540</option
+<option value="2572" class="bl_benchmark_option_2572" "="" data-bl_lists="1" data-bl_year="2009"
+2009 | PowerVR SGX543MP2</option
+<option value="3511" class="bl_benchmark_option_3511" "="" data-bl_lists="1" data-bl_year="2009"
+2009 | PowerVR SGX543MP3</option
+<option value="2972" class="bl_benchmark_option_2972" "="" data-bl_lists="1" data-bl_year="2009"
+2009 | PowerVR SGX543MP4</option
+<option value="3562" class="bl_benchmark_option_3562" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | PowerVR SGX544</option
+<option value="5936" class="bl_benchmark_option_5936" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | PowerVR SGX544MP2</option
+<option value="3561" class="bl_benchmark_option_3561" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | PowerVR SGX545</option
+<option value="3530" class="bl_benchmark_option_3530" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | PowerVR SGX554MP4</option
+<option value="2957" class="bl_benchmark_option_2957" "="" data-bl_lists="1" data-bl_year="2008"
+2008 | Qualcomm Adreno 200</option
+<option value="4019" class="bl_benchmark_option_4019" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | Qualcomm Adreno 203</option
+<option value="2956" class="bl_benchmark_option_2956" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | Qualcomm Adreno 205</option
+<option value="4003" class="bl_benchmark_option_4003" "="" data-bl_lists="1" data-bl_year="2010"
+2010 | Qualcomm Adreno 220</option
+<option value="3142" class="bl_benchmark_option_3142" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | Qualcomm Adreno 225</option
+<option value="5509" class="bl_benchmark_option_5509" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Qualcomm Adreno 302</option
+<option value="6449" class="bl_benchmark_option_6449" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Qualcomm Adreno 304</option
+<option value="3715" class="bl_benchmark_option_3715" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | Qualcomm Adreno 305</option
+<option value="5961" class="bl_benchmark_option_5961" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | Qualcomm Adreno 306</option
+<option value="7906" class="bl_benchmark_option_7906" "="" data-bl_lists="1" data-bl_year="2016"
+2016 | Qualcomm Adreno 308</option
+<option value="3557" class="bl_benchmark_option_3557" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | Qualcomm Adreno 320</option
+<option value="4683" class="bl_benchmark_option_4683" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Qualcomm Adreno 330</option
+<option value="6151" class="bl_benchmark_option_6151" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | Qualcomm Adreno 405</option
+<option value="6309" class="bl_benchmark_option_6309" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | Qualcomm Adreno 418</option
+<option value="5741" class="bl_benchmark_option_5741" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | Qualcomm Adreno 420</option
+<option value="6189" class="bl_benchmark_option_6189" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | Qualcomm Adreno 430</option
+<option value="9890" class="bl_benchmark_option_9890" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Qualcomm Adreno 504</option
+<option value="7444" class="bl_benchmark_option_7444" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Qualcomm Adreno 505</option
+<option value="7443" class="bl_benchmark_option_7443" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Qualcomm Adreno 506</option
+<option value="8112" class="bl_benchmark_option_8112" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Qualcomm Adreno 508</option
+<option value="8782" class="bl_benchmark_option_8782" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Qualcomm Adreno 509</option
+<option value="7360" class="bl_benchmark_option_7360" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Qualcomm Adreno 510</option
+<option value="8778" class="bl_benchmark_option_8778" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Qualcomm Adreno 512</option
+<option value="7062" class="bl_benchmark_option_7062" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Qualcomm Adreno 530</option
+<option value="7714" class="bl_benchmark_option_7714" "="" data-bl_lists="1" data-bl_year="2017"
+2017 | Qualcomm Adreno 540</option
+<option value="9921" class="bl_benchmark_option_9921" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | Qualcomm Adreno 610</option
+<option value="9876" class="bl_benchmark_option_9876" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Qualcomm Adreno 612</option
+<option value="9401" class="bl_benchmark_option_9401" "="" data-bl_lists="1" data-bl_year="2015"
+2015 | Qualcomm Adreno 616</option
+<option value="9900" class="bl_benchmark_option_9900" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | Qualcomm Adreno 618</option
+<option value="8780" class="bl_benchmark_option_8780" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Qualcomm Adreno 630</option
+<option value="9446" class="bl_benchmark_option_9446" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Qualcomm Adreno 640</option
+<option value="9971" class="bl_benchmark_option_9971" "="" data-bl_lists="1" data-bl_year="2019"
+2019 | Qualcomm Adreno 650</option
+<option value="9846" class="bl_benchmark_option_9846" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Qualcomm Adreno 680</option
+<option value="9954" class="bl_benchmark_option_9954" "="" data-bl_lists="1" data-bl_year="2018"
+2018 | Qualcomm Adreno 685</option
+<option value="1124" class="bl_benchmark_option_1124" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | Silicon Motion SM502</option
+<option value="169" class="bl_benchmark_option_169" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | SIS Mirage 2 M760</option
+<option value="210" class="bl_benchmark_option_210" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | SIS Mirage 3 671MX</option
+<option value="1045" class="bl_benchmark_option_1045" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | SIS Mirage 3+ 672MX</option
+<option value="168" class="bl_benchmark_option_168" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | SIS Mirage M661FX </option
+<option value="2375" class="bl_benchmark_option_2375" "="" data-bl_lists="1" data-bl_year="1970" style=""
+1970 | unknown</option
+<option value="167" class="bl_benchmark_option_167" "="" data-bl_lists="1" data-bl_year="2003" style=""
+2003 | VIA Castle Rock</option
+<option value="60" class="bl_benchmark_option_60" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | VIA Chrome9 HC</option
+<option value="2610" class="bl_benchmark_option_2610" "="" data-bl_lists="1" data-bl_year="2007" style=""
+2007 | VIA Chrome9HD</option
+<option value="170" class="bl_benchmark_option_170" "="" data-bl_lists="1" data-bl_year="2001" style=""
+2001 | VIA S3 Graphics ProSavage8</option
+<option value="56" class="bl_benchmark_option_56" "="" data-bl_lists="1" data-bl_year="2004" style=""
+2004 | VIA S3G UniChrome Pro</option
+<option value="633" class="bl_benchmark_option_633" "="" data-bl_lists="1" data-bl_year="2006" style=""
+2006 | VIA S3G UniChrome Pro II</option
+<option value="4572" class="bl_benchmark_option_4572" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Vivante GC1000+ Dual-Core</option
+<option value="3544" class="bl_benchmark_option_3544" "="" data-bl_lists="1" data-bl_year="2013"
+2013 | Vivante GC4000</option
+<option value="6271" class="bl_benchmark_option_6271" "="" data-bl_lists="1" data-bl_year="2014"
+2014 | Vivante GC7000UL</option
+<option value="3156" class="bl_benchmark_option_3156" "="" data-bl_lists="1" data-bl_year="2012"
+2012 | Vivante GC800</option
+</select

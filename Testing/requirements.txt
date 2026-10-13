@@ -1,0 +1,21 @@
+# Dependensi inti Return[er] Machine
+# Install: pip install -r requirements.txt
+
+# --- Lingkungan Jupyter ---
+jupyterlab>=4.0
+notebook>=7.0
+ipykernel>=6.0
+
+# --- Komputasi & visualisasi ---
+# Return[er]Machine*.py/.ipynb, ByteHistEntHoRM*.ipynb, vectorize.py
+numpy>=1.26
+matplotlib>=3.8
+opencv-python>=4.8          # import cv2
+numba>=0.60                 # vectorize.py, fractal, find_nearby_coords, Permutasi
+pandas>=2.0                 # Permutasi.ipynb
+pillow>=10.0                # import PIL (fractal.ipynb)
+
+# --- Lain-lain ---
+pefile>=2023.2.7            # byteentropy/histogram.py, entropyhistogram.py
+geopy>=2.4                  # find_nearby_coords.ipynb
+scikit-learn>=1.3           # numba-cuda-stencil.ipynb

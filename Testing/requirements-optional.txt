@@ -1,0 +1,19 @@
+# Dependensi opsional (deep learning & GPU), hanya untuk:
+#   numba-cuda-stencil.ipynb, Permutasi.ipynb (sel TensorFlow), fractal.ipynb (sel TensorFlow)
+# Install: pip install -r requirements-optional.txt
+#
+# Catatan:
+# - Sebagian notebook memakai API lama (keras.layers.embeddings,
+#   sklearn.externals.joblib, livelossplot.keras) yang sudah dihapus
+#   di versi terbaru; sel tersebut perlu disesuaikan atau dijalankan
+#   di environment lama (TensorFlow 1.x / Keras 2.2).
+# - cupy dan numba.cuda butuh GPU NVIDIA + CUDA Toolkit. Sesuaikan paket
+#   cupy dengan versi CUDA Anda (cupy-cuda11x / cupy-cuda12x).
+
+-r requirements.txt
+
+tensorflow>=2.16
+keras>=3.0
+livelossplot>=0.5
+efficientnet>=1.1
+cupy-cuda12x>=13.0
