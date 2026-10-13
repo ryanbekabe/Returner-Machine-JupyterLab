@@ -1119,7 +1119,7 @@ python byteentropy/rmh_final2.py decode jin.rmf -o jin_kembali.pdf
 
 | Metode | Ukuran | Waktu encode |
 |---|---|---|
-| `RMF1` (`rmh_final.py`) | 6.352.249 | __WAKTU_LAMA__ |
+| `RMF1` (`rmh_final.py`) | 6.352.249 | sekitar 7,5 menit (tanpa verifikasi) |
 | **`RMF2` (`rmh_final2.py`)** | **6.121.828** | **35 detik** (+16 detik verifikasi) |
 | zip | 6.106.702 | - |
 | 7z | 6.059.748 | - |

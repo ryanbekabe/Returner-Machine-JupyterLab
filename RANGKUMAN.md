@@ -245,7 +245,7 @@ Script `byteentropy/rmh_final2.py`, format `RMF2`:
 
 | `Dialog_Dengan_Jin_Muslim.pdf` | Ukuran | Encode |
 |---|---|---|
-| `RMF1` | 6.352.249 | __WAKTU_LAMA__ |
+| `RMF1` | 6.352.249 | sekitar 7,5 menit |
 | **`RMF2`** | **6.121.828** | **35 detik** |
 | zip | 6.106.702 | |
 | 7z | 6.059.748 | |
