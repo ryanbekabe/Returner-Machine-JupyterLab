@@ -51,7 +51,8 @@ python byteentropy/histogram_v2.py <nama_file>
 | `rmh_konteks2.py` | `.rmk` versi 2: PPM + SEE (peluang ESCAPE dipelajari) + update exclusion. 7–23% lebih kecil dari `rmh_konteks.py` (lihat bagian [Konteks PPM versi 2](#konteks-ppm-versi-2-rmk-versi-2)) |
 | `rmh_konteks_info.py` | Melihat isi file `.rmk`: rincian per segmen, ke mana bit dihabiskan, konteks yang dipelajari, dan jejak decode (lihat bagian [Melihat Isi File .rmk](#melihat-isi-file-rmk)) |
 | `rmh_final.py` | Memilih mode terbaik secara otomatis (konteks orde 1..5, adaptif, atau mentah) dan menyimpan SHA-256 sebagai sidik jari (lihat bagian [Return[er] Machine Final](#returner-machine-final-file-rmf)) |
-| `rmh_final2.py` | **Versi yang disarankan.** Seperti `rmh_final.py`, ditambah mode campuran per blok: bagian yang sudah terkompresi (gambar, ZIP) disimpan mentah, hanya bagian berpola yang dikodekan. Jauh lebih cepat untuk PDF dan file campuran (lihat bagian [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2)) |
+| `rmh_final2.py` | Seperti `rmh_final.py`, ditambah mode campuran per blok: bagian yang sudah terkompresi (gambar, ZIP) disimpan mentah, hanya bagian berpola yang dikodekan. Jauh lebih cepat untuk PDF dan file campuran (lihat bagian [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2)) |
+| `rmh_final3.py` | **Versi yang disarankan.** Seperti `rmh_final2.py`, tetapi bagian berpola dikodekan dengan konteks versi 2 (`rmh_konteks2.py`). Lebih kecil dari zip pada semua file uji kecuali satu, yang hasilnya seri (lihat bagian [Final versi 3](#final-versi-3-rmf-versi-3)) |
 
 ### Istilah ekstensi file
 
@@ -63,7 +64,7 @@ Awalan **rm** berasal dari **R**eturner **M**achine. Huruf terakhir menunjukkan 
 | `.rmb` | Return[er] Machine **B**lok | `RMB1` | `rmh_blok.py` | File dipecah per blok, setiap blok punya histogram + rank sendiri. Lihat [Per Blok](#per-blok-file-rmb) |
 | `.rma` | Return[er] Machine **A**daptif | `RMA1` | `rmh_adaptif.py` | Histogram tidak disimpan, tetapi dipelajari dari byte yang sudah terbuka. Lihat [Histogram Adaptif](#histogram-adaptif-file-rma) |
 | `.rmk` | Return[er] Machine **K**onteks | `RMK1`, `RMK2` | `rmh_konteks.py` (versi 1), `rmh_konteks2.py` (versi 2) | Satu histogram adaptif untuk setiap konteks (1..N byte sebelumnya). Versi 2 mempelajari peluang ESCAPE (SEE). `rmh_konteks2.py` bisa membuka kedua versi. Lihat [Konteks PPM](#konteks-ppm-file-rmk) dan [Konteks PPM versi 2](#konteks-ppm-versi-2-rmk-versi-2) |
-| `.rmf` | Return[er] Machine **F**inal | `RMF1`, `RMF2` | `rmh_final.py` (versi 1), `rmh_final2.py` (versi 2) | Mode terbaik dipilih otomatis + SHA-256 file asli. Versi 2 menambah mode campuran per blok. `rmh_final2.py` bisa membuka kedua versi. Lihat [Return[er] Machine Final](#returner-machine-final-file-rmf) dan [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2) |
+| `.rmf` | Return[er] Machine **F**inal | `RMF1`, `RMF2`, `RMF3` | `rmh_final.py` (versi 1), `rmh_final2.py` (versi 2), `rmh_final3.py` (versi 3) | Mode terbaik dipilih otomatis + SHA-256 file asli. Versi 2 menambah mode campuran per blok, versi 3 memakai konteks versi 2. `rmh_final3.py` bisa membuka ketiga versi. Lihat [Return[er] Machine Final](#returner-machine-final-file-rmf) [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2), dan [Final versi 3](#final-versi-3-rmf-versi-3) |
 
 Penanda di awal file membuat program bisa mengenali formatnya. Angka `1` adalah nomor versi format, sehingga format yang diubah di masa depan bisa memakai `RMK2` dan seterusnya tanpa merusak file lama.
 
@@ -1240,6 +1241,86 @@ Hampir sama dengan versi 1: sekitar 70–100 KB/detik untuk teks (`GPU List.txt`
 - Deterministik: encode dua kali menghasilkan file yang sama persis.
 - `rmh_konteks2.py decode` membuka file `RMK1` lama (misalnya `gpu.rmk`) dengan hasil identik.
 - File yang kodenya diubah ditolak (`CRC32 tidak cocok`).
+
+## Final versi 3 (.rmf versi 3)
+
+Script: `byteentropy/rmh_final3.py`. Format tetap berekstensi `.rmf` dengan penanda **`RMF3`**. `rmh_final3.py` juga bisa membuka file `RMF1` dan `RMF2`. `rmh_final.py` dan `rmh_final2.py` tidak diubah.
+
+### Apa yang berubah dari versi 2
+
+Cara kerjanya sama dengan `RMF2`: blok yang sudah acak atau sudah terkompresi disimpan mentah, dan blok berpola digabung lalu dikodekan dengan mode terbaik. Bedanya ada di mode yang dicoba untuk bagian berpola:
+
+| | `RMF2` | `RMF3` |
+|---|---|---|
+| Model konteks | `rmh_konteks.py` (RMK1, PPM-D) | `rmh_konteks2.py` (RMK2, PPM + SEE + update exclusion) |
+| Kandidat | mentah, adaptif, konteks orde 1..5 | mentah, adaptif, konteks2 orde 1..5 |
+| Orde 6 | tidak pernah | dicoba pada data penuh jika orde 5 yang terbaik, dipakai hanya jika lebih kecil |
+| Uji campuran vs semua model | konteks orde 3 | konteks2 orde 3 |
+
+Kode mode `3` (konteks2) ditambahkan di header. Tata letak header lainnya sama dengan `RMF2`.
+
+### Cara pakai
+
+```
+python byteentropy/rmh_final3.py encode     <file>     [-o <file.rmf>] [-b <blok>] [-a <ambang>] [-k <orde>] [--tanpa-verifikasi]
+python byteentropy/rmh_final3.py decode     <file.rmf> [-o <file_hasil>]
+python byteentropy/rmh_final3.py info       <file.rmf> [--semua]
+python byteentropy/rmh_final3.py bandingkan <file>     [--tanpa-rmf2]
+```
+
+| Perintah | Fungsi |
+|---|---|
+| `encode` | File asli → `.rmf` versi 3. Pilihan sama dengan `rmh_final2.py`. Encode langsung diverifikasi dengan decode ulang, kecuali diberi `--tanpa-verifikasi` |
+| `decode` | `.rmf` versi 1, 2, atau 3 → file asli, diverifikasi dengan SHA-256 |
+| `info` | Header dan peta blok tanpa decode, untuk ketiga versi |
+| `bandingkan` | Ukuran dan waktu `.rmf` versi 2, versi 3, zip (zlib -9), dan 7z (lzma -9e), tanpa menulis file |
+
+Contoh:
+
+```
+python byteentropy/rmh_final3.py encode Testing/Dialog_Dengan_Jin_Muslim.pdf -o dialog.rmf
+python byteentropy/rmh_final3.py decode dialog.rmf -o dialog_kembali.pdf
+python byteentropy/rmh_final3.py bandingkan "Testing/GPU List.txt"
+```
+
+### Hasil
+
+Ukuran dalam byte. zip = zlib -9, 7z = lzma -9e. **Tebal** = paling kecil di baris itu.
+
+| File | Asli | `RMF2` | **`RMF3`** | zip | 7z |
+|---|---|---|---|---|---|
+| `Dialog_Dengan_Jin_Muslim.pdf` | 6.877.939 | 6.121.828 | 6.082.351 | 6.106.702 | **6.059.748** |
+| `logfactorial.txt` | 5.644.322 | 2.131.064 | **2.125.742** | 2.418.673 | 2.269.889 |
+| `GPU List.txt` | 136.412 | 11.056 | 9.680 | 11.285 | **8.356** |
+| `NestedRubik256DNA.py` | 15.112 | 13.255 | 12.354 | 12.354 | **12.208** |
+| `123.txt.png` | 10.073 | 8.707 | **8.089** | 8.369 | 8.268 |
+| `RMHash_HoRM2.txt` | 8.585 | 1.010 | 788 | 1.146 | **552** |
+| `Return[er]Machine.py` | 7.235 | 2.208 | **1.941** | 2.103 | 2.168 |
+| `HoRM.txt` | 4.690 | 1.119 | **956** | 1.236 | 1.028 |
+
+- `RMF3` lebih kecil dari `RMF2` pada semua file.
+- **PDF kini lebih kecil dari zip** (−24.351 byte). Selisih dengan 7z tinggal 22.603 byte (0,4%), padahal sebelumnya 62.080 byte. Rinciannya: header 887 + kode model 327.608 byte (1.124.083 byte berpola, konteks2 orde 6) + blok mentah 5.753.856 byte.
+- `RMF3` mengalahkan zip **dan** 7z pada 4 dari 8 file. Pada `NestedRubik256DNA.py` hasilnya seri dengan zip.
+- 7z masih unggul pada data yang sangat berulang (`RMHash_HoRM2.txt`, `GPU List.txt`, dan struktur teks PDF). Untuk itu dibutuhkan model salin potongan (LZ).
+- Ukuran `.rmf` sekitar 35–45 byte lebih besar dari `.rmk` untuk file yang sama, karena SHA-256 (32 byte) dan peta blok.
+
+### Kecepatan
+
+| File | Encode | Verifikasi (decode) |
+|---|---|---|
+| `Dialog_Dengan_Jin_Muslim.pdf` (6,9 MB) | 65 detik | 19 detik |
+| `logfactorial.txt` (5,6 MB) | 117 detik | 39 detik |
+| `GPU List.txt` (136 KB) | sekitar 4 detik | sekitar 2 detik |
+
+Encode lebih lambat dari `RMF2`, karena setiap kandidat orde diuji dengan konteks2. Pada file besar, pemilihan mode memakai sampel 3 × 64 KB, lalu bagian berpola dikodekan penuh 2–3 kali (orde terpilih, lalu orde berikutnya selama hasilnya mengecil). Decode hanya berjalan sekali, sehingga jauh lebih cepat dari encode.
+
+### Pengujian
+
+- Encode → decode identik untuk 12 kasus: `HoRM.txt`, `123.txt.png`, `1byte.txt`, `nullbyte.txt`, `bismillah.txt`, `Return[er]Machine.py`, file kosong, 1 byte, 20.000 byte acak, 100.000 byte nol, campuran teks + acak + teks, dan 1.025 byte acak (blok terakhir tidak penuh). Setiap kasus diuji dengan 7 pilihan: default, blok 1 byte, blok 777 byte, ambang 8, ambang 0, orde paksa 0, dan orde paksa 6.
+- `Dialog_Dengan_Jin_Muslim.pdf` dan `logfactorial.txt`: decode identik, SHA-256 cocok.
+- Deterministik: encode dua kali menghasilkan file yang sama persis.
+- File `RMF1` dan `RMF2` (termasuk `logfactorial.rmf` lama di repo) terbuka dengan hasil identik.
+- File rusak ditolak: kode diubah dan SHA-256 diubah (`SHA-256 tidak cocok`), file terpotong (`Ukuran isi tidak sesuai`), dan magic salah.
 
 
 ```git

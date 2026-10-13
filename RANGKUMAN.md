@@ -284,6 +284,28 @@ Script `byteentropy/rmh_konteks2.py` (perintah `encode`, `decode`, `bandingkan`)
 - lzma masih unggul pada data yang sangat berulang. Celahnya pada `GPU List.txt` mengecil dari 1.982 menjadi 606 byte.
 - `rmh_konteks2.py decode` juga bisa membuka file `RMK1`.
 
+## 15. Final versi 3: `.rmf` versi 3
+
+Langkah lanjutan dari bagian 14: RMK2 disambungkan ke `.rmf`. Script `byteentropy/rmh_final3.py`, format `RMF3`.
+
+- Cara kerjanya sama dengan `RMF2`: blok acak atau sudah terkompresi disimpan mentah, dan blok berpola dikodekan dengan mode terbaik. Bedanya, kandidat konteks memakai RMK2 (konteks2 orde 1..5). Orde 6 dicoba pada data penuh jika orde 5 yang terbaik.
+- Kode mode `3` (konteks2) ditambahkan di header. `rmh_final3.py` bisa membuka `RMF1`, `RMF2`, dan `RMF3`.
+- Orde dipilih otomatis per file. Ini penting: `rmh_konteks2.py` dengan orde default 5 membuat `logfactorial.txt` menjadi 2.301.650 byte, lebih besar dari 7z. Orde terbaik untuk file ini adalah 3 (2.125.017 byte), dan `RMF3` memilihnya sendiri.
+
+| File | `RMF2` | **`RMF3`** | zip | 7z |
+|---|---|---|---|---|
+| `Dialog_Dengan_Jin_Muslim.pdf` (6.877.939) | 6.121.828 | **6.082.351** | 6.106.702 | 6.059.748 |
+| `logfactorial.txt` (5.644.322) | 2.131.064 | **2.125.742** | 2.418.673 | 2.269.889 |
+| `GPU List.txt` (136.412) | 11.056 | **9.680** | 11.285 | 8.356 |
+| `123.txt.png` (10.073) | 8.707 | **8.089** | 8.369 | 8.268 |
+| `RMHash_HoRM2.txt` (8.585) | 1.010 | **788** | 1.146 | 552 |
+| `Return[er]Machine.py` (7.235) | 2.208 | **1.941** | 2.103 | 2.168 |
+| `HoRM.txt` (4.690) | 1.119 | **956** | 1.236 | 1.028 |
+
+- **PDF uji kini lebih kecil dari zip.** Selisih dengan 7z tinggal 22.603 byte (0,4%), sebelumnya 62.080 byte.
+- `RMF3` mengalahkan zip dan 7z pada 4 dari 8 file uji. Pada `NestedRubik256DNA.py` hasilnya seri dengan zip (12.354 byte).
+- Harganya: encode PDF butuh 65 detik (`RMF2` 35 detik), dan `logfactorial.txt` 117 detik. Decode 19 dan 39 detik.
+
 ---
 
 ## Daftar file yang dibuat
@@ -301,13 +323,14 @@ Script `byteentropy/rmh_konteks2.py` (perintah `encode`, `decode`, `bandingkan`)
 | `byteentropy/rmh_konteks.py` | Encode/decode file `.rmk`, konteks PPM |
 | `byteentropy/rmh_konteks_info.py` | Melihat isi file `.rmk` dengan memutar ulang decode |
 | `byteentropy/rmh_final.py` | Encode/decode `.rmf` versi 1, mode otomatis + SHA-256 |
-| `byteentropy/rmh_final2.py` | **Versi yang disarankan**: `.rmf` versi 2, mode campuran per blok |
+| `byteentropy/rmh_final2.py` | Encode/decode `.rmf` versi 2, mode campuran per blok |
 | `byteentropy/rmh_konteks2.py` | Encode/decode `.rmk` versi 2: PPM + SEE + update exclusion |
+| `byteentropy/rmh_final3.py` | **Versi yang disarankan**: `.rmf` versi 3, mode campuran per blok + konteks versi 2 |
 
 ## Langkah berikutnya
 
 1. ~~**Histogram adaptif.**~~ Selesai, lihat bagian 8.
 2. ~~**Konteks orde-1/orde-2.**~~ Selesai, lihat bagian 9. Hasilnya melampaui perkiraan: `GPU List.txt` turun menjadi 11 KB dengan orde 5.
-3. **Context mixing.** Menggabungkan tebakan beberapa orde sekaligus (seperti PAQ/cmix), bukan memilih satu lewat escape. Langkah antara sudah selesai: biaya ESCAPE dipangkas dengan SEE dan update exclusion (bagian 14). `rmh_final2.py` belum memakai RMK2.
-4. **Model salin potongan (LZ).** Untuk data yang sangat berulang, di mana lzma masih unggul. Prioritas berikutnya: diperkirakan membuat PDF uji lebih kecil dari 7z.
+3. **Context mixing.** Menggabungkan tebakan beberapa orde sekaligus (seperti PAQ/cmix), bukan memilih satu lewat escape. Langkah antara sudah selesai: biaya ESCAPE dipangkas dengan SEE dan update exclusion (bagian 14), dan sudah dipakai di `.rmf` versi 3 (bagian 15).
+4. **Model salin potongan (LZ).** Untuk data yang sangat berulang, di mana lzma masih unggul. Prioritas berikutnya: PDF uji sudah lebih kecil dari zip, dan selisih dengan 7z tinggal 22.603 byte. Selisih itu berasal dari struktur teks PDF yang penuh potongan berulang.
 5. **Percepatan.** Python murni sekitar 100 KB/detik. Perlu numba atau C/Rust untuk file berukuran MB.
