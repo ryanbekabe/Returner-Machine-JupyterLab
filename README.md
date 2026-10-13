@@ -44,6 +44,7 @@ python byteentropy/histogram_v2.py <nama_file>
 | `entropyhistogram.py` | Sama dengan `histogram.py` |
 | `histogram_v2.py` | **Perbaikan** `histogram.py`, versi yang disarankan |
 | `permutasi_rank.py` | Enumerative coding: menyimpan data sebagai histogram + rank, lalu menyusunnya kembali (lihat bagian [Enumerative Coding](#enumerative-coding-histogram--rank)) |
+| `rmh.py` | Encode file ke `.rmh` (histogram + rank) dan decode kembali (lihat bagian [Format File .rmh](#format-file-rmh-simpan-ke-file)) |
 
 ### Konsep singkat
 
@@ -237,7 +238,124 @@ Script selalu melakukan encode lalu decode, kemudian membandingkan hasilnya deng
 - **Untuk data besar**, ukuran histogram + rank mendekati batas Shannon `n × H`. Hasilnya setara dengan kompresi entropi orde-0 (misalnya arithmetic coding) dan tidak bisa lebih kecil dari batas itu.
 - **Data acak** (entropy ≈ 8 bit/byte) menghasilkan rank yang ukurannya hampir sama dengan data aslinya, jadi tidak ada penghematan.
 - Untuk data besar, encode/decode melambat karena operasi bilangan bulat besar. Script memberi peringatan untuk data di atas 100.000 byte.
-- Saat ini script hanya mendemonstrasikan encode → decode di memori. Script belum menyimpan histogram + rank ke file.
+- `permutasi_rank.py` hanya mendemonstrasikan encode → decode di memori. Untuk menyimpan ke file, gunakan `rmh.py` (bagian berikut).
+
+## Format File .rmh (Simpan ke File)
+
+Script: `byteentropy/rmh.py`. Script ini melanjutkan `permutasi_rank.py`: histogram + rank disimpan ke file `.rmh`, lalu file asli disusun kembali dari file `.rmh` tersebut.
+
+### Cara pakai
+
+```bash
+python byteentropy/rmh.py encode <file>       [-o <file.rmh>]   # file asli -> .rmh
+python byteentropy/rmh.py decode <file.rmh>   [-o <file_hasil>] # .rmh -> file asli
+python byteentropy/rmh.py info   <file.rmh>                     # lihat isi .rmh
+```
+
+| Perintah | Keterangan | Nama output default |
+|---|---|---|
+| `encode` | Membuat file `.rmh` dan menampilkan perbandingan ukuran dengan zlib, lzma, dan batas Shannon | `<file>.rmh` |
+| `decode` | Menyusun kembali file asli, lalu memverifikasi dengan CRC32 | `<file tanpa .rmh>.decoded` |
+| `info` | Menampilkan ukuran asli, CRC32, total permutasi, rank, dan histogram | - |
+
+Contoh lengkap:
+
+```bash
+python byteentropy/rmh.py encode Testing/bismillah.txt -o bismillah.rmh
+python byteentropy/rmh.py info bismillah.rmh
+python byteentropy/rmh.py decode bismillah.rmh -o bismillah_kembali.txt
+```
+
+Output `encode`:
+
+```
+Rincian file .rmh:
+  header              6 byte
+  histogram          14 byte
+  crc32               4 byte
+  rank                3 byte
+  TOTAL              27 byte
+
+Perbandingan ukuran:
+  asli                  9 byte
+  .rmh                 27 byte  (300.0% dari asli)
+  zlib -9              17 byte  (188.9% dari asli)
+  lzma -9              68 byte  (755.6% dari asli)
+  n*H/8               3.1 byte  (batas Shannon orde-0, n*H/8)
+```
+
+### Struktur file
+
+Angka bertanda *varint* disimpan dengan LEB128: 7 bit per byte, bit tertinggi menandakan masih ada byte lanjutan. Angka kecil (< 128) cukup 1 byte.
+
+| Bagian | Ukuran | Isi |
+|---|---|---|
+| Magic | 4 byte | `RMH1`, penanda file `.rmh` |
+| n | varint | Ukuran file asli dalam byte |
+| k | varint | Jumlah nilai byte berbeda (0..256) |
+| Histogram | k × (1 byte + varint) | Pasangan (nilai byte, frekuensi), urut naik |
+| CRC32 | 4 byte | Checksum file asli untuk verifikasi decode |
+| Rank | m byte | Nomor urut permutasi, big-endian |
+
+Panjang rank `m` **tidak disimpan**. Decoder menghitung total permutasi dari histogram, lalu `m` = jumlah byte yang dibutuhkan untuk menampung `total − 1`.
+
+Contoh isi `bismillah.rmh` (27 byte):
+
+```
+52 4D 48 31                 magic "RMH1"
+09                          n = 9
+07                          k = 7
+61 01 62 01 68 01 69 02     a=1 b=1 h=1 i=2
+6C 02 6D 01 73 01           l=2 m=1 s=1
+A9 42 0C 61                 CRC32
+00 3A F6                    rank = 15094
+```
+
+### Verifikasi saat decode
+
+`decode` menolak file yang rusak dengan pesan yang jelas:
+
+| Kerusakan | Pesan |
+|---|---|
+| Bukan file `.rmh` | `Bukan file .rmh (magic tidak cocok)` |
+| File terpotong | `Panjang rank tidak sesuai (...)` |
+| Isi rank/histogram berubah | `CRC32 tidak cocok, hasil decode rusak` |
+| Jumlah frekuensi ≠ n | `Jumlah frekuensi histogram tidak sama dengan ukuran file` |
+
+### Hasil uji pada file di repo
+
+Semua file di bawah ini kembali **identik byte per byte** setelah encode → decode (dicek dengan `cmp`):
+
+| File | Asli | .rmh | zlib -9 | lzma -9 | n·H/8 |
+|---|---|---|---|---|---|
+| `Testing/bismillah.txt` | 9 | 27 | 17 | 68 | 3,1 |
+| `Testing/nullbyte.txt` | 256 | 14 | 12 | 72 | 0 |
+| `Testing/HoRM.txt` | 4.690 | 2.243 | 1.236 | 1.024 | 2.158,9 |
+| `Testing/Return[er]Machine.py` | 7.235 | 4.576 | 2.103 | 2.168 | 4.429,8 |
+| `Testing/RMHash_HoRM2.txt` | 8.585 | 4.043 | 1.146 | 584 | 3.987,0 |
+| `Testing/123.txt.png` | 10.073 | 10.287 | 8.369 | 8.264 | 9.883,8 |
+| `Testing/Return[er]Machine-NestedRubik256DNA.py` | 15.112 | 15.005 | 12.354 | 12.208 | 14.603,2 |
+
+(ukuran dalam byte)
+
+Selain itu, 300 data acak (termasuk file kosong dan ke-256 nilai byte) juga lolos uji encode → decode.
+
+### Membaca hasilnya
+
+- **`.rmh` selalu mendekati n·H/8**, sesuai teori enumerative coding. Rank sendiri sedikit lebih kecil dari n·H/8. Selisih kecil di atasnya berasal dari header, histogram, dan CRC32.
+- **zlib dan lzma lebih kecil** pada file teks karena keduanya memanfaatkan **urutan dan pengulangan** (kata, baris yang mirip). Enumerative coding orde-0 hanya memakai frekuensi tiap byte. Contohnya `RMHash_HoRM2.txt` yang sangat berulang: lzma 584 byte, sedangkan `.rmh` 4.043 byte.
+- **File yang sudah terkompresi** seperti PNG tidak bisa diperkecil, bahkan sedikit membesar karena tambahan header + histogram.
+- **File sangat kecil** membesar karena biaya header + histogram + CRC32 (minimal 10 byte).
+
+### Kecepatan
+
+| Ukuran file | Encode | Decode |
+|---|---|---|
+| 4,7 KB | 0,02 detik | 0,03 detik |
+| 15 KB | 0,44 detik | 0,59 detik |
+| 50 KB | 3,0 detik | 3,8 detik |
+
+Waktu naik kira-kira kuadratik terhadap ukuran file, karena rank adalah satu bilangan bulat raksasa yang ikut dihitung ulang di setiap posisi. Script memberi peringatan untuk file di atas 20.000 byte. Solusinya adalah memecah file per blok (tahap berikutnya).
 
 
 ```git
