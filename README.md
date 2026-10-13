@@ -45,6 +45,7 @@ python byteentropy/histogram_v2.py <nama_file>
 | `histogram_v2.py` | **Perbaikan** `histogram.py`, versi yang disarankan |
 | `permutasi_rank.py` | Enumerative coding: menyimpan data sebagai histogram + rank, lalu menyusunnya kembali (lihat bagian [Enumerative Coding](#enumerative-coding-histogram--rank)) |
 | `rmh.py` | Encode file ke `.rmh` (histogram + rank) dan decode kembali (lihat bagian [Format File .rmh](#format-file-rmh-simpan-ke-file)) |
+| `rmh_blok.py` | Versi per blok dari `rmh.py`: cepat untuk file besar dan bisa paralel (lihat bagian [Per Blok](#per-blok-file-rmb)) |
 
 ### Konsep singkat
 
@@ -355,7 +356,110 @@ Selain itu, 300 data acak (termasuk file kosong dan ke-256 nilai byte) juga lolo
 | 15 KB | 0,44 detik | 0,59 detik |
 | 50 KB | 3,0 detik | 3,8 detik |
 
-Waktu naik kira-kira kuadratik terhadap ukuran file, karena rank adalah satu bilangan bulat raksasa yang ikut dihitung ulang di setiap posisi. Script memberi peringatan untuk file di atas 20.000 byte. Solusinya adalah memecah file per blok (tahap berikutnya).
+Waktu naik kira-kira kuadratik terhadap ukuran file, karena rank adalah satu bilangan bulat raksasa yang ikut dihitung ulang di setiap posisi. Script memberi peringatan untuk file di atas 20.000 byte. Solusinya adalah memecah file per blok, lihat bagian [Per Blok](#per-blok-file-rmb).
+
+## Per Blok (File .rmb)
+
+Script: `byteentropy/rmh_blok.py`. Script ini melanjutkan `rmh.py`: file dipecah menjadi blok-blok berukuran tetap (default 4.096 byte), dan **setiap blok disimpan sebagai histogram + rank sendiri**. `rmh.py` tidak diubah. `rmh_blok.py` memakai fungsi `rank`/`unrank` dari `rmh.py`.
+
+### Kenapa per blok lebih cepat
+
+Waktu proses enumerative coding sebanding dengan **n²** karena rank adalah satu bilangan raksasa sebesar seluruh file. Jika file dibagi menjadi blok berukuran B:
+
+```
+tanpa blok : n²
+per blok   : (n / B) blok × B²  =  n × B   → linear terhadap ukuran file
+```
+
+Blok juga **tidak saling bergantung**, jadi bisa diproses paralel di beberapa core CPU (opsi `-j`, default = jumlah core).
+
+### Cara pakai
+
+```bash
+python byteentropy/rmh_blok.py encode   <file>     [-o <file.rmb>] [-b <ukuran_blok>] [-j <proses>]
+python byteentropy/rmh_blok.py decode   <file.rmb> [-o <file_hasil>] [-j <proses>]
+python byteentropy/rmh_blok.py info     <file.rmb> [--semua]
+python byteentropy/rmh_blok.py analisis <file>     [-u <ukuran1> <ukuran2> ...] [-j <proses>]
+```
+
+| Perintah | Keterangan |
+|---|---|
+| `encode` | File asli → `.rmb`. Opsi `-b` ukuran blok (default 4096), `-j` jumlah proses paralel |
+| `decode` | `.rmb` → file asli, diverifikasi dengan CRC32. Default output `<file tanpa .rmb>.decoded` |
+| `info` | Rincian per blok: panjang, jumlah byte unik, ukuran rank, entropy. Opsi `--semua` menampilkan semua blok |
+| `analisis` | Mencoba beberapa ukuran blok (default 256, 1024, 4096, 16384) tanpa menulis file, untuk memilih ukuran blok terbaik |
+
+Contoh:
+
+```bash
+python byteentropy/rmh_blok.py encode "Testing/GPU List.txt" -o gpu.rmb
+python byteentropy/rmh_blok.py info gpu.rmb
+python byteentropy/rmh_blok.py decode gpu.rmb -o gpu_kembali.txt
+python byteentropy/rmh_blok.py analisis "Testing/GPU List.txt" -u 256 1024 4096 16384 65536
+```
+
+### Struktur file
+
+| Bagian | Ukuran | Isi |
+|---|---|---|
+| Magic | 4 byte | `RMB1` |
+| n | varint | Ukuran file asli |
+| B | varint | Ukuran blok (blok terakhir boleh lebih pendek) |
+| CRC32 | 4 byte | Checksum seluruh file asli |
+| **Untuk setiap blok:** | | Jumlah blok = ⌈n / B⌉, tidak disimpan |
+| k | varint | Jumlah nilai byte berbeda di blok ini |
+| Histogram | k × (1 byte + varint) | Pasangan (nilai byte, frekuensi) |
+| Rank | m byte | Rank blok, big-endian. Panjang `m` dihitung dari histogram blok |
+
+### Hasil: kecepatan
+
+`Testing/GPU List.txt` (136.412 byte), CPU 16 core:
+
+| Metode | Waktu encode | Ukuran |
+|---|---|---|
+| `rmh.py` (tanpa blok) | 21,6 detik | 88.067 byte |
+| `rmh_blok.py -b 4096 -j 1` | 0,81 detik | 89.892 byte |
+| `rmh_blok.py -b 4096 -j 16` | 0,23 detik | 89.892 byte |
+
+Dengan blok 4.096 byte, file **27× lebih cepat** pada 1 core dan **94× lebih cepat** pada 16 core. Ukurannya hanya 2% lebih besar. Decode file yang sama butuh 0,32 detik, dan hasilnya identik.
+
+### Hasil: memilih ukuran blok
+
+Output `analisis` untuk `Testing/GPU List.txt`:
+
+| Blok | Jumlah blok | Histogram | Rank | Total `.rmb` | % asli | Detik (16 proses) |
+|---|---|---|---|---|---|---|
+| 256 | 533 | 47.917 | 79.081 | 127.011 | 93,1% | 0,17 |
+| 1.024 | 134 | 13.000 | 83.863 | 96.876 | 71,0% | 0,18 |
+| 4.096 | 34 | 3.966 | 85.913 | 89.892 | 65,9% | 0,23 |
+| 16.384 | 9 | 1.362 | 86.908 | 88.284 | 64,7% | 0,49 |
+| 65.536 | 3 | 509 | 87.422 | 87.945 | 64,5% | 5,20 |
+
+Ada tarik-ulur:
+
+- **Blok kecil → bagian rank lebih kecil.** Histogram tiap blok mengikuti isi lokal blok itu, jadi lebih akurat daripada satu histogram untuk seluruh file.
+- **Blok kecil → biaya histogram jauh lebih besar.** Setiap blok menyimpan histogramnya sendiri. Pada blok 256 byte, histogram memakan 47.917 byte, lebih dari sepertiga file.
+- **Blok besar → lambat.** Waktu per blok naik kuadratik terhadap ukuran blok.
+
+Untuk file ini, **4.096 – 16.384 byte** adalah titik tengah yang baik. Ukuran terbaik berbeda per file, jadi gunakan `analisis` untuk mencobanya. Contohnya, `Testing/HoRM.txt` (4.690 byte) paling kecil pada blok 1.024 byte (2.146 byte).
+
+### Pengujian
+
+- Encode → decode identik (dicek dengan `cmp`) untuk `Testing/GPU List.txt`, `Testing/bismillah.txt`, `Testing/nullbyte.txt`, dan `Testing/123.txt.png`.
+- 300 data acak dengan ukuran 0–5.000 byte dan ukuran blok 1–4.096 byte lolos semua, termasuk mode paralel.
+- File `.rmb` yang rusak ditolak:
+
+| Kerusakan | Pesan |
+|---|---|
+| Bukan file `.rmb` | `Bukan file .rmb (magic tidak cocok)` |
+| File terpotong | `File .rmb terpotong (rank blok N)` |
+| Ada byte tambahan di akhir | `Ada N byte sisa di akhir file .rmb` |
+| Rank atau histogram berubah | `CRC32 tidak cocok, hasil decode rusak` |
+
+### Batasan
+
+- Per blok menyelesaikan masalah **kecepatan**, bukan **ukuran**. Hasilnya tetap mendekati batas Shannon orde-0, dan masih jauh di atas zlib/lzma untuk teks (`GPU List.txt`: `.rmb` 89.892 byte, lzma 9.024 byte).
+- Biaya histogram per blok besar, terutama untuk blok kecil. Ini yang akan diatasi oleh tahap **histogram ringkas**.
 
 
 ```git
