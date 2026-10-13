@@ -54,7 +54,7 @@ python byteentropy/histogram_v2.py <nama_file>
 | `rmh_final2.py` | Seperti `rmh_final.py`, ditambah mode campuran per blok: bagian yang sudah terkompresi (gambar, ZIP) disimpan mentah, hanya bagian berpola yang dikodekan. Jauh lebih cepat untuk PDF dan file campuran (lihat bagian [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2)) |
 | `rmh_final3.py` | Seperti `rmh_final2.py`, tetapi bagian berpola dikodekan dengan konteks versi 2 (`rmh_konteks2.py`). Lebih kecil dari zip pada semua file uji kecuali satu, yang hasilnya seri (lihat bagian [Final versi 3](#final-versi-3-rmf-versi-3)) |
 | `rmh_konteks3.py` | Versi cepat `rmh_konteks2.py` dengan numba. Format RMK2 yang sama, hasil identik byte demi byte, 20–50× lebih cepat (lihat bagian [Versi Cepat dengan numba](#versi-cepat-dengan-numba)) |
-| `rmh_final4.py` | **Versi yang disarankan.** Versi cepat `rmh_final3.py` (format RMF3 yang sama). Karena cepat, orde dan pilihan campuran/semua model diuji pada data penuh (lihat bagian [Versi Cepat dengan numba](#versi-cepat-dengan-numba)) |
+| `rmh_final4.py` | **Versi yang disarankan.** Versi cepat `rmh_final3.py` (format RMF3 yang sama). Karena cepat, orde dan pilihan campuran/semua model diuji pada data penuh (lihat bagian [Versi Cepat dengan numba](#versi-cepat-dengan-numba) dan [Panduan parameter dan contoh](#panduan-parameter-dan-contoh)) |
 
 ### Istilah ekstensi file
 
@@ -1364,6 +1364,125 @@ python byteentropy/rmh_final4.py bandingkan <file>     [--python]
 
 - `--tanpa-uji-semua`: blok acak selalu disimpan mentah, seperti `rmh_final3.py`. Encode dan decode jauh lebih cepat, tetapi hasilnya bisa sedikit lebih besar. Contohnya PDF uji: encode 2,1 detik dan decode 0,7 detik, hasilnya 6.082.351 byte (tanpa opsi ini: 17,5 detik, 14,3 detik, dan 6.056.548 byte).
 - `--python` pada `bandingkan`: ikut menjalankan versi Python sebagai pembanding.
+
+### Panduan parameter dan contoh
+
+**Membaca notasi di atas:**
+
+- `<...>` diganti dengan nilai Anda sendiri, misalnya `<file>` menjadi `Testing/HoRM.txt`.
+- `[...]` artinya opsional. Jika tidak ditulis, program memakai nilai default.
+- `-o` adalah singkatan dari `--output`. Keduanya sama.
+
+Semua contoh dijalankan dari folder utama proyek. Nama file yang mengandung spasi harus diberi tanda kutip, misalnya `"Testing/GPU List.txt"`.
+
+#### `rmh_konteks3.py` (file `.rmk`)
+
+Program ini hanya memakai satu metode (konteks PPM), dan Anda yang menentukan ordenya.
+
+| Parameter `encode` | Arti | Default | Kapan diisi |
+|---|---|---|---|
+| `<file>` | File asli yang akan dikecilkan | wajib | selalu |
+| `-o <file.rmk>` | Nama file hasil | `<file>.rmk` | jika ingin nama lain |
+| `-k <orde>` | Berapa byte sebelumnya yang dipakai untuk menebak byte berikutnya (0–6) | 5 | lihat tabel orde di bawah |
+| `--verifikasi` | Setelah encode, langsung di-decode ulang dan dicek apakah identik dengan aslinya | mati | jika ingin yakin hasilnya benar |
+
+Memilih orde (`-k`):
+
+| Orde | Cocok untuk |
+|---|---|
+| 1–2 | File sangat kecil (di bawah 2 KB) |
+| 3 | File kecil (2–10 KB), dan data angka seperti `logfactorial.txt` |
+| 4–5 | Teks atau kode berukuran puluhan KB ke atas |
+| 6 | Teks besar yang sangat berulang |
+
+Jika ragu, jalankan `bandingkan` dulu, lalu pilih orde yang hasilnya paling kecil.
+
+Contoh:
+
+```
+# 1. Encode dengan setelan default (orde 5), hasil: Testing/HoRM.txt.rmk
+python byteentropy/rmh_konteks3.py encode Testing/HoRM.txt
+
+# 2. Encode dengan orde 3, nama hasil ditentukan, lalu langsung dicek
+python byteentropy/rmh_konteks3.py encode Testing/HoRM.txt -o horm.rmk -k 3 --verifikasi
+
+# 3. File besar berisi angka: orde 3 paling cocok
+python byteentropy/rmh_konteks3.py encode Testing/logfactorial.txt -o logfactorial3.rmk -k 3 --verifikasi
+
+# 4. Kembalikan ke file asli
+python byteentropy/rmh_konteks3.py decode horm.rmk -o horm_kembali.txt
+
+# 5. Cari orde terbaik: coba orde 2 sampai 6 sekaligus, tanpa menulis file
+python byteentropy/rmh_konteks3.py bandingkan "Testing/GPU List.txt" -k 2 3 4 5 6
+```
+
+Pada `decode`, `-o <file_hasil>` menentukan nama file hasil. Defaultnya `<nama tanpa .rmk>.decoded`.
+
+#### `rmh_final4.py` (file `.rmf`, yang disarankan)
+
+Program ini **memilih metode dan orde terbaik secara otomatis**, jadi biasanya cukup dijalankan tanpa parameter.
+
+| Parameter `encode` | Arti | Default | Kapan diisi |
+|---|---|---|---|
+| `<file>` | File asli | wajib | selalu |
+| `-o <file.rmf>` | Nama file hasil | `<file>.rmf` | jika ingin nama lain |
+| `-b <blok>` | File dipotong per blok berukuran sekian byte, lalu setiap blok dinilai berpola atau acak | 1024 | jarang perlu diubah |
+| `-a <ambang>` | Batas keacakan blok, dalam bit/byte (0–8). Blok di atas batas ini disimpan apa adanya (mentah) | 7.6 | lihat penjelasan di bawah |
+| `-k <orde>` | Memaksa orde tertentu, sehingga tidak dipilih otomatis | otomatis | jika orde terbaik sudah diketahui dan ingin encode lebih cepat |
+| `--tanpa-uji-semua` | Blok acak selalu disimpan mentah, tanpa dicek apakah lebih kecil jika ikut dikodekan | mati | jika decode cepat lebih penting daripada ukuran |
+| `--tanpa-verifikasi` | Tidak decode ulang setelah encode | mati (verifikasi selalu jalan) | jika ingin encode lebih cepat |
+
+Tentang `-a` (ambang):
+
+- `8`: tidak ada blok yang disimpan mentah, semua blok dikodekan.
+- `7.6` (default): blok yang sudah terkompresi, seperti gambar JPEG atau isi ZIP, disimpan mentah.
+- `0`: semua blok disimpan mentah, jadi file praktis tidak dikecilkan.
+
+`--verifikasi` di `rmh_konteks3.py` dan `--tanpa-verifikasi` di `rmh_final4.py` mengatur hal yang sama, tetapi defaultnya berkebalikan. `rmh_konteks3.py` baru memverifikasi jika diminta. `rmh_final4.py` selalu memverifikasi kecuali dimatikan.
+
+Contoh:
+
+```
+# 1. Cara paling umum: semua otomatis, hasil: "Testing/GPU List.txt.rmf"
+python byteentropy/rmh_final4.py encode "Testing/GPU List.txt"
+
+# 2. Tentukan nama hasil
+python byteentropy/rmh_final4.py encode Testing/Dialog_Dengan_Jin_Muslim.pdf -o dialog.rmf
+
+# 3. PDF dengan decode cepat: hasil sedikit lebih besar, tetapi encode 2 detik dan decode 0,7 detik
+python byteentropy/rmh_final4.py encode Testing/Dialog_Dengan_Jin_Muslim.pdf -o dialog_cepat.rmf --tanpa-uji-semua
+
+# 4. Orde terbaik sudah diketahui (3): lewati pemilihan otomatis, encode lebih cepat
+python byteentropy/rmh_final4.py encode Testing/logfactorial.txt -o logfactorial.rmf -k 3
+
+# 5. Semua blok dikodekan (ambang 8), blok 4096 byte, tanpa verifikasi
+python byteentropy/rmh_final4.py encode Testing/123.txt.png -o png.rmf -a 8 -b 4096 --tanpa-verifikasi
+
+# 6. Kembalikan ke file asli (otomatis dicek dengan SHA-256)
+python byteentropy/rmh_final4.py decode dialog.rmf -o dialog_kembali.pdf
+
+# 7. Lihat isi header: mode, orde, peta blok
+python byteentropy/rmh_final4.py info dialog.rmf
+
+# 8. Bandingkan ukuran .rmf dengan zip dan 7z, tanpa menulis file
+python byteentropy/rmh_final4.py bandingkan Testing/logfactorial.txt
+```
+
+Parameter lain:
+
+- `info --semua`: tampilkan seluruh peta blok, bukan hanya potongan awal dan akhir.
+- `bandingkan --python`: ikut menjalankan versi Python lama sebagai pembanding (lambat).
+
+#### Ringkasnya
+
+Untuk pemakaian sehari-hari cukup dua baris:
+
+```
+python byteentropy/rmh_final4.py encode <file>
+python byteentropy/rmh_final4.py decode <file>.rmf
+```
+
+`rmh_konteks3.py` dipakai jika ingin bereksperimen dengan orde secara manual. Pemakaian pertama butuh sekitar 10 detik untuk kompilasi numba; pemakaian berikutnya langsung cepat.
 
 ### Hasil: kecepatan
 
