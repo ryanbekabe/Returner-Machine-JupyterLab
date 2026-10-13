@@ -233,6 +233,25 @@ Script `byteentropy/rmh_final.py` (perintah `encode`, `decode`, `info`):
 | `logfactorial.txt` | 5.644.322 | konteks orde 3 | 2.130.368 |
 | 100.000 byte acak | 100.000 | mentah | 100.040 |
 
+## 13. Mode campuran per blok: `.rmf` versi 2
+
+Masalah: `Dialog_Dengan_Jin_Muslim.pdf` (6,9 MB) lambat dan hasilnya lebih besar dari zip dan 7z. Sebanyak 87% isi PDF sudah terkompresi (gambar JPEG dan Flate), dan model konteks memperbesar data seperti ini sambil berjalan lambat.
+
+Script `byteentropy/rmh_final2.py`, format `RMF2`:
+
+- File dibagi per blok 1.024 byte. Blok dengan entropy di atas 7,6 bit/byte disimpan **mentah**. Blok lainnya digabung dan dikodekan dengan mode terbaik.
+- Pengaman: "campuran" dibandingkan dengan "semua model", supaya file seperti PNG tidak dirugikan.
+- Peta blok (1 bit per blok) disimpan di header. `rmh_final2.py` tetap bisa membuka `RMF1`.
+
+| `Dialog_Dengan_Jin_Muslim.pdf` | Ukuran | Encode |
+|---|---|---|
+| `RMF1` | 6.352.249 | __WAKTU_LAMA__ |
+| **`RMF2`** | **6.121.828** | **35 detik** |
+| zip | 6.106.702 | |
+| 7z | 6.059.748 | |
+
+Sisa selisih dengan zip/7z ada di struktur teks PDF yang penuh potongan berulang. Dengan model salin potongan (LZ), total diperkirakan 6.046.612 byte, lebih kecil dari 7z.
+
 ---
 
 ## Daftar file yang dibuat
@@ -249,12 +268,13 @@ Script `byteentropy/rmh_final.py` (perintah `encode`, `decode`, `info`):
 | `byteentropy/rmh_adaptif.py` | Encode/decode file `.rma`, histogram adaptif |
 | `byteentropy/rmh_konteks.py` | Encode/decode file `.rmk`, konteks PPM |
 | `byteentropy/rmh_konteks_info.py` | Melihat isi file `.rmk` dengan memutar ulang decode |
-| `byteentropy/rmh_final.py` | **Versi final**: encode/decode `.rmf`, mode otomatis + SHA-256 |
+| `byteentropy/rmh_final.py` | Encode/decode `.rmf` versi 1, mode otomatis + SHA-256 |
+| `byteentropy/rmh_final2.py` | **Versi yang disarankan**: `.rmf` versi 2, mode campuran per blok |
 
 ## Langkah berikutnya
 
 1. ~~**Histogram adaptif.**~~ Selesai, lihat bagian 8.
 2. ~~**Konteks orde-1/orde-2.**~~ Selesai, lihat bagian 9. Hasilnya melampaui perkiraan: `GPU List.txt` turun menjadi 11 KB dengan orde 5.
 3. **Context mixing.** Menggabungkan tebakan beberapa orde sekaligus (seperti PAQ/cmix), bukan memilih satu lewat escape.
-4. **Model salin potongan (LZ).** Untuk data yang sangat berulang, di mana lzma masih unggul.
+4. **Model salin potongan (LZ).** Untuk data yang sangat berulang, di mana lzma masih unggul. Prioritas berikutnya: diperkirakan membuat PDF uji lebih kecil dari 7z.
 5. **Percepatan.** Python murni sekitar 100 KB/detik. Perlu numba atau C/Rust untuk file berukuran MB.

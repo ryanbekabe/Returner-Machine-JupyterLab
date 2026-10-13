@@ -49,7 +49,8 @@ python byteentropy/histogram_v2.py <nama_file>
 | `rmh_adaptif.py` | Histogram dipelajari dari data yang sudah terbuka, tidak disimpan (lihat bagian [Histogram Adaptif](#histogram-adaptif-file-rma)) |
 | `rmh_konteks.py` | Satu histogram adaptif per konteks (PPM), menebak byte dari byte-byte sebelumnya (lihat bagian [Konteks PPM](#konteks-ppm-file-rmk)) |
 | `rmh_konteks_info.py` | Melihat isi file `.rmk`: rincian per segmen, ke mana bit dihabiskan, konteks yang dipelajari, dan jejak decode (lihat bagian [Melihat Isi File .rmk](#melihat-isi-file-rmk)) |
-| `rmh_final.py` | **Versi yang disarankan.** Memilih mode terbaik secara otomatis (konteks orde 1..5, adaptif, atau mentah) dan menyimpan SHA-256 sebagai sidik jari (lihat bagian [Return[er] Machine Final](#returner-machine-final-file-rmf)) |
+| `rmh_final.py` | Memilih mode terbaik secara otomatis (konteks orde 1..5, adaptif, atau mentah) dan menyimpan SHA-256 sebagai sidik jari (lihat bagian [Return[er] Machine Final](#returner-machine-final-file-rmf)) |
+| `rmh_final2.py` | **Versi yang disarankan.** Seperti `rmh_final.py`, ditambah mode campuran per blok: bagian yang sudah terkompresi (gambar, ZIP) disimpan mentah, hanya bagian berpola yang dikodekan. Jauh lebih cepat untuk PDF dan file campuran (lihat bagian [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2)) |
 
 ### Istilah ekstensi file
 
@@ -61,7 +62,7 @@ Awalan **rm** berasal dari **R**eturner **M**achine. Huruf terakhir menunjukkan 
 | `.rmb` | Return[er] Machine **B**lok | `RMB1` | `rmh_blok.py` | File dipecah per blok, setiap blok punya histogram + rank sendiri. Lihat [Per Blok](#per-blok-file-rmb) |
 | `.rma` | Return[er] Machine **A**daptif | `RMA1` | `rmh_adaptif.py` | Histogram tidak disimpan, tetapi dipelajari dari byte yang sudah terbuka. Lihat [Histogram Adaptif](#histogram-adaptif-file-rma) |
 | `.rmk` | Return[er] Machine **K**onteks | `RMK1` | `rmh_konteks.py` | Satu histogram adaptif untuk setiap konteks (1..N byte sebelumnya). Lihat [Konteks PPM](#konteks-ppm-file-rmk) |
-| `.rmf` | Return[er] Machine **F**inal | `RMF1` | `rmh_final.py` | Mode terbaik dipilih otomatis (konteks, adaptif, atau mentah) + SHA-256 file asli. Lihat [Return[er] Machine Final](#returner-machine-final-file-rmf) |
+| `.rmf` | Return[er] Machine **F**inal | `RMF1`, `RMF2` | `rmh_final.py` (versi 1), `rmh_final2.py` (versi 2) | Mode terbaik dipilih otomatis + SHA-256 file asli. Versi 2 menambah mode campuran per blok. `rmh_final2.py` bisa membuka kedua versi. Lihat [Return[er] Machine Final](#returner-machine-final-file-rmf) dan [Mode Campuran per Blok](#mode-campuran-per-blok-rmf-versi-2) |
 
 Penanda di awal file membuat program bisa mengenali formatnya. Angka `1` adalah nomor versi format, sehingga format yang diubah di masa depan bisa memakai `RMK2` dan seterusnya tanpa merusak file lama.
 
@@ -1034,6 +1035,119 @@ Header berukuran 38–45 byte, terutama untuk SHA-256.
 - Pemilihan otomatis mengodekan file sampai 7 kali, jadi encode lebih lambat dari `rmh_konteks.py`. Decode tetap secepat mode yang terpilih.
 - Contoh file besar, `Testing/logfactorial.txt` (5,6 MB): sampel memilih orde 2, lalu penyesuaian pada file penuh menemukan orde 3 lebih kecil (2.130.326 vs 2.141.867 byte kode) dan berhenti di orde 4 yang lebih besar (2.185.819). Encode butuh sekitar 103 detik ditambah verifikasi 35 detik. Decode sekitar 33 detik. Gunakan `-k 3` untuk melewati pemilihan jika orde terbaik sudah diketahui.
 - Python murni sekitar 100–150 KB/detik untuk mode konteks.
+- File yang sebagian besar sudah terkompresi (PDF bergambar, installer, arsip) lambat dan sedikit membengkak, karena seluruh file dipaksa melewati satu model. Ini diperbaiki di versi 2.
+
+## Mode Campuran per Blok (.rmf versi 2)
+
+Script: `byteentropy/rmh_final2.py`. Format tetap berekstensi `.rmf` dengan penanda **`RMF2`**. `rmh_final2.py` juga bisa membuka file `RMF1`. `rmh_final.py` tidak diubah.
+
+### Masalah yang diperbaiki
+
+`Testing/Dialog_Dengan_Jin_Muslim.pdf` (6.877.939 byte) hampir seluruhnya berisi data yang sudah terkompresi:
+
+| Bagian PDF | Ukuran | lzma -9 |
+|---|---|---|
+| Gambar FlateDecode | 3.600.270 | 100,0% |
+| Gambar JPEG (DCTDecode) | 1.564.237 | 96,7% |
+| Stream FlateDecode lain | 830.822 | 100,0% |
+| **Struktur PDF (teks)** | **873.765** | **7,9%** |
+
+Di `RMF1`, seluruh 6,9 MB dipaksa melewati model konteks. Pada data yang sudah terkompresi, model ini lambat (sekitar 35 KB/detik) dan malah membengkakkan data 1–3,5%.
+
+### Cara kerja
+
+1. File dibagi menjadi blok 1.024 byte.
+2. Setiap blok dihitung entropy orde-0-nya. Blok di atas **7,6 bit/byte** (hampir acak atau sudah terkompresi) ditandai **mentah**. Blok lainnya ditandai **model**.
+3. Semua blok model **digabung menjadi satu aliran** dan dikodekan dengan mode terbaik (pemilihan dari `rmh_final.py`). Karena digabung, model tetap belajar dari seluruh bagian berpola, meskipun bagian itu tersebar di antara gambar.
+4. Blok mentah disalin apa adanya, jadi tidak membengkak dan sangat cepat.
+5. **Pengaman:** entropy orde-0 yang tinggi belum tentu berarti tidak bisa diperkecil. PNG, misalnya, masih bisa diperkecil oleh model konteks. Karena itu "campuran" dibandingkan dengan "semua blok dikodekan model" (konteks orde 3, pada file penuh atau sampel 3 × 64 KB), lalu yang lebih kecil dipakai.
+
+Hasil pembagian blok disimpan sebagai **peta blok**, 1 bit per blok (`info` menampilkannya):
+
+```
+Peta blok (M = model, . = mentah, 64 blok per baris):
+         0  M..MMM..MM..M..M.......M.......M............MM....MM.MMM.M.M..M.
+        64  .M...M...M...M....M...M.M.M..M....M....M....M....M....M..M...M..
+       ...
+       448  ................................................................
+```
+
+`M` adalah struktur teks PDF yang tersebar di antara gambar (`.`).
+
+### Cara pakai
+
+```bash
+python byteentropy/rmh_final2.py encode <file>     [-o <file.rmf>] [-b <blok>] [-a <ambang>] [-k <orde>] [--tanpa-verifikasi]
+python byteentropy/rmh_final2.py decode <file.rmf> [-o <file_hasil>]
+python byteentropy/rmh_final2.py info   <file.rmf> [--semua]
+```
+
+| Opsi | Keterangan |
+|---|---|
+| `-b`, `--blok` | Ukuran blok (default 1.024 byte) |
+| `-a`, `--ambang` | Blok dengan entropy di atas ambang disimpan mentah (default 7,6). `8` = semua blok dikodekan model, sama seperti `RMF1` |
+| `-k`, `--orde` | Paksa orde konteks untuk bagian berpola |
+| `--tanpa-verifikasi` | Lewati decode ulang setelah encode |
+| `info --semua` | Tampilkan seluruh peta blok |
+
+Contoh:
+
+```bash
+python byteentropy/rmh_final2.py encode Testing/Dialog_Dengan_Jin_Muslim.pdf -o jin.rmf
+python byteentropy/rmh_final2.py info jin.rmf
+python byteentropy/rmh_final2.py decode jin.rmf -o jin_kembali.pdf
+```
+
+### Struktur file
+
+| Bagian | Ukuran | Isi |
+|---|---|---|
+| Magic | 4 byte | `RMF2` |
+| n | varint | Ukuran file asli |
+| SHA-256 | 32 byte | Sidik jari file asli |
+| B | varint | Ukuran blok |
+| Peta blok | ⌈jumlah blok / 8⌉ byte | 1 bit per blok: 1 = model, 0 = mentah |
+| Mode model | 1 byte | `0` mentah, `1` adaptif, `2` konteks |
+| Parameter | 0–4 byte | Sama seperti `RMF1` |
+| Panjang kode | varint | Panjang kode model |
+| Kode model | k byte | Aliran gabungan semua blok model |
+| Blok mentah | sisa file | Semua blok mentah, berurutan |
+
+### Hasil
+
+`Testing/Dialog_Dengan_Jin_Muslim.pdf` (6.877.939 byte):
+
+| Metode | Ukuran | Waktu encode |
+|---|---|---|
+| `RMF1` (`rmh_final.py`) | 6.352.249 | __WAKTU_LAMA__ |
+| **`RMF2` (`rmh_final2.py`)** | **6.121.828** | **35 detik** (+16 detik verifikasi) |
+| zip | 6.106.702 | - |
+| 7z | 6.059.748 | - |
+
+Rinciannya: header 887 byte + kode model 367.085 byte (1.124.083 byte berpola, konteks orde 5) + blok mentah 5.753.856 byte. Decode butuh 16 detik.
+
+File lain (ukuran dalam byte):
+
+| File | `RMF1` | `RMF2` | Keputusan |
+|---|---|---|---|
+| `GPU List.txt` | 11.035 | 11.056 | semua blok berpola |
+| `NestedRubik256DNA.py` | 13.768 | **13.255** | campuran |
+| `123.txt.png` | 8.701 | 8.707 | semua model (hasil pengaman) |
+| 100.000 byte acak | 100.040 | 100.056 | campuran (semua mentah) |
+| `HoRM.txt` | 1.114 | 1.119 | semua blok berpola |
+
+Untuk file yang seluruhnya berpola, `RMF2` hanya sekitar 5–20 byte lebih besar (peta blok + panjang kode). Untuk file campuran, `RMF2` lebih kecil dan jauh lebih cepat.
+
+### Pengujian
+
+- Encode → decode identik untuk PDF di atas dan semua file uji, termasuk file kosong dan data acak. Encode dua kali menghasilkan file yang sama persis.
+- File `RMF1` lama tetap bisa dibuka oleh `rmh_final2.py`.
+- 150 uji acak lolos, termasuk ukuran blok 1..4.096, ambang 0..8, dan data campuran acak/teks.
+- File rusak ditolak: magic salah, header terpotong, isi terpotong, byte tambahan, peta blok diubah (`Ukuran isi tidak sesuai`), dan isi yang diubah (`SHA-256 tidak cocok`).
+
+### Kenapa masih sedikit di atas zip dan 7z
+
+Sisa selisihnya ada di **struktur teks PDF**. Teks ini penuh potongan panjang yang berulang (sintaks objek PDF, tabel xref). Metode LZ (zip, 7z) menyalin potongan itu sekaligus, sedangkan model konteks menebak byte demi byte. Pada 1.124.083 byte bagian berpola, PPM orde 5 menghasilkan 367.085 byte, sedangkan lzma menghasilkan 291.869 byte. Dengan model salin potongan (LZ), total file diperkirakan sekitar **6.046.612 byte**, lebih kecil dari 7z.
 
 
 ```git
