@@ -43,6 +43,7 @@ python byteentropy/histogram_v2.py <nama_file>
 | `histogram.py` | Histogram + entropy (versi lama, lihat catatan di bawah) |
 | `entropyhistogram.py` | Sama dengan `histogram.py` |
 | `histogram_v2.py` | **Perbaikan** `histogram.py`, versi yang disarankan |
+| `permutasi_rank.py` | Enumerative coding: menyimpan data sebagai histogram + rank, lalu menyusunnya kembali (lihat bagian [Enumerative Coding](#enumerative-coding-histogram--rank)) |
 
 ### Konsep singkat
 
@@ -114,6 +115,129 @@ Min kemungkinan ukuran file dengan asumsi efisiensi kompresi teoretis maks:
 ```
 
 Nilai entropy di atas sama dengan hasil `entropy.py` untuk file yang sama.
+
+## Enumerative Coding (Histogram + Rank)
+
+Script: `byteentropy/permutasi_rank.py`
+
+### Masalah: permutasi menghasilkan data kembar
+
+Histogram hanya mencatat **berapa kali** tiap byte muncul, tanpa **urutannya**. Akibatnya banyak data berbeda punya histogram yang sama. Jumlahnya dihitung dengan permutasi multiset:
+
+```
+jumlah susunan = n! / (c1! · c2! · ... · ck!)
+```
+
+`n` = panjang data, `c1..ck` = frekuensi tiap nilai byte.
+
+Contoh `bismill` (b=1, i=2, l=2, m=1, s=1), panjang 7 byte:
+
+```
+7! / (2! · 2!) = 1.260 susunan
+```
+
+`bismill`, `ismillb`, `lilsmib`, dan seterusnya punya histogram yang identik. Permutasi saja tidak bisa menentukan mana yang asli.
+
+### Percobaan: memberi tanda posisi awal dan akhir
+
+| Tanda | Kandidat tersisa |
+|---|---|
+| tanpa tanda | 1.260 |
+| awal `b` + akhir `l` | 60 |
+| awal `bi` + akhir `ll` | 6 |
+| awal `bis` + akhir `ill` | 1 |
+
+Kandidat baru tinggal 1 setelah 6 dari 7 byte ditandai. Itu sama saja dengan menyimpan data aslinya, jadi tanda posisi tidak efisien.
+
+### Solusi: simpan nomor urut permutasi (rank)
+
+Semua susunan diurutkan secara leksikografis berdasarkan nilai byte 0..255 dan diberi nomor mulai dari 0. Yang disimpan adalah **histogram + nomor urut (rank)** data asli.
+
+Contoh kecil, data `aab` (a=2, b=1), ada 3!/2! = 3 susunan:
+
+| Rank | Susunan |
+|---|---|
+| 0 | `aab` |
+| 1 | `aba` |
+| 2 | `baa` |
+
+Jadi `aab` cukup disimpan sebagai histogram `{a:2, b:1}` + rank `0`.
+
+Hasil untuk data di repo ini:
+
+| Data | Total susunan | Rank | Bit untuk rank |
+|---|---|---|---|
+| `bismill` | 1.260 | 57 | 11 bit |
+| `ismillb` | 1.260 | 533 | 11 bit |
+| `bismillah` | 90.720 | 15.094 | 17 bit |
+
+`bismill` dan `ismillb` punya histogram sama tetapi rank berbeda, sehingga keduanya bisa dibedakan dengan pasti.
+
+### Cara kerja algoritma
+
+**Encode (data → rank)**, untuk tiap posisi dari kiri ke kanan:
+
+1. Untuk setiap nilai byte yang **lebih kecil** dari byte di posisi ini dan masih tersisa di histogram, tambahkan ke rank jumlah susunan yang diawali byte tersebut: `total × c[b] / sisa`.
+2. Kurangi frekuensi byte di posisi ini, lalu lanjut ke posisi berikutnya.
+
+**Decode (histogram + rank → data)**, untuk tiap posisi:
+
+1. Telusuri nilai byte dari kecil ke besar. Hitung jumlah susunan yang diawali byte tersebut (`blok`).
+2. Jika `rank < blok`, byte itulah yang dipakai di posisi ini. Jika tidak, kurangi rank dengan `blok` dan coba byte berikutnya.
+
+Decode menghitung byte yang tepat langsung di setiap posisi. Susunan lain **tidak perlu dibangkitkan satu per satu** (tanpa brute force). Perhitungannya memakai bilangan bulat Python yang presisinya tak terbatas, jadi rank tetap tepat walaupun angkanya sangat besar.
+
+### Cara pakai
+
+```bash
+python byteentropy/permutasi_rank.py <nama_file>
+python byteentropy/permutasi_rank.py --teks <teks>
+```
+
+| Opsi | Keterangan |
+|---|---|
+| `<nama_file>` | File yang akan diproses |
+| `--teks <teks>` | Gunakan teks (UTF-8) sebagai data, sebagai pengganti file |
+| `-h`, `--help` | Tampilkan bantuan |
+
+Contoh:
+
+```bash
+python byteentropy/permutasi_rank.py --teks bismill
+python byteentropy/permutasi_rank.py Testing/bismillah.txt
+```
+
+Contoh output:
+
+```
+Data                  : bismill
+Ukuran                : 7 byte = 56 bit
+Histogram             : b=1, i=2, l=2, m=1, s=1
+
+Kandidat permutasi tersisa jika posisi tertentu ditandai:
+Tanda                                          Kandidat
+tanpa tanda                                        1260
+awal "b" + akhir "l"                                 60
+awal "bi" + akhir "ll"                                6
+awal "bis" + akhir "ill"                              1
+
+Total permutasi        : 1260
+Rank (nomor urut)      : 57
+Bit untuk rank         : 11 bit
+Batas Shannon n*H      : 15.65 bit
+
+Decode dari histogram + rank: bismill -> SAMA PERSIS dengan data asli
+```
+
+Script selalu melakukan encode lalu decode, kemudian membandingkan hasilnya dengan data asli. Pengujian dilakukan pada `bismill`, `ismillb`, `Testing/bismillah.txt`, `Testing/nullbyte.txt`, dan 50 data biner acak. Semuanya kembali sama persis.
+
+### Batasan
+
+- **Histogram juga harus disimpan.** Untuk data kecil, biaya histogram lebih besar dari datanya. `bismill` punya 5 nilai byte berbeda: pasangan (nilai, jumlah) butuh sekitar 10 byte, ditambah 11 bit rank, lebih besar dari 7 byte aslinya.
+- **Untuk data besar**, ukuran histogram + rank mendekati batas Shannon `n × H`. Hasilnya setara dengan kompresi entropi orde-0 (misalnya arithmetic coding) dan tidak bisa lebih kecil dari batas itu.
+- **Data acak** (entropy ≈ 8 bit/byte) menghasilkan rank yang ukurannya hampir sama dengan data aslinya, jadi tidak ada penghematan.
+- Untuk data besar, encode/decode melambat karena operasi bilangan bulat besar. Script memberi peringatan untuk data di atas 100.000 byte.
+- Saat ini script hanya mendemonstrasikan encode → decode di memori. Script belum menyimpan histogram + rank ke file.
 
 
 ```git
